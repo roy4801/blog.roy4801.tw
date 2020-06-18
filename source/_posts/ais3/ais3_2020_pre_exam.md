@@ -282,6 +282,36 @@ int main(int argc, char *argv[])
 
 #### patch
 
+* 使用 java bytecode editor
+    * 有人知道其他好用的工具拜託跟我講一下XD
+
+* patch
+    * `GameControl.run()` 中的 `this.pe.setValue`
+    * 往 `setValue()` 裡頭追發現 flag 相關的邏輯在這
+
+```java
+if (t == mc) {
+    for (int i2 = 0; i2 < cache.size(); i2++) {
+        byte[] bArr = this.flag;
+        int length = i2 % this.flag.length;
+        bArr[length] = (byte) (cache.get(i2).intValue() ^ bArr[length]);
+    }
+    String fff = new String(this.flag);
+    this.text[0].setText(String.format("Flag: %s", new Object[]{fff}));
+}
+```
+
+* 而 `t` 跟 `mc` 相對應到傳入的參數是 `this.total` 與 `this.comboMax`
+    * 所以上面的條件是：如果最高 combo 是 note 的總數的話，就會印出 flag
+    * 所以就 patch 掉這裡就好
+
+```bash
+# Extract
+jar -ef Fallen_Beat.jar
+# Update class to jar file
+jar -uf Fallen_Beat.jar ./Control/GameControl.class
+```
+
 ![](https://i.imgur.com/jssJ9z6.png)
 
 #### static
@@ -291,7 +321,7 @@ int main(int argc, char *argv[])
 ```java
 // Inside public void setValue(int t, int c2, int e, int l, int m, int mc, String info, ArrayList<Integer> cache)
 // from Visual.PanelEnding:156
-// t = total combo
+// t = total notes
 // mc = max combo
 if (t == mc) {
     for (int i = 0; i < cache.size(); i++) {
@@ -373,7 +403,18 @@ int main(int argc, char *argv[])
 
 ### Stand up! Brain
 
+![](https://i.imgur.com/RbFHjZk.png)
 
+這題要輸入一個字串，然後底下的邏輯長得就像一個 [brainfuck](https://zh.wikipedia.org/zh-tw/Brainfuck) 的 interpreter
+去 `.rodata` 找到該 bf code：
+
+```brainfuck
+-------------------------------------------------------------------[>[-]<[-]]>[>--------------------------------------------------------[>[-]<[-]]>[>-------------------------------------------------------[>[-]<[-]]>[>------------------------------------------------------[>[-]<[-]]>[>---------------------------------------------------[>[-]<[-]]>[>---------------------------------[>[-]<[-]]>[>>----[---->+<]>++.++++++++.++++++++++.>-[----->+<]>.+[--->++<]>+++.>-[--->+<]>-.[---->+++++<]>-.[-->+<]>---.[--->++<]>---.++[->+++<]>.+[-->+<]>+.[--->++<]>---.++[->+++<]>.+++.[--->+<]>----.[-->+<]>-----.[->++<]>+.-[---->+++<]>.--------.>-[--->+<]>.-[----->+<]>-.++++++++.--[----->+++<]>.+++.[--->+<]>-.-[-->+<]>---.++[--->+++++<]>.++++++++++++++.+++[->+++++<]>.[----->+<]>++.>-[----->+<]>.---[->++<]>-.++++++.[--->+<]>+++.+++.[-]]]]]]]
+```
+
+上面的 brainfuck 如果用正常的 brainfuck interpreter 應該會是無窮迴圈，但在 google 通靈之下，找到一個迴圈爛掉的 brainfuck 實作就印出 flag ㄌ
+
+https://ideone.com/AHnvP0
 
 ## Web
 
@@ -526,19 +567,19 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     data = request.values.get('data')
-    
+
     if data is not None:
         try:
             data = base64.b64decode(data)
             data = pickle.loads(data)
-            
+
             if data and not data:
                 return open('/flag').read()
 
             return str(data)
         except:
             return traceback.format_exc()
-        
+
     return open(__file__).read()
 ```
 
