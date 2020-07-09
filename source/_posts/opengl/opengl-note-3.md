@@ -2,7 +2,7 @@
 title: OpenGL 筆記 - Shader
 date: 2020-07-08 00:31:45
 categories:
-- [學習紀錄, C/C++]
+- [學習紀錄, OpenGL]
 tags:
 - OpenGL
 - 程式

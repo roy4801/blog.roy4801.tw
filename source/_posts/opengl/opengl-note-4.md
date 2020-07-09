@@ -2,7 +2,7 @@
 title: OpenGL 筆記 - Texture
 date: 2020-07-09 15:46:00
 categories:
-- [學習紀錄, C/C++]
+- [學習紀錄, OpenGL]
 tags:
 - OpenGL
 - 程式

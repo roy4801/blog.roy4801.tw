@@ -2,7 +2,7 @@
 title: OpenGL 筆記 - 環境設定和簡介
 date: 2020-06-29 02:10:45
 categories:
-- [學習紀錄, C/C++]
+- [學習紀錄, OpenGL]
 tags:
 - OpenGL
 - 程式
