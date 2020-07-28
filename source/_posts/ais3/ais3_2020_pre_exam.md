@@ -19,7 +19,11 @@ tags:
 
 ## 官方解法
 
-TODO
+* Pwn: https://github.com/ss8651twtw/ais3-pre-exam-2020
+* Web: https://github.com/djosix/AIS3-2020-Pre-Exam#turtle-crypto
+* Rev: http://blog.terrynini.tw/tw/2020-AIS3-%E5%89%8D%E6%B8%AC%E5%AE%98%E6%96%B9%E8%A7%A3/
+* Crypto: https://maojui.me/
+* Misc: https://github.com/frozenkp/CTF/tree/master/2020/AIS3_pre-exam
 
 ## Pwn
 
