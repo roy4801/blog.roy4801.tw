@@ -11,7 +11,7 @@ tags:
 ---
 
 去年也參加過 AIS3 pre-exam 見[去年心得](/2019/05/31/ais3/ais3_2019_pre_exam/)，這似乎是變成每年這個時間的定番了呢(笑)，
-今年課程部份依舊是上課一星期，最後有 Group Project 發表的形式，而不同的是今年因為疫情的影響，原訂辦在交大「似乎」是改成了線上課程（不過聽說又改回實地參加了？）
+今年課程部份依舊是上課一星期，最後有 Group Project 發表的形式，而不同的是今年因為疫情的影響，原訂辦在交大，後來改至台科大舉辦。
 
 <img src="https://i.imgur.com/TafxMoA.png" width="870">
 
@@ -19,7 +19,11 @@ tags:
 
 ## 官方解法
 
-TODO
+* Pwn: https://github.com/ss8651twtw/ais3-pre-exam-2020
+* Web: https://github.com/djosix/AIS3-2020-Pre-Exam#turtle-crypto
+* Rev: http://blog.terrynini.tw/tw/2020-AIS3-%E5%89%8D%E6%B8%AC%E5%AE%98%E6%96%B9%E8%A7%A3/
+* Crypto: https://maojui.me/
+* Misc: https://github.com/frozenkp/CTF/tree/master/2020/AIS3_pre-exam
 
 ## Pwn
 

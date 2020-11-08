@@ -6,7 +6,7 @@ menu:
 rss: /atom.xml
 
 # footer底部显示联系邮箱（在博客配置文件下添加email配置也是一样的效果）
-email: 'YTgyNjExMTQxQGdtYWlsLmNvbQo='
+email: 'me@roy4801.tw'
 
 # language: zh-TW
 
@@ -22,7 +22,7 @@ social:
   github: https://github.com/roy4801
   # weibo: http://weibo.com/laohoubin
   # zhihu: http://www.zhihu.com/people/giscafer
-  email: 'YTgyNjExMTQxQGdtYWlsLmNvbQo='
+  email: 'me@roy4801.tw'
 
 # WeChat 微信公众号二维码url
 wechat_url: http://blog.giscafer.com/static/images/qrcode_giscafer.jpg ## 启用wechat widget才会生效
@@ -31,7 +31,7 @@ wechat_url: http://blog.giscafer.com/static/images/qrcode_giscafer.jpg ## 启用
 # Friendly links 友情链接
 links:
   ICEJJ's BLOG: https://blog.kiyohime.tw/
-  Halloworld-website: https://halloworld.tw/
+  Halloworld-website: https://blog.halloworldis.me/
   SunTalk.blog: https://blog.suntalk.tw/
   傑克的程式區: https://allem40306.github.io
 
@@ -128,6 +128,6 @@ gitment:
 ## disqus
 disqus_shortname: roy-blog
 
-google_plus:
-fb_admins:
-fb_app_id:
+# google_plus:
+# fb_admins:
+# fb_app_id:
