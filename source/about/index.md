@@ -17,11 +17,11 @@ date: 2019-07-21 02:08:48
 
 ## 興趣
 * 資訊安全
-	* 參加NISRA擔任幹部，並有在社團講課。
-	* CTF
+	<!-- * 參加NISRA擔任幹部，並有在社團講課。
+	* CTF -->
 
 * 程式競賽
-	* [FJU_ElPsyCongroo](https://github.com/roy4801/FJU_ElPsyCongroo)
+	<!-- * [FJU_ElPsyCongroo](https://github.com/roy4801/FJU_ElPsyCongroo) -->
 
 * 遊戲開發
 
