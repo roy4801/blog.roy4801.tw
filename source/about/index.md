@@ -27,7 +27,7 @@ date: 2019-07-21 02:08:48
 
 ## 遊戲
 
-<img src="http://steamsignature.com/card/0/76561197965705128.png">
+<img src="http://www.steamsignature.com/card/0/76561197965705128.png">
 
 * [Steam](https://steamcommunity.com/profiles/76561197965705128/)
 
