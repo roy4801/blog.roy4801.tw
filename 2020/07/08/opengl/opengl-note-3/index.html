@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OpenGL 筆記 - Shader | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="GLSLGLSL(OpenGL Shading Language Language)是 OpenGL 的著色器語言，它長得有點像C語言，一個 Shader 通常長這樣: 123456789101112131415#version version_numberin type in_variable_name;in type in_variable_name;out type out_variable">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL 筆記 - Shader">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/07/08/opengl/opengl-note-3/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="GLSLGLSL(OpenGL Shading Language Language)是 OpenGL 的著色器語言，它長得有點像C語言，一個 Shader 通常長這樣: 123456789101112131415#version version_numberin type in_variable_name;in type in_variable_name;out type out_variable">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/TQBZBTS.png">
+<meta property="og:image" content="https://i.imgur.com/q10ZdBc.gif">
+<meta property="og:image" content="https://i.imgur.com/d1vwqTg.png">
+<meta property="og:image" content="https://i.imgur.com/BRDiEj0.png">
+<meta property="article:published_time" content="2020-07-07T16:31:45.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.434Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="筆記">
+<meta property="article:tag" content="OpenGL">
+<meta property="article:tag" content="圖學">
+<meta property="article:tag" content="Shader">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/TQBZBTS.png">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-opengl/opengl-note-3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/08/opengl/opengl-note-3/" class="article-date">
+  <time datetime="2020-07-07T16:31:45.000Z" itemprop="datePublished">2020-07-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/">OpenGL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OpenGL 筆記 - Shader
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="GLSL"><a href="#GLSL" class="headerlink" title="GLSL"></a>GLSL</h2><p>GLSL(OpenGL Shading Language Language)是 OpenGL 的著色器語言，它長得有點像C語言，一個 Shader 通常長這樣:</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version version_number</span></span><br><span class="line"><span class="keyword">in</span> type in_variable_name;</span><br><span class="line"><span class="keyword">in</span> type in_variable_name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">out</span> type out_variable_name;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> type uniform_name;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> main()</span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">// 處理輸入並進行一些圖形操作</span></span><br><span class="line">  ...</span><br><span class="line">  <span class="comment">// 輸出處理過的結果到輸出變數</span></span><br><span class="line">  out_variable_name = weird_stuff_we_processed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>輸入的變數叫頂點屬性(Vertex Attribute)，可以用 <code>glVertexAttribPointer()</code> 來描，OpenGL 通常保證有 16 個的頂點屬性可以使用，在大多數情況都夠用</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> nrAttributes;</span><br><span class="line">glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &amp;nrAttributes);</span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Maximum nr of vertex attributes supported: "</span> &lt;&lt; nrAttributes &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="數據類型"><a href="#數據類型" class="headerlink" title="數據類型"></a>數據類型</h2><p>GLSL 有C語言及其他語言大多都有的 type:<code>int</code>, <code>float</code>, <code>double</code>, <code>uint</code>, <code>bool</code>，另位還有兩種容器 type: 向量(Vector)跟矩陣(Matrix)</p>
+<ul>
+<li><p>向量</p>
+<ul>
+<li>可以有 $[1, 4]$ 個分量</li>
+<li><code>vecn</code> 包含 $n$ 個 <code>float</code></li>
+<li><code>bvecn</code> 包含 $n$ 個 <code>bool</code></li>
+<li><code>ivecn</code> 包含 $n$ 個 <code>int</code></li>
+<li><code>uvecn</code> 包含 $n$ 個 <code>unsigned int</code></li>
+<li><code>dvecn</code> 包含 $n$ 個 <code>double</code></li>
+</ul>
+</li>
+<li><p>分量用 <code>.x</code>, <code>.y</code>, <code>.z</code>, <code>.w</code> 來存取分量，或是<code>rgba</code>(顏色)跟<code>stpq</code>(材質)來存取。</p>
+</li>
+<li><p>重組(Swizzling)</p>
+<ul>
+<li>可以用分量的組合來建立新的 vec<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">vec2</span> someVec;</span><br><span class="line"><span class="type">vec4</span> differentVec = someVec.xyxx;</span><br><span class="line"><span class="type">vec3</span> anotherVec = differentVec.zyw;</span><br><span class="line"><span class="type">vec4</span> otherVec = someVec.xxxx + anotherVec.yxzy;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="輸入與輸出"><a href="#輸入與輸出" class="headerlink" title="輸入與輸出"></a>輸入與輸出</h2><p>GLSL 可以用 <code>in</code>, <code>out</code> 來標示一個變數是傳入還是傳出，上個 Shader 所指定的 <code>out</code> 會對應到下個 Shader 所指定的 <code>in</code> 變數，名稱要相同。</p>
+<ul>
+<li>Vertex Shader<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="keyword">layout</span> (<span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec3</span> aPos;</span><br><span class="line"></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec3</span> vertexColor; <span class="comment">// to Fragment Shader</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">gl_Position</span> = <span class="type">vec4</span>(aPos, <span class="number">1.0</span>);</span><br><span class="line">    vertexColor = <span class="type">vec4</span>(<span class="number">0.5</span>, <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">1.0</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Fragment Shader<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec3</span> vertexColor; <span class="comment">// from Vertex Shader</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec4</span> FragColor;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    FragColor = vertexColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><code>layout (location = 0)</code> 可以指定 Vertex Attribute 的 Index 這在傳入 Vertex Data 之後，可以用 <code>glVertexAttribPointer()</code> 來描述頂點資料是怎麼排列的，讓 OpenGL 可以正確的繪製</p>
+<p><img src="https://i.imgur.com/TQBZBTS.png" alt=""></p>
+<h2 id="Uniform"><a href="#Uniform" class="headerlink" title="Uniform"></a>Uniform</h2><p>Uniform 是 CPU 向 GPU 的 Shader 發送數據的方式，但跟 Vertex Attribute 有點不同。<br>Uniform 可以在<strong>所有的 Shader 中存取</strong>，而不用像 Vertex Attribute 是要用 <code>in</code>, <code>out</code> 傳資料，意思是 Uniform 是 Global 的變數，它必須是 <strong>獨特的(Unique)</strong> 的。</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec4</span> FragColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">vec4</span> ourColor; <span class="comment">// 在 Code 中傳入</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    FragColor = ourColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>如果宣告了一個 <code>uniform</code> 卻沒有使用，編譯器可能會移除該變數，導致在最後編譯出的版本不會包含它</p>
+</li>
+<li><p>傳入 uniform</p>
+<ul>
+<li>使用 <a href="http://docs.gl/gl4/glGetUniformLocation" target="_blank" rel="noopener"><code>glGetUniformLocation()</code></a> 以及 <a href="http://docs.gl/gl4/glUniform" target="_blank" rel="noopener"><code>glUniform4f()</code></a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> green = <span class="comment">/* expression for calculating green */</span>;</span><br><span class="line"><span class="comment">// 查詢 ourColor 的位置</span></span><br><span class="line"><span class="keyword">int</span> vertexColorLocation = glGetUniformLocation(shaderProgram, <span class="string">"ourColor"</span>);</span><br><span class="line"><span class="comment">// 啟用 shader</span></span><br><span class="line">glUseProgram(shaderProgram);</span><br><span class="line"><span class="comment">// 傳入 ourColor 的值 (vec4)</span></span><br><span class="line">glUniform4f(vertexColorLocation, <span class="number">0.0f</span>, green, <span class="number">0.0f</span>, <span class="number">1.0f</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>因為 OpenGL 是 C 的 Library，所以不支援 Overloading ，因此同樣功能但參數不同的 Function 是以後綴的形式存在：</p>
+<table>
+<thead>
+<tr>
+<th>後綴</th>
+<th>意義</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>f</code></td>
+<td>float</td>
+</tr>
+<tr>
+<td><code>i</code></td>
+<td>int</td>
+</tr>
+<tr>
+<td><code>ui</code></td>
+<td>unsigned int</td>
+</tr>
+<tr>
+<td><code>3f</code></td>
+<td>三個 float</td>
+</tr>
+<tr>
+<td><code>fv</code></td>
+<td>array of float</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/3.1.shader_uniform" target="_blank" rel="noopener">範例 3.1 Shader Uniform</a></li>
+</ul>
+<p><img src="https://i.imgur.com/q10ZdBc.gif" alt=""></p>
+<h2 id="多個頂點屬性"><a href="#多個頂點屬性" class="headerlink" title="多個頂點屬性"></a>多個頂點屬性</h2><p>前面講過了要如何建立 VBO，而現在我們想把顏色的資料加到頂點資料當中</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> vertices[] = &#123;</span><br><span class="line">    <span class="comment">// 位置              // 顏色</span></span><br><span class="line">     <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,  <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 右下</span></span><br><span class="line">    <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,  <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 左下</span></span><br><span class="line">     <span class="number">0.0f</span>,  <span class="number">0.5f</span>, <span class="number">0.0f</span>,  <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>    <span class="comment">// 上方</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Vertex Shader</p>
+  <figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="keyword">layout</span> (<span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec3</span> aPos;</span><br><span class="line"><span class="keyword">layout</span> (<span class="keyword">location</span> = <span class="number">1</span>) <span class="keyword">in</span> <span class="type">vec3</span> aColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec3</span> ourColor; <span class="comment">// 輸出到 Fragment Shader</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main() &#123;</span><br><span class="line">    <span class="built_in">gl_Position</span> = <span class="type">vec4</span>(aPos, <span class="number">1.0</span>);</span><br><span class="line">    ourColor = aColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Fragment Shader</p>
+  <figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec4</span> FragColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec3</span> ourColor;   <span class="comment">// 從 Vertex Shader 輸入的顏色，名稱要一樣</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main() &#123;</span><br><span class="line">    FragColor = ourColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>因為我們的頂點資料配置不同了，所以要重新指定，使用 <code>glVertexAttribPointer()</code></p>
+<p><img src="https://i.imgur.com/d1vwqTg.png" alt=""></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Position        index,size,  type, normalize, stride,        offset </span></span><br><span class="line">glVertexPointerAttrib(<span class="number">0</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">6</span>*<span class="keyword">sizeof</span>(<span class="keyword">float</span>), (<span class="keyword">void</span>*)<span class="number">0</span>);</span><br><span class="line">glEnableVertexAttribArray(<span class="number">0</span>);</span><br><span class="line"><span class="comment">// Color</span></span><br><span class="line">glVertexPointerAttrib(<span class="number">1</span>, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">6</span>*<span class="keyword">sizeof</span>(<span class="keyword">float</span>), (<span class="keyword">void</span>*)(<span class="number">3</span>*<span class="keyword">sizeof</span>(<span class="keyword">float</span>)));</span><br><span class="line">glEnableVertexAttribArray(<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/BRDiEj0.png" alt=""></p>
+<p>只指定三個頂點的顏色，但是顯示出來的顏色是連續的是因為 OpenGL 在 Fragment Shader 中進行了片段插植(Fragment Interpolation)</p>
+<ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/3.3.lab1" target="_blank" rel="noopener">3.3.lab1</a></li>
+<li><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/3.4.lab2" target="_blank" rel="noopener">3.4.lab2</a></li>
+</ul>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/07/08/opengl/opengl-note-3/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/07/08/opengl/opengl-note-3/" data-id="clkidhn14005rvwu9ezyz1jza" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/07/08/opengl/opengl-note-3/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Shader/" rel="tag">Shader</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9C%96%E5%AD%B8/" rel="tag">圖學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AD%86%E8%A8%98/" rel="tag">筆記</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/09/NCPU_2020/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          NCPU 2020 心得
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/30/opengl/opengl-note-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">OpenGL 筆記 - 第一個三角形</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GLSL"><span class="toc-number">1.</span> <span class="toc-text">GLSL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#數據類型"><span class="toc-number">2.</span> <span class="toc-text">數據類型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#輸入與輸出"><span class="toc-number">3.</span> <span class="toc-text">輸入與輸出</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Uniform"><span class="toc-number">4.</span> <span class="toc-text">Uniform</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多個頂點屬性"><span class="toc-number">5.</span> <span class="toc-text">多個頂點屬性</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/07/08/opengl/opengl-note-3/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

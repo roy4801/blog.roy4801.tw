@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OpenGL 筆記 - 環境設定和簡介 | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="這系列文是我在閱讀 LearnOpenGL 之後的筆記 環境設定">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL 筆記 - 環境設定和簡介">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/06/29/opengl/opengl-note-1/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="這系列文是我在閱讀 LearnOpenGL 之後的筆記 環境設定">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/w8lbcXL.png">
+<meta property="og:image" content="https://i.imgur.com/Buhnf01.png">
+<meta property="og:image" content="https://i.imgur.com/IowvTRx.png">
+<meta property="article:published_time" content="2020-06-28T18:10:45.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.433Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="筆記">
+<meta property="article:tag" content="OpenGL">
+<meta property="article:tag" content="圖學">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/w8lbcXL.png">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-opengl/opengl-note-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/06/29/opengl/opengl-note-1/" class="article-date">
+  <time datetime="2020-06-28T18:10:45.000Z" itemprop="datePublished">2020-06-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/">OpenGL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OpenGL 筆記 - 環境設定和簡介
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p><img src="https://i.imgur.com/w8lbcXL.png" alt=""></p>
+<p>這系列文是我在閱讀 <a href="https://learnopengl.com/" target="_blank" rel="noopener">LearnOpenGL</a> 之後的筆記</p>
+<h2 id="環境設定"><a href="#環境設定" class="headerlink" title="環境設定"></a>環境設定</h2><blockquote>
+<p>建議參考原文的環境設定</p>
+</blockquote>
+<ul>
+<li>我使用 msys2 + CMake</li>
+<li><p>使用 SFML 建立 Window</p>
+<ul>
+<li>在 SFML 使用 OpenGL 要注意混用時要先 reset OpenGL state</li>
+<li>SFML 並不會維護 OpenGL 3.x 以上的 state ，必須自己手動維護 e.g. VAO</li>
+<li><a href="https://www.sfml-dev.org/tutorials/2.5/window-opengl.php" target="_blank" rel="noopener">參考</a></li>
+</ul>
+</li>
+<li><p><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/1.1.hello_window" target="_blank" rel="noopener">SFML + OpenGL helloworld</a></p>
+</li>
+</ul>
+<h3 id="glad"><a href="#glad" class="headerlink" title="glad"></a>glad</h3><ul>
+<li>因為 OpenGL 的實作都是由顯卡生產商撰寫，所以大多都是在 Run-Time 才載入進程式中，所以在沒有 library 的輔助時，你的 code 會長這樣，非常的麻煩</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Prototype</span></span><br><span class="line"><span class="function"><span class="keyword">typedef</span> <span class="title">void</span> <span class="params">(*GL_GENBUFFERS)</span> <span class="params">(GLsizei, GLuint*)</span></span>;</span><br><span class="line"><span class="comment">// Find the address</span></span><br><span class="line">GL_GENBUFFERS glGenBuffers = (GL_GENBUFFERS)wglGetProcAddress(<span class="string">"glGenBuffers"</span>);</span><br><span class="line"></span><br><span class="line">GLuint buffer;</span><br><span class="line">glGenBuffers(<span class="number">1</span>, &amp;buffer);</span><br></pre></td></tr></table></figure>
+<p>複雜的事情就會有人寫好 Library 來輔助，過去有 glew 而我們使用最新、最流行的 <a href="https://github.com/Dav1dde/glad" target="_blank" rel="noopener">glad</a><br>它還有<a href="https://glad.dav1d.de/" target="_blank" rel="noopener">網頁工具版</a></p>
+<p><img src="https://i.imgur.com/Buhnf01.png" alt="glad"></p>
+<p>GLAD 可以指定 OpenGL 的版本、Extension，它可以生成一個加載器，可以加到你的專案裏頭即可。</p>
+<p>如果不知道你的電腦可以支援的 OpenGL ，可以使用 <a href="http://www.realtech-vr.com/home/glview" target="_blank" rel="noopener">OpenGL Viewer</a> 查看<br><img src="https://i.imgur.com/IowvTRx.png" alt="opengl_viewer"></p>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><ul>
+<li><p>OpenGL 規定了每個 function 如何執行、輸出值，但每個 function 的實作，並沒有規定: OpenGL 是個規範</p>
+<ul>
+<li>真正開發者用的 OpenGL 庫都是由顯卡生產商(Nvidia, AMD) 所實作的</li>
+<li>也因為如此，如果有 Bug 的話，通常更新顯卡驅動都能解決問題</li>
+</ul>
+</li>
+<li><p>核心模式(Core-profile)與立即渲染模式(Immediate mode)</p>
+<ul>
+<li>立即渲染模式(Immediate mode)<ul>
+<li>早期 OpenGL</li>
+<li>容易理解、使用</li>
+<li>效率低、靈活性低</li>
+<li>已被廢棄 ＝ 不用學習了</li>
+</ul>
+</li>
+<li>核心模式(Core-profile)<ul>
+<li>主流</li>
+<li>靈活性高、效率高</li>
+<li>上手比較難</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>上面提到 OpenGL 實作都是由顯卡生產商進行實作的，而 OpenGL 支援擴展(Extension)，不同的生產商可能提供不同的擴展功能，當一個擴展很流行或非常有用時，他會成為 OpenGL 規範的一部分</p>
+</li>
+<li><p>OpenGL 本質上是個狀態機(State Machine)，OpenGL 的狀態叫做 上下文(Context)</p>
+<ul>
+<li>改變狀態：設定參數、操作 buffer</li>
+<li>使用當前 Context 來渲染畫面</li>
+</ul>
+</li>
+<li><p>一個常見的 OpenGL 程式碼可能長這樣</p>
+<ul>
+<li>建立 object (拿到id)</li>
+<li>綁定到 Context 上</li>
+<li>設定選項</li>
+<li>綁定 0 代表改回默認</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建立 Object</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> objectId = <span class="number">0</span>;</span><br><span class="line">glGenObject(<span class="number">1</span>, &amp;objectId);</span><br><span class="line"><span class="comment">// 講 Object 綁定到 Context 上</span></span><br><span class="line">glBindObject(GL_WINDOW_TARGET, objectId);</span><br><span class="line"><span class="comment">// 設定選項</span></span><br><span class="line">glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_WIDTH, <span class="number">800</span>);</span><br><span class="line">glSetObjectOption(GL_WINDOW_TARGET, GL_OPTION_WINDOW_HEIGHT, <span class="number">600</span>);</span><br><span class="line"><span class="comment">// 把 Context 設回預設</span></span><br><span class="line">glBindObject(GL_WINDOW_TARGET, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>LearnOpenGL<br><a href="https://learnopengl.com/" target="_blank" rel="noopener">https://learnopengl.com/</a></p>
+<p>LearnOpenGL CN<br><a href="https://learnopengl-cn.github.io/" target="_blank" rel="noopener">https://learnopengl-cn.github.io/</a></p>
+<p>LearnOpenGL github repo<br><a href="https://github.com/JoeyDeVries/LearnOpenGL" target="_blank" rel="noopener">https://github.com/JoeyDeVries/LearnOpenGL</a></p>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/06/29/opengl/opengl-note-1/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/06/29/opengl/opengl-note-1/" data-id="clkidhn13005kvwu9f8w7dg5f" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/06/29/opengl/opengl-note-1/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9C%96%E5%AD%B8/" rel="tag">圖學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AD%86%E8%A8%98/" rel="tag">筆記</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/30/opengl/opengl-note-2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          OpenGL 筆記 - 第一個三角形
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/06/12/ais3/ais3_2020_pre_exam/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">AIS3 2020 pre-exam writeups+心得</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#環境設定"><span class="toc-number">1.</span> <span class="toc-text">環境設定</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#glad"><span class="toc-number">1.1.</span> <span class="toc-text">glad</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">2.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">3.</span> <span class="toc-text">Reference</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/06/29/opengl/opengl-note-1/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

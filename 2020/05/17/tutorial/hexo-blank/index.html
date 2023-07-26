@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>hexo 產生空白的 HTML | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="問題在最近更新 blog 時，寫好一篇文後發現，hexo 產生的 HTML 竟然是空白的。（push 上 Github Page 才發現）順手做個紀錄 原因">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo 產生空白的 HTML">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/05/17/tutorial/hexo-blank/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="問題在最近更新 blog 時，寫好一篇文後發現，hexo 產生的 HTML 竟然是空白的。（push 上 Github Page 才發現）順手做個紀錄 原因">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/Y8suv5o.png">
+<meta property="og:image" content="https://i.imgur.com/H9SMy0r.png">
+<meta property="og:image" content="https://i.imgur.com/2fb0WYy.png">
+<meta property="article:published_time" content="2020-05-17T12:21:45.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.438Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="教學">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="node.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/Y8suv5o.png">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-tutorial/hexo-blank" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/17/tutorial/hexo-blank/" class="article-date">
+  <time datetime="2020-05-17T12:21:45.000Z" itemprop="datePublished">2020-05-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/%E5%85%B6%E4%BB%96/">其他</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo 產生空白的 HTML
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="問題"><a href="#問題" class="headerlink" title="問題"></a>問題</h2><p>在最近更新 blog 時，寫好一篇文後發現，hexo 產生的 HTML 竟然是空白的。（push 上 Github Page 才發現）<br>順手做個紀錄</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>node.js 版本(v14.0.0) 太高，降級至 13 或 12 即可解決</p>
+<h2 id="brew-降級"><a href="#brew-降級" class="headerlink" title="brew 降級"></a>brew 降級</h2><p>以降級 <code>node</code> 為例</p>
+<ul>
+<li>查詢 package 安裝腳本 URL<ul>
+<li>之後步驟會用到</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">brew info node</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">From: https://github.com/Homebrew/homebrew-core/blob/master/Formula/node.rb</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/Y8suv5o.png" alt=""></p>
+<ul>
+<li>查詢歷史版本的安裝腳本<ul>
+<li>複製該 commit hash</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew <span class="built_in">log</span> node</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/H9SMy0r.png" alt=""></p>
+<ul>
+<li>得到 該 commit 版本的檔案<ul>
+<li>用 commit hash 取代剛剛 URL 的 master</li>
+<li>得到 <code>https://github.com/Homebrew/homebrew-core/blob/44c81305cf707d181a87086386ad2e63846cbe75/Formula/node.rb</code></li>
+<li>點選 <code>Raw</code> 獲得 raw 版本的 URL</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/2fb0WYy.png" alt=""></p>
+<ul>
+<li>解除安裝新版的 package ，並安裝舊版</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew uninstall --ignore-dependencies node</span><br><span class="line">brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/44c81305cf707d181a87086386ad2e63846cbe75/Formula/node.rb</span><br></pre></td></tr></table></figure>
+<ul>
+<li>鎖定該 package 的版本，直到可以更新上去再解除</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew pin node</span><br></pre></td></tr></table></figure>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p>hexo generates empty files #4267<br><a href="https://github.com/hexojs/hexo/issues/4267#issuecomment-619394907" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/4267#issuecomment-619394907</a></p>
+<p>hexo generates empty files #4268<br><a href="https://github.com/hexojs/hexo/issues/4268" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/4268</a></p>
+<p>Warning: Accessing non-existent property ‘lineno’ of module exports inside circular dependency #4257<br><a href="https://github.com/hexojs/hexo/issues/4257" target="_blank" rel="noopener">https://github.com/hexojs/hexo/issues/4257</a></p>
+<p>Downgrade any Homebrew package easily<br><a href="https://dae.me/blog/2516/downgrade-any-homebrew-package-easily/" target="_blank" rel="noopener">https://dae.me/blog/2516/downgrade-any-homebrew-package-easily/</a></p>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/05/17/tutorial/hexo-blank/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/05/17/tutorial/hexo-blank/" data-id="clkidhn1j0083vwu9cge47ixl" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/05/17/tutorial/hexo-blank/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/node-js/" rel="tag">node.js</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/18/tutorial/clion-gdb-debugging/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          使用 CLion + gdb Debug 程式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/17/spdlog-tutorial/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">spdlog 介紹與使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#問題"><span class="toc-number">1.</span> <span class="toc-text">問題</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原因"><span class="toc-number">2.</span> <span class="toc-text">原因</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#brew-降級"><span class="toc-number">3.</span> <span class="toc-text">brew 降級</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考"><span class="toc-number">4.</span> <span class="toc-text">參考</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/05/17/tutorial/hexo-blank/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

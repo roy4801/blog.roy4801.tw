@@ -1,0 +1,1883 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>r0yblog</title>
+  
+  <subtitle>存放一些有關程式、生活、心得隨筆的網誌</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.roy4801.tw/"/>
+  <updated>2021-10-16T12:50:04.238Z</updated>
+  <id>http://blog.roy4801.tw/</id>
+  
+  <author>
+    <name>roy4801</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Collecting the dlls for mingw-w64 compiled programs</title>
+    <link href="http://blog.roy4801.tw/2021/07/12/collecting-the-dlls-for-mingw-w64-programs/"/>
+    <id>http://blog.roy4801.tw/2021/07/12/collecting-the-dlls-for-mingw-w64-programs/</id>
+    <published>2021-07-12T05:55:36.000Z</published>
+    <updated>2021-10-16T12:50:04.238Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;Problem&quot;&gt;&lt;a href=&quot;#Problem&quot; class=&quot;headerlink&quot; title=&quot;Problem&quot;&gt;&lt;/a&gt;Problem&lt;/h1&gt;&lt;p&gt;When using mingw-64 to compile programs, it
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="mingw-w64" scheme="http://blog.roy4801.tw/tags/mingw-w64/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 ssh redirect port</title>
+    <link href="http://blog.roy4801.tw/2021/07/02/linux/%E4%BD%BF%E7%94%A8-ssh-redirect-port/"/>
+    <id>http://blog.roy4801.tw/2021/07/02/linux/使用-ssh-redirect-port/</id>
+    <published>2021-07-01T17:30:44.000Z</published>
+    <updated>2021-10-16T12:15:53.024Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;例子：在遠端電腦使用-rsync-設定-Google-Drive-驗證&quot;&gt;&lt;a href=&quot;#例子：在遠端電腦使用-rsync-設定-Google-Drive-驗證&quot; class=&quot;headerlink&quot; title=&quot;例子：在遠端電腦使用 rsync 設定
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Linux" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/Linux/"/>
+    
+    
+      <category term="心得" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E5%BE%97/"/>
+    
+      <category term="Linux" scheme="http://blog.roy4801.tw/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Visual Studio Code Remote SSH 無法連線問題</title>
+    <link href="http://blog.roy4801.tw/2021/05/24/tutorial/vscode-remote-ssh-failed/"/>
+    <id>http://blog.roy4801.tw/2021/05/24/tutorial/vscode-remote-ssh-failed/</id>
+    <published>2021-05-23T19:48:01.000Z</published>
+    <updated>2021-10-16T12:15:53.025Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h2&gt;&lt;p&gt;最近在使用 vscode 並使用 &lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="其他" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/%E5%85%B6%E4%BB%96/"/>
+    
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="vscode" scheme="http://blog.roy4801.tw/tags/vscode/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SFML 使用 - Event 視窗事件</title>
+    <link href="http://blog.roy4801.tw/2020/07/30/SFML/sfml_event/"/>
+    <id>http://blog.roy4801.tw/2020/07/30/SFML/sfml_event/</id>
+    <published>2020-07-30T04:53:00.000Z</published>
+    <updated>2021-05-12T13:20:03.422Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;要怎麼跟視窗互動呢？使用者在視窗上互動時，SFML 會產生事件(Event)，進而接收窗口的事件，並針對發生的事件（例如：滑鼠移動、點擊，鍵盤點擊等）做相對應的處理。&lt;/p&gt;
+&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="SFML" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/SFML/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="SFML" scheme="http://blog.roy4801.tw/tags/SFML/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SFML 使用 - 視窗(Window)建立與 OpenGL</title>
+    <link href="http://blog.roy4801.tw/2020/07/29/SFML/sfml_window/"/>
+    <id>http://blog.roy4801.tw/2020/07/29/SFML/sfml_window/</id>
+    <published>2020-07-28T18:19:00.000Z</published>
+    <updated>2021-05-12T13:20:03.423Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/lHiqhyi.png&quot; width=500&gt;&lt;/p&gt;
+&lt;p&gt;在 SFML 要建立一個視窗，要使用 &lt;code&gt;sf::RenderWindow&lt;/code&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="SFML" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/SFML/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="SFML" scheme="http://blog.roy4801.tw/tags/SFML/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/tags/OpenGL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>C++ - chrono 計時</title>
+    <link href="http://blog.roy4801.tw/2020/07/20/c++/chrono/"/>
+    <id>http://blog.roy4801.tw/2020/07/20/c++/chrono/</id>
+    <published>2020-07-20T14:42:03.000Z</published>
+    <updated>2021-05-12T13:20:03.426Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;C++11 提供了 &lt;a href=&quot;http://www.cplusplus.com/reference/chrono/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;code&gt;&amp;lt;chrono&amp;gt;&lt;/code&gt;&lt;/a&gt; 作為時間的
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="STL" scheme="http://blog.roy4801.tw/tags/STL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QuadTree - 使用四叉樹優化碰撞檢測</title>
+    <link href="http://blog.roy4801.tw/2020/07/19/ds/quadtree/"/>
+    <id>http://blog.roy4801.tw/2020/07/19/ds/quadtree/</id>
+    <published>2020-07-18T18:10:45.000Z</published>
+    <updated>2021-05-12T13:20:03.428Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在 2D 遊戲中，常常需要做碰撞檢測(Collision Detection)來檢測兩物體是否產生碰撞，而這類的演算法都很耗時間，如果要檢測整個 Scene 的所有物體是否有碰撞，常見的做法是 $O(n^2)$
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="GamePhysics" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/GamePhysics/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="GamePhysics" scheme="http://blog.roy4801.tw/tags/GamePhysics/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL 筆記 - Camera</title>
+    <link href="http://blog.roy4801.tw/2020/07/17/opengl/opengl-note-7/"/>
+    <id>http://blog.roy4801.tw/2020/07/17/opengl/opengl-note-7/</id>
+    <published>2020-07-17T08:50:00.000Z</published>
+    <updated>2021-05-12T13:20:03.436Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;OpenGL 中模擬相機的方法是，把場景(整個世界)照相機想移動的相反方向移動，來模擬出相機的感覺。&lt;/p&gt;
+&lt;h2 id=&quot;View-Camera-Space&quot;&gt;&lt;a href=&quot;#View-Camera-Space&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/tags/OpenGL/"/>
+    
+      <category term="圖學" scheme="http://blog.roy4801.tw/tags/%E5%9C%96%E5%AD%B8/"/>
+    
+      <category term="Camera" scheme="http://blog.roy4801.tw/tags/Camera/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SFML 簡介及環境設置</title>
+    <link href="http://blog.roy4801.tw/2020/07/14/SFML/sfml_intro/"/>
+    <id>http://blog.roy4801.tw/2020/07/14/SFML/sfml_intro/</id>
+    <published>2020-07-13T18:57:00.000Z</published>
+    <updated>2021-05-12T13:20:03.423Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;strong&gt;S&lt;/strong&gt;imple and &lt;strong&gt;F&lt;/strong&gt;ase &lt;strong&gt;M&lt;/strong&gt;edia &lt;strong&gt;L&lt;/strong&gt;ibrary (SFML) 是一個由 C++
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="SFML" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/SFML/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="SFML" scheme="http://blog.roy4801.tw/tags/SFML/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL 筆記 - Coordinate System</title>
+    <link href="http://blog.roy4801.tw/2020/07/13/opengl/opengl-note-6/"/>
+    <id>http://blog.roy4801.tw/2020/07/13/opengl/opengl-note-6/</id>
+    <published>2020-07-13T04:44:00.000Z</published>
+    <updated>2021-05-12T13:20:03.435Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;OpenGL 座標的值在 經過 Vertex Shader 之後變成 $[-1.0, 1.0]$ 的座標，稱作 &lt;em&gt;標準化設備座標 Normalized Device Coordinates
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/tags/OpenGL/"/>
+    
+      <category term="圖學" scheme="http://blog.roy4801.tw/tags/%E5%9C%96%E5%AD%B8/"/>
+    
+      <category term="Coordinate" scheme="http://blog.roy4801.tw/tags/Coordinate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL 筆記 - Transform</title>
+    <link href="http://blog.roy4801.tw/2020/07/10/opengl/opengl-note-5/"/>
+    <id>http://blog.roy4801.tw/2020/07/10/opengl/opengl-note-5/</id>
+    <published>2020-07-10T07:46:00.000Z</published>
+    <updated>2021-05-12T13:20:03.435Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;前面講了 Shader 跟 Texture 都是外觀的表現，但這些都是靜態的圖像，那在 OpenGL 要怎麼讓圖像動起來呢?當然，你可以每一幀都重新配置 VBO ，但這太消耗資源了，更好的方法是用 &lt;em&gt;矩陣(Matrix)&lt;/em&gt; 將座標
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/tags/OpenGL/"/>
+    
+      <category term="圖學" scheme="http://blog.roy4801.tw/tags/%E5%9C%96%E5%AD%B8/"/>
+    
+      <category term="Transform" scheme="http://blog.roy4801.tw/tags/Transform/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL 筆記 - Texture</title>
+    <link href="http://blog.roy4801.tw/2020/07/09/opengl/opengl-note-4/"/>
+    <id>http://blog.roy4801.tw/2020/07/09/opengl/opengl-note-4/</id>
+    <published>2020-07-09T07:46:00.000Z</published>
+    <updated>2021-05-12T13:20:03.434Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;可以用為每個頂點增加顏色來為圖形添增細節，來建構有趣的圖像。但必須要有足夠多的頂點、顏色，這會帶來很多開銷，每個模型的頂點就會變得很多。&lt;/p&gt;
+&lt;p&gt;紋理(Texture)是一個 2D 的圖片，可以用來增添物體的細節，可以想像 Texture 就像是個有圖案的紙，貼合在
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/tags/OpenGL/"/>
+    
+      <category term="圖學" scheme="http://blog.roy4801.tw/tags/%E5%9C%96%E5%AD%B8/"/>
+    
+      <category term="Texture" scheme="http://blog.roy4801.tw/tags/Texture/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NCPU 2020 心得</title>
+    <link href="http://blog.roy4801.tw/2020/07/09/NCPU_2020/"/>
+    <id>http://blog.roy4801.tw/2020/07/09/NCPU_2020/</id>
+    <published>2020-07-08T16:28:26.000Z</published>
+    <updated>2021-05-12T13:20:03.421Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Day-01&quot;&gt;&lt;a href=&quot;#Day-01&quot; class=&quot;headerlink&quot; title=&quot;Day 01&quot;&gt;&lt;/a&gt;Day 01&lt;/h2&gt;&lt;p&gt;由於比賽地點在台中，所以我們學校的隊伍會在前一天下午搭遊覽車下去，住在旅店隔天再搭車到逢甲。這天睡到 10
+        
+      
+    
+    </summary>
+    
+      <category term="心得散文" scheme="http://blog.roy4801.tw/categories/%E5%BF%83%E5%BE%97%E6%95%A3%E6%96%87/"/>
+    
+    
+      <category term="比賽" scheme="http://blog.roy4801.tw/tags/%E6%AF%94%E8%B3%BD/"/>
+    
+      <category term="心得" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E5%BE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL 筆記 - Shader</title>
+    <link href="http://blog.roy4801.tw/2020/07/08/opengl/opengl-note-3/"/>
+    <id>http://blog.roy4801.tw/2020/07/08/opengl/opengl-note-3/</id>
+    <published>2020-07-07T16:31:45.000Z</published>
+    <updated>2021-05-12T13:20:03.434Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;GLSL&quot;&gt;&lt;a href=&quot;#GLSL&quot; class=&quot;headerlink&quot; title=&quot;GLSL&quot;&gt;&lt;/a&gt;GLSL&lt;/h2&gt;&lt;p&gt;GLSL(OpenGL Shading Language Language)是 OpenGL
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/tags/OpenGL/"/>
+    
+      <category term="圖學" scheme="http://blog.roy4801.tw/tags/%E5%9C%96%E5%AD%B8/"/>
+    
+      <category term="Shader" scheme="http://blog.roy4801.tw/tags/Shader/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL 筆記 - 第一個三角形</title>
+    <link href="http://blog.roy4801.tw/2020/06/30/opengl/opengl-note-2/"/>
+    <id>http://blog.roy4801.tw/2020/06/30/opengl/opengl-note-2/</id>
+    <published>2020-06-29T18:10:45.000Z</published>
+    <updated>2021-05-12T13:20:03.433Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;在 OpenGL 中，所有東西都在 3D 的空間中，而螢幕是 2D 的陣列&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;OpenGL 負責將 3D 座標經過一系列操作轉換成 2D 螢幕的座標&lt;ul&gt;
+&lt;li&gt;稱作「圖形渲染管線(Graphics Render
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/tags/OpenGL/"/>
+    
+      <category term="圖學" scheme="http://blog.roy4801.tw/tags/%E5%9C%96%E5%AD%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OpenGL 筆記 - 環境設定和簡介</title>
+    <link href="http://blog.roy4801.tw/2020/06/29/opengl/opengl-note-1/"/>
+    <id>http://blog.roy4801.tw/2020/06/29/opengl/opengl-note-1/</id>
+    <published>2020-06-28T18:10:45.000Z</published>
+    <updated>2021-05-12T13:20:03.433Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/w8lbcXL.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;這系列文是我在閱讀 &lt;a href=&quot;https://learnopengl.com/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="筆記" scheme="http://blog.roy4801.tw/tags/%E7%AD%86%E8%A8%98/"/>
+    
+      <category term="OpenGL" scheme="http://blog.roy4801.tw/tags/OpenGL/"/>
+    
+      <category term="圖學" scheme="http://blog.roy4801.tw/tags/%E5%9C%96%E5%AD%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AIS3 2020 pre-exam writeups+心得</title>
+    <link href="http://blog.roy4801.tw/2020/06/12/ais3/ais3_2020_pre_exam/"/>
+    <id>http://blog.roy4801.tw/2020/06/12/ais3/ais3_2020_pre_exam/</id>
+    <published>2020-06-11T16:41:15.000Z</published>
+    <updated>2021-05-12T13:20:03.425Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;去年也參加過 AIS3 pre-exam 見&lt;a href=&quot;/2019/05/31/ais3/ais3_2019_pre_exam/&quot;&gt;去年心得&lt;/a&gt;，這似乎是變成每年這個時間的定番了呢(笑)，&lt;br&gt;今年課程部份依舊是上課一星期，最後有 Group Project
+        
+      
+    
+    </summary>
+    
+      <category term="Writeup" scheme="http://blog.roy4801.tw/categories/Writeup/"/>
+    
+    
+      <category term="比賽" scheme="http://blog.roy4801.tw/tags/%E6%AF%94%E8%B3%BD/"/>
+    
+      <category term="心得" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E5%BE%97/"/>
+    
+      <category term="CTF" scheme="http://blog.roy4801.tw/tags/CTF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Smart Pointer 介紹/用法</title>
+    <link href="http://blog.roy4801.tw/2020/06/04/c++/smart_pointer/"/>
+    <id>http://blog.roy4801.tw/2020/06/04/c++/smart_pointer/</id>
+    <published>2020-06-04T11:23:16.000Z</published>
+    <updated>2021-05-12T13:20:03.427Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;Overview&quot;&gt;&lt;a href=&quot;#Overview&quot; class=&quot;headerlink&quot; title=&quot;Overview&quot;&gt;&lt;/a&gt;Overview&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;unique_ptr&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;move
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="Smart Pointer" scheme="http://blog.roy4801.tw/tags/Smart-Pointer/"/>
+    
+      <category term="智慧指標" scheme="http://blog.roy4801.tw/tags/%E6%99%BA%E6%85%A7%E6%8C%87%E6%A8%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用 CLion + gdb Debug 程式</title>
+    <link href="http://blog.roy4801.tw/2020/05/18/tutorial/clion-gdb-debugging/"/>
+    <id>http://blog.roy4801.tw/2020/05/18/tutorial/clion-gdb-debugging/</id>
+    <published>2020-05-18T13:41:58.000Z</published>
+    <updated>2021-05-12T13:20:03.437Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/r1NLY9U.png&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="IDE" scheme="http://blog.roy4801.tw/tags/IDE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo 產生空白的 HTML</title>
+    <link href="http://blog.roy4801.tw/2020/05/17/tutorial/hexo-blank/"/>
+    <id>http://blog.roy4801.tw/2020/05/17/tutorial/hexo-blank/</id>
+    <published>2020-05-17T12:21:45.000Z</published>
+    <updated>2021-05-12T13:20:03.438Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;問題&quot;&gt;&lt;a href=&quot;#問題&quot; class=&quot;headerlink&quot; title=&quot;問題&quot;&gt;&lt;/a&gt;問題&lt;/h2&gt;&lt;p&gt;在最近更新 blog 時，寫好一篇文後發現，hexo 產生的 HTML 竟然是空白的。（push 上 Github Page
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="其他" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/%E5%85%B6%E4%BB%96/"/>
+    
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="hexo" scheme="http://blog.roy4801.tw/tags/hexo/"/>
+    
+      <category term="node.js" scheme="http://blog.roy4801.tw/tags/node-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spdlog 介紹與使用</title>
+    <link href="http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/"/>
+    <id>http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/</id>
+    <published>2020-05-17T11:55:35.000Z</published>
+    <updated>2021-05-12T13:20:03.436Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;Fast C++ logging library.&lt;br&gt;一個輕量且快速的 log library&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/gabime/spdlog&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="C++ Library" scheme="http://blog.roy4801.tw/tags/C-Library/"/>
+    
+      <category term="imgui" scheme="http://blog.roy4801.tw/tags/imgui/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dear imgui 使用 - 拉桿 Slider</title>
+    <link href="http://blog.roy4801.tw/2020/04/16/imgui-intro-pt5/"/>
+    <id>http://blog.roy4801.tw/2020/04/16/imgui-intro-pt5/</id>
+    <published>2020-04-15T17:01:48.000Z</published>
+    <updated>2021-05-12T13:20:03.430Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/0VGhoZw.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ocornut/imgui/blob/master/imgui.h#L479&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="C++ Library" scheme="http://blog.roy4801.tw/tags/C-Library/"/>
+    
+      <category term="imgui" scheme="http://blog.roy4801.tw/tags/imgui/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dear imgui 使用 - 單選、複選按鈕</title>
+    <link href="http://blog.roy4801.tw/2020/03/29/imgui-intro-pt4/"/>
+    <id>http://blog.roy4801.tw/2020/03/29/imgui-intro-pt4/</id>
+    <published>2020-03-29T05:30:28.000Z</published>
+    <updated>2021-05-12T13:20:03.430Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;複選框-Checkbox&quot;&gt;&lt;a href=&quot;#複選框-Checkbox&quot; class=&quot;headerlink&quot; title=&quot;複選框 Checkbox&quot;&gt;&lt;/a&gt;複選框 Checkbox&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="C++ Library" scheme="http://blog.roy4801.tw/tags/C-Library/"/>
+    
+      <category term="imgui" scheme="http://blog.roy4801.tw/tags/imgui/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dear imgui 使用 - 視窗、文字及按鈕</title>
+    <link href="http://blog.roy4801.tw/2020/03/28/imgui-intro-pt3/"/>
+    <id>http://blog.roy4801.tw/2020/03/28/imgui-intro-pt3/</id>
+    <published>2020-03-28T09:32:36.000Z</published>
+    <updated>2021-05-12T13:20:03.430Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;建立視窗-Window&quot;&gt;&lt;a href=&quot;#建立視窗-Window&quot; class=&quot;headerlink&quot; title=&quot;建立視窗 Window&quot;&gt;&lt;/a&gt;建立視窗 Window&lt;/h2&gt;&lt;figure class=&quot;highlight
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="C++ Library" scheme="http://blog.roy4801.tw/tags/C-Library/"/>
+    
+      <category term="imgui" scheme="http://blog.roy4801.tw/tags/imgui/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dear imgui 安裝 - 使用 imgui-SFML</title>
+    <link href="http://blog.roy4801.tw/2020/03/25/imgui-intro-pt2/"/>
+    <id>http://blog.roy4801.tw/2020/03/25/imgui-intro-pt2/</id>
+    <published>2020-03-24T18:40:42.000Z</published>
+    <updated>2021-05-12T13:20:03.429Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v167/v167-misc.png&quot; width=&quot;50%&quot;&gt;&lt;/p&gt;
+&lt;p&gt;Dear imgui 並沒有侷限底層使用的繪圖
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="C++ Library" scheme="http://blog.roy4801.tw/tags/C-Library/"/>
+    
+      <category term="imgui" scheme="http://blog.roy4801.tw/tags/imgui/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>dear imgui 介紹 - 輕量級的 GUI Library</title>
+    <link href="http://blog.roy4801.tw/2020/03/24/imgui-intro-pt1/"/>
+    <id>http://blog.roy4801.tw/2020/03/24/imgui-intro-pt1/</id>
+    <published>2020-03-23T20:18:45.000Z</published>
+    <updated>2021-05-12T13:20:03.429Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/irlVLsy.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ocornut/imgui&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Dear
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="C++ Library" scheme="http://blog.roy4801.tw/tags/C-Library/"/>
+    
+      <category term="imgui" scheme="http://blog.roy4801.tw/tags/imgui/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 macOS Mojave 上正常使用 gdb</title>
+    <link href="http://blog.roy4801.tw/2020/01/27/%E5%9C%A8-macOS-Mojave-%E4%B8%8A%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8-gdb/"/>
+    <id>http://blog.roy4801.tw/2020/01/27/在-macOS-Mojave-上正常使用-gdb/</id>
+    <published>2020-01-26T21:42:06.000Z</published>
+    <updated>2021-05-12T13:20:03.446Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;在 macOS 上使用 gdb 時，如果沒有做以下修改，通常會是這樣：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="macOS" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/macOS/"/>
+    
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="gdb" scheme="http://blog.roy4801.tw/tags/gdb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 1587 - Box</title>
+    <link href="http://blog.roy4801.tw/2019/09/11/uva/uva1587/"/>
+    <id>http://blog.roy4801.tw/2019/09/11/uva/uva1587/</id>
+    <published>2019-09-11T15:56:25.000Z</published>
+    <updated>2021-05-12T13:20:03.443Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=4462&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 202 - Repeating Decimals</title>
+    <link href="http://blog.roy4801.tw/2019/09/10/uva/uva202/"/>
+    <id>http://blog.roy4801.tw/2019/09/10/uva/uva202/</id>
+    <published>2019-09-10T14:22:48.000Z</published>
+    <updated>2021-05-12T13:20:03.443Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;&quot;&gt;題目&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Problem&quot;&gt;&lt;a href=&quot;#Problem&quot; class=&quot;headerlink&quot; title=&quot;Problem&quot;&gt;&lt;/a&gt;Problem&lt;/h1&gt;&lt;p&gt;略&lt;/p&gt;
+&lt;h1 id=&quot;想法&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 275 - Expanding Fractions</title>
+    <link href="http://blog.roy4801.tw/2019/09/10/uva/uva275/"/>
+    <id>http://blog.roy4801.tw/2019/09/10/uva/uva275/</id>
+    <published>2019-09-10T14:16:22.000Z</published>
+    <updated>2021-05-12T13:20:03.443Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=211&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AIS3 2019 心得</title>
+    <link href="http://blog.roy4801.tw/2019/08/06/ais3/ais_2019/"/>
+    <id>http://blog.roy4801.tw/2019/08/06/ais3/ais_2019/</id>
+    <published>2019-08-06T04:36:42.000Z</published>
+    <updated>2021-05-12T13:20:03.425Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;繼&lt;a href=&quot;/2019/05/31/ais3/ais3_2019_pre_exam/&quot;&gt;上次的心得文&lt;/a&gt;後，我成功進入AIS3第五屆的課程，今天跟以往的AIS3不同，是改以集訓的形式，跟以往的上課5天、最後打Final
+        
+      
+    
+    </summary>
+    
+      <category term="心得散文" scheme="http://blog.roy4801.tw/categories/%E5%BF%83%E5%BE%97%E6%95%A3%E6%96%87/"/>
+    
+    
+      <category term="心得" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E5%BE%97/"/>
+    
+      <category term="資安" scheme="http://blog.roy4801.tw/tags/%E8%B3%87%E5%AE%89/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 10226 - Hardwood Species</title>
+    <link href="http://blog.roy4801.tw/2019/06/26/uva/uva10226/"/>
+    <id>http://blog.roy4801.tw/2019/06/26/uva/uva10226/</id>
+    <published>2019-06-26T07:52:43.000Z</published>
+    <updated>2021-05-12T13:20:03.439Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 793 - Network Connections</title>
+    <link href="http://blog.roy4801.tw/2019/06/26/uva/uva793/"/>
+    <id>http://blog.roy4801.tw/2019/06/26/uva/uva793/</id>
+    <published>2019-06-26T07:43:05.000Z</published>
+    <updated>2021-05-12T13:20:03.445Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=734&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 10033 - Interpreter</title>
+    <link href="http://blog.roy4801.tw/2019/06/24/uva/uva10033/"/>
+    <id>http://blog.roy4801.tw/2019/06/24/uva/uva10033/</id>
+    <published>2019-06-24T07:23:00.000Z</published>
+    <updated>2021-05-12T13:20:03.439Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=974&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 10004 - Bicoloring</title>
+    <link href="http://blog.roy4801.tw/2019/06/23/uva/uva10004/"/>
+    <id>http://blog.roy4801.tw/2019/06/23/uva/uva10004/</id>
+    <published>2019-06-22T16:28:43.000Z</published>
+    <updated>2021-05-12T13:20:03.438Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=945&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 1203 - Argus</title>
+    <link href="http://blog.roy4801.tw/2019/06/22/uva/uva1203/"/>
+    <id>http://blog.roy4801.tw/2019/06/22/uva/uva1203/</id>
+    <published>2019-06-22T15:54:21.000Z</published>
+    <updated>2021-05-12T13:20:03.441Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=onlinejudge&amp;amp;page=show_problem&amp;amp;problem=3644&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+      <category term="priority queue" scheme="http://blog.roy4801.tw/tags/priority-queue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 526 - String Distance and Transform Process</title>
+    <link href="http://blog.roy4801.tw/2019/06/14/uva/uva526/"/>
+    <id>http://blog.roy4801.tw/2019/06/14/uva/uva526/</id>
+    <published>2019-06-14T10:30:55.000Z</published>
+    <updated>2021-05-12T13:20:03.444Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=467&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+      <category term="DP" scheme="http://blog.roy4801.tw/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AIS3 2019 pre-exam writeups+心得</title>
+    <link href="http://blog.roy4801.tw/2019/05/31/ais3/ais3_2019_pre_exam/"/>
+    <id>http://blog.roy4801.tw/2019/05/31/ais3/ais3_2019_pre_exam/</id>
+    <published>2019-05-31T06:50:18.000Z</published>
+    <updated>2021-05-12T13:20:03.424Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;參加過一次&lt;a href=&quot;https://ais3.org/&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="Writeup" scheme="http://blog.roy4801.tw/categories/Writeup/"/>
+    
+    
+      <category term="比賽" scheme="http://blog.roy4801.tw/tags/%E6%AF%94%E8%B3%BD/"/>
+    
+      <category term="心得" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E5%BE%97/"/>
+    
+      <category term="CTF" scheme="http://blog.roy4801.tw/tags/CTF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 11059 - Maximum Product</title>
+    <link href="http://blog.roy4801.tw/2019/05/18/uva/uva11059/"/>
+    <id>http://blog.roy4801.tw/2019/05/18/uva/uva11059/</id>
+    <published>2019-05-18T13:40:29.000Z</published>
+    <updated>2021-05-12T13:20:03.440Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 11078 - Open Credit System</title>
+    <link href="http://blog.roy4801.tw/2019/05/18/uva/uva11078/"/>
+    <id>http://blog.roy4801.tw/2019/05/18/uva/uva11078/</id>
+    <published>2019-05-18T07:29:18.000Z</published>
+    <updated>2021-05-12T13:20:03.441Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 10685 - Nature</title>
+    <link href="http://blog.roy4801.tw/2019/05/17/uva/uva10685/"/>
+    <id>http://blog.roy4801.tw/2019/05/17/uva/uva10685/</id>
+    <published>2019-05-17T15:37:37.000Z</published>
+    <updated>2021-05-12T13:20:03.439Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=onlinejudge&amp;amp;page=show_problem&amp;amp;problem=1626&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在 macOS 上掛載可寫的NTFS</title>
+    <link href="http://blog.roy4801.tw/2019/03/31/%E5%9C%A8-macOS-%E4%B8%8A%E6%8E%9B%E8%BC%89%E5%8F%AF%E5%AF%AB%E7%9A%84NTFS/"/>
+    <id>http://blog.roy4801.tw/2019/03/31/在-macOS-上掛載可寫的NTFS/</id>
+    <published>2019-03-31T14:43:36.000Z</published>
+    <updated>2021-05-12T13:20:03.447Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;macOS 預設是無法寫入NTFS檔案系統的硬碟的（只可讀），如果想要寫入NTFS檔案系統的硬碟就必須使用其他工具。&lt;/p&gt;
+&lt;h1 id=&quot;osxfuse&quot;&gt;&lt;a href=&quot;#osxfuse&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="macOS" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/macOS/"/>
+    
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="檔案系統" scheme="http://blog.roy4801.tw/tags/%E6%AA%94%E6%A1%88%E7%B3%BB%E7%B5%B1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 136 - Ugly Number</title>
+    <link href="http://blog.roy4801.tw/2019/02/24/uva/uva136/"/>
+    <id>http://blog.roy4801.tw/2019/02/24/uva/uva136/</id>
+    <published>2019-02-24T05:26:12.000Z</published>
+    <updated>2021-05-12T13:20:03.442Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=onlinejudge&amp;amp;page=show_problem&amp;amp;problem=72&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+      <category term="DP" scheme="http://blog.roy4801.tw/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 12100 - Printer Queue</title>
+    <link href="http://blog.roy4801.tw/2019/02/08/uva/uva12100/"/>
+    <id>http://blog.roy4801.tw/2019/02/08/uva/uva12100/</id>
+    <published>2019-02-08T06:34:58.000Z</published>
+    <updated>2021-05-12T13:20:03.442Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 11995 - I Can Guess the Data Structure!</title>
+    <link href="http://blog.roy4801.tw/2019/02/07/uva/uva11995/"/>
+    <id>http://blog.roy4801.tw/2019/02/07/uva/uva11995/</id>
+    <published>2019-02-07T12:42:47.000Z</published>
+    <updated>2021-05-12T13:20:03.441Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=3146&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 10935 - Throwing cards away I</title>
+    <link href="http://blog.roy4801.tw/2019/02/03/uva/uva10935/"/>
+    <id>http://blog.roy4801.tw/2019/02/03/uva/uva10935/</id>
+    <published>2019-02-02T16:22:42.000Z</published>
+    <updated>2021-05-12T13:20:03.440Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;amp;Itemid=8&amp;amp;page=show_problem&amp;amp;problem=1876&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Uva 402 - M*A*S*H</title>
+    <link href="http://blog.roy4801.tw/2019/02/02/uva/uva402/"/>
+    <id>http://blog.roy4801.tw/2019/02/02/uva/uva402/</id>
+    <published>2019-02-02T15:54:28.000Z</published>
+    <updated>2021-05-12T13:20:03.444Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://uva.onlinejudge.org/index.php?option=onlinejudge&amp;amp;page=show_problem&amp;amp;problem=343&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="解題區" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/"/>
+    
+    
+      <category term="解題紀錄" scheme="http://blog.roy4801.tw/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Uva" scheme="http://blog.roy4801.tw/tags/Uva/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在64-bit Ubuntu執行32-bit程式</title>
+    <link href="http://blog.roy4801.tw/2019/01/26/linux/linux_x86_libs/"/>
+    <id>http://blog.roy4801.tw/2019/01/26/linux/linux_x86_libs/</id>
+    <published>2019-01-26T11:50:16.000Z</published>
+    <updated>2021-05-12T13:20:03.431Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Linux" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/Linux/"/>
+    
+    
+      <category term="心得" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E5%BE%97/"/>
+    
+      <category term="Linux" scheme="http://blog.roy4801.tw/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>互動媒體專題 參展</title>
+    <link href="http://blog.roy4801.tw/2019/01/25/%E4%BA%92%E5%8B%95%E5%AA%92%E9%AB%94%E5%B0%88%E9%A1%8C/"/>
+    <id>http://blog.roy4801.tw/2019/01/25/互動媒體專題/</id>
+    <published>2019-01-25T04:00:00.000Z</published>
+    <updated>2021-05-12T13:20:03.446Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;https://i.imgur.com/lOR0hl1.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="心得散文" scheme="http://blog.roy4801.tw/categories/%E5%BF%83%E5%BE%97%E6%95%A3%E6%96%87/"/>
+    
+    
+      <category term="心得" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E5%BE%97/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ACM-ICPC Taipei 2018 區域賽心得</title>
+    <link href="http://blog.roy4801.tw/2018/11/22/ACM-ICPC_Taipei/"/>
+    <id>http://blog.roy4801.tw/2018/11/22/ACM-ICPC_Taipei/</id>
+    <published>2018-11-22T10:32:26.000Z</published>
+    <updated>2021-05-12T13:20:03.421Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;比賽完過了12天我才想起來之前想著要寫的心得，硬是拖了12天才開始寫QQ&lt;/p&gt;
+&lt;p&gt;導致有點忘記了，只能靠著照片回想，但由於我並不是個喜歡拍照片的人，所以照片也有點少QQ&lt;br&gt;看來以後得時常紀錄了。&lt;/p&gt;
+&lt;h2 id=&quot;Day-01&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="心得散文" scheme="http://blog.roy4801.tw/categories/%E5%BF%83%E5%BE%97%E6%95%A3%E6%96%87/"/>
+    
+    
+      <category term="比賽" scheme="http://blog.roy4801.tw/tags/%E6%AF%94%E8%B3%BD/"/>
+    
+      <category term="心得" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E5%BE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>x86 筆記 ep2</title>
+    <link href="http://blog.roy4801.tw/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep2/"/>
+    <id>http://blog.roy4801.tw/2018/10/12/x86-筆記-ep2/</id>
+    <published>2018-10-12T06:45:46.000Z</published>
+    <updated>2021-05-12T13:20:03.445Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;程式如何執行&quot;&gt;&lt;a href=&quot;#程式如何執行&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="組合語言" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/%E7%B5%84%E5%90%88%E8%AA%9E%E8%A8%80/"/>
+    
+    
+      <category term="x86" scheme="http://blog.roy4801.tw/tags/x86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>x86 筆記 ep1.</title>
+    <link href="http://blog.roy4801.tw/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep1/"/>
+    <id>http://blog.roy4801.tw/2018/10/12/x86-筆記-ep1/</id>
+    <published>2018-10-12T05:32:11.000Z</published>
+    <updated>2021-05-12T13:20:03.445Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;CPU-Centrual-Processing-Unit&quot;&gt;&lt;a href=&quot;#CPU-Centrual-Processing-Unit&quot; class=&quot;headerlink&quot; title=&quot;CPU(Centrual Processing
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="組合語言" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/%E7%B5%84%E5%90%88%E8%AA%9E%E8%A8%80/"/>
+    
+    
+      <category term="x86" scheme="http://blog.roy4801.tw/tags/x86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>雜筆ep1.</title>
+    <link href="http://blog.roy4801.tw/2018/09/27/%E6%85%8B%E5%BA%A6/"/>
+    <id>http://blog.roy4801.tw/2018/09/27/態度/</id>
+    <published>2018-09-27T05:15:00.000Z</published>
+    <updated>2021-05-12T13:20:03.448Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;態度&quot;&gt;&lt;a href=&quot;#態度&quot; class=&quot;headerlink&quot; title=&quot;態度&quot;&gt;&lt;/a&gt;態度&lt;/h2&gt;&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="心得散文" scheme="http://blog.roy4801.tw/categories/%E5%BF%83%E5%BE%97%E6%95%A3%E6%96%87/"/>
+    
+    
+      <category term="心情散文" scheme="http://blog.roy4801.tw/tags/%E5%BF%83%E6%83%85%E6%95%A3%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>tmux 基本使用</title>
+    <link href="http://blog.roy4801.tw/2018/08/25/linux/tmux%20%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>http://blog.roy4801.tw/2018/08/25/linux/tmux 基本使用/</id>
+    <published>2018-08-25T12:45:19.000Z</published>
+    <updated>2021-05-12T13:20:03.432Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;tmux-基本使用&quot;&gt;&lt;a href=&quot;#tmux-基本使用&quot; class=&quot;headerlink&quot; title=&quot;tmux 基本使用&quot;&gt;&lt;/a&gt;tmux 基本使用&lt;/h2&gt;&lt;h3 id=&quot;Terminal-MUltipleXer&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Linux" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/Linux/"/>
+    
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="Linux" scheme="http://blog.roy4801.tw/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ssh到linux(ubuntu)上無法輸入中文問題</title>
+    <link href="http://blog.roy4801.tw/2018/08/25/linux/ssh%E5%88%B0linux(ubuntu)%E4%B8%8A%E7%84%A1%E6%B3%95%E8%BC%B8%E5%85%A5%E4%B8%AD%E6%96%87%E5%95%8F%E9%A1%8C/"/>
+    <id>http://blog.roy4801.tw/2018/08/25/linux/ssh到linux(ubuntu)上無法輸入中文問題/</id>
+    <published>2018-08-24T16:38:03.000Z</published>
+    <updated>2021-05-12T13:20:03.432Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="Linux" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/Linux/"/>
+    
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="Linux" scheme="http://blog.roy4801.tw/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>next_permutation/perv_permutation用法</title>
+    <link href="http://blog.roy4801.tw/2018/08/23/c++/C++%20next_permutation_perv_permutation%E7%94%A8%E6%B3%95/"/>
+    <id>http://blog.roy4801.tw/2018/08/23/c++/C++ next_permutation_perv_permutation用法/</id>
+    <published>2018-08-23T09:48:03.000Z</published>
+    <updated>2021-05-12T13:20:03.426Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;C-STL-組合&quot;&gt;&lt;a href=&quot;#C-STL-組合&quot; class=&quot;headerlink&quot; title=&quot;C++ STL 組合&quot;&gt;&lt;/a&gt;C++ STL 組合&lt;/h2&gt;&lt;p&gt;STL中提供了兩個template
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="C/C++" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/"/>
+    
+    
+      <category term="C++" scheme="http://blog.roy4801.tw/tags/C/"/>
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="STL" scheme="http://blog.roy4801.tw/tags/STL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在macos 如何build zbarimg</title>
+    <link href="http://blog.roy4801.tw/2018/08/04/%E5%9C%A8macos%20%E5%A6%82%E4%BD%95build%20zbarimg/"/>
+    <id>http://blog.roy4801.tw/2018/08/04/在macos 如何build zbarimg/</id>
+    <published>2018-08-04T08:57:45.000Z</published>
+    <updated>2021-05-12T13:20:03.447Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;在打CTF時，在&lt;code&gt;Misc&lt;/code&gt;遇到有用&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="學習紀錄" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/"/>
+    
+      <category term="其他" scheme="http://blog.roy4801.tw/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/%E5%85%B6%E4%BB%96/"/>
+    
+    
+      <category term="程式" scheme="http://blog.roy4801.tw/tags/%E7%A8%8B%E5%BC%8F/"/>
+    
+      <category term="教學" scheme="http://blog.roy4801.tw/tags/%E6%95%99%E5%AD%B8/"/>
+    
+      <category term="ctf tools" scheme="http://blog.roy4801.tw/tags/ctf-tools/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hello_world</title>
+    <link href="http://blog.roy4801.tw/2018/06/20/hello-world/"/>
+    <id>http://blog.roy4801.tw/2018/06/20/hello-world/</id>
+    <published>2018-06-20T02:33:41.000Z</published>
+    <updated>2021-05-12T13:20:03.428Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;你好，世界&quot;&gt;&lt;a href=&quot;#你好，世界&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="其他" scheme="http://blog.roy4801.tw/categories/%E5%85%B6%E4%BB%96/"/>
+    
+    
+      <category term="其他" scheme="http://blog.roy4801.tw/tags/%E5%85%B6%E4%BB%96/"/>
+    
+  </entry>
+  
+</feed>

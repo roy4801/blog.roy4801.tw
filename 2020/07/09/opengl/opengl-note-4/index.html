@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OpenGL 筆記 - Texture | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="可以用為每個頂點增加顏色來為圖形添增細節，來建構有趣的圖像。但必須要有足夠多的頂點、顏色，這會帶來很多開銷，每個模型的頂點就會變得很多。 紋理(Texture)是一個 2D 的圖片，可以用來增添物體的細節，可以想像 Texture 就像是個有圖案的紙，貼合在 3D 的物體上，這樣就可以讓物體不用增加頂點就增加細節。題外話，Texture 除了圖像之外還能用來儲存大量資訊發送到 Shader 上。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL 筆記 - Texture">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/07/09/opengl/opengl-note-4/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="可以用為每個頂點增加顏色來為圖形添增細節，來建構有趣的圖像。但必須要有足夠多的頂點、顏色，這會帶來很多開銷，每個模型的頂點就會變得很多。 紋理(Texture)是一個 2D 的圖片，可以用來增添物體的細節，可以想像 Texture 就像是個有圖案的紙，貼合在 3D 的物體上，這樣就可以讓物體不用增加頂點就增加細節。題外話，Texture 除了圖像之外還能用來儲存大量資訊發送到 Shader 上。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/dl5nCAc.png">
+<meta property="og:image" content="https://i.imgur.com/pRw6fBr.png">
+<meta property="og:image" content="https://i.imgur.com/PVK5oZB.png">
+<meta property="og:image" content="https://i.imgur.com/MIwTxEj.png">
+<meta property="og:image" content="https://i.imgur.com/y8MnkAO.png">
+<meta property="og:image" content="https://i.imgur.com/BHEaZfy.png">
+<meta property="og:image" content="https://i.imgur.com/MDqCMdT.png">
+<meta property="og:image" content="https://i.imgur.com/voF4WPi.png">
+<meta property="og:image" content="https://i.imgur.com/9kS8ABB.png">
+<meta property="og:image" content="https://i.imgur.com/OJxIHJm.png">
+<meta property="og:image" content="https://i.imgur.com/aEjJEY1.png">
+<meta property="og:image" content="https://imgur.com/eO3E0dt.gif">
+<meta property="og:image" content="https://imgur.com/OcWfEVb.gif">
+<meta property="og:image" content="https://i.imgur.com/iqejGwI.png">
+<meta property="og:image" content="https://i.imgur.com/C2C5nFc.png">
+<meta property="og:image" content="https://i.imgur.com/bJVn825.png">
+<meta property="og:image" content="https://i.imgur.com/j0Z61gj.png">
+<meta property="og:image" content="https://i.imgur.com/ekXUvki.png">
+<meta property="og:image" content="https://i.imgur.com/ZePNhxk.png">
+<meta property="article:published_time" content="2020-07-09T07:46:00.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.434Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="筆記">
+<meta property="article:tag" content="OpenGL">
+<meta property="article:tag" content="圖學">
+<meta property="article:tag" content="Texture">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/dl5nCAc.png">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-opengl/opengl-note-4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/09/opengl/opengl-note-4/" class="article-date">
+  <time datetime="2020-07-09T07:46:00.000Z" itemprop="datePublished">2020-07-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/">OpenGL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OpenGL 筆記 - Texture
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>可以用為每個頂點增加顏色來為圖形添增細節，來建構有趣的圖像。但必須要有足夠多的頂點、顏色，這會帶來很多開銷，每個模型的頂點就會變得很多。</p>
+<p>紋理(Texture)是一個 2D 的圖片，可以用來增添物體的細節，可以想像 Texture 就像是個有圖案的紙，貼合在 3D 的物體上，這樣就可以讓物體不用增加頂點就增加細節。<br>題外話，Texture 除了圖像之外還能用來儲存大量資訊發送到 Shader 上。</p>
+<p><img src="https://i.imgur.com/dl5nCAc.png" alt=""></p>
+<p>為了將紋理(Texture)映射(Map)到頂點上，需要指定頂點分邊對應到紋理的哪個部分，所以每個頂點都會關聯著一個紋理座標(Texture Coordinate)，用來表示該從 Texture 的哪個地方採樣(Sampling)(fragment 的顏色)，之後其他的 Fragment 會插值其 Texture Coordinate。</p>
+<p><img src="https://i.imgur.com/pRw6fBr.png" alt=""></p>
+<ul>
+<li>Texture Coordinate 紋理座標<ul>
+<li>把紋理貼在第一象限，從 $(0, 0)$ 到 $(1, 1)$</li>
+<li>$u$ 是 x 軸，$v$ 是 y 軸</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/PVK5oZB.png" alt=""></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> texCoords[] = &#123;</span><br><span class="line">    <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="comment">// bottom left</span></span><br><span class="line">    <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="comment">// bottom right</span></span><br><span class="line">    <span class="number">0.5f</span>, <span class="number">1.0f</span>  <span class="comment">// middle</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">float</span> vertices[] = &#123;</span><br><span class="line">    <span class="comment">// 位置  </span></span><br><span class="line">     <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,</span><br><span class="line">    <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,</span><br><span class="line">     <span class="number">0.0f</span>,  <span class="number">0.5f</span>, <span class="number">0.0f</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="材質環繞方式"><a href="#材質環繞方式" class="headerlink" title="材質環繞方式"></a>材質環繞方式</h2><p><img src="https://i.imgur.com/MIwTxEj.png" alt=""></p>
+<p>材質座標的範圍是 $[0, 1]$(第一象限) ，如果超出這個座標之外預設的行為是重複，但其實 OpenGL 提供了更多的選擇:</p>
+<table>
+<thead>
+<tr>
+<th>環繞方式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GL_REPEAT</code></td>
+<td>預設，重複材質圖像</td>
+</tr>
+<tr>
+<td><code>GL_MIRRORED_REPEAT</code></td>
+<td>一樣是重複材質，但圖片是鏡像的</td>
+</tr>
+<tr>
+<td><code>GL_CLAMP_TO_EDGE</code></td>
+<td>材質座標會被約束在 $[0,1]$，超出的部分會重複邊緣<br>並產生拉伸的效果</td>
+</tr>
+<tr>
+<td><code>GL_CLAMP_TO_BORDER</code></td>
+<td>超出的座標為指定的顏色</td>
+</tr>
+</tbody>
+</table>
+<p>這些選項都可以對單獨的材質座標軸設定，s, t 和 r 軸(如果是 3D 的話)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);</span><br><span class="line"><span class="comment">// glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_MIRRORED_REPEAT);</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>選擇 <code>GL_CLAMP_TO_BORDER</code> 則還需要指定一個顏色</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> borderColor[] = &#123;<span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>&#125;;</span><br><span class="line">glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);</span><br></pre></td></tr></table></figure>
+<h2 id="紋理濾波-Texture-Filter"><a href="#紋理濾波-Texture-Filter" class="headerlink" title="紋理濾波 (Texture Filter)"></a>紋理濾波 (Texture Filter)</h2><p>紋理座標跟解析度無關，所以 OpenGL 要知道怎麼將紋理像素(Texture Pixel, Texel)映射到紋理座標(Texture Coordinate)。<br>如果一個很大的物體，可是紋理解析度很低，就會有明顯的瑕疵出現。</p>
+<ul>
+<li><p>紋理濾波 Texture Filter</p>
+<ul>
+<li><code>GL_NEAREST</code></li>
+<li><code>GL_LINEAR</code></li>
+<li>其他過濾方式，<a href="https://zh.wikipedia.org/wiki/%E7%BA%B9%E7%90%86%E6%BB%A4%E6%B3%A2" target="_blank" rel="noopener">參見</a></li>
+</ul>
+</li>
+<li><p>鄰近濾波 Nearest Neighbor Filtering</p>
+<ul>
+<li>OpenGL 預設使用 <code>GL_NEAREST</code></li>
+<li>選 Texture Coordinate 最接近的 紋素(Texel)</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/y8MnkAO.png" alt=""></p>
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/%E5%8F%8C%E7%BA%BF%E6%80%A7%E8%BF%87%E6%BB%A4" target="_blank" rel="noopener">雙線性過濾 Bilinear Filtering</a><ul>
+<li><code>GL_LINEAR</code></li>
+<li>基於紋理座標附近的紋理像素，計算插值，近似出這些紋理像素們之間的顏色</li>
+<li>紋理座標離該紋理像素越接近則對最終顏色貢獻越大</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/BHEaZfy.png" alt=""></p>
+<p>看起來像是:</p>
+<ul>
+<li><p><code>GL_NEAREST</code></p>
+<ul>
+<li>產生了顆粒狀</li>
+</ul>
+</li>
+<li><p><code>GL_LINEAR</code></p>
+<ul>
+<li>平滑</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/MDqCMdT.png" alt=""></p>
+<ul>
+<li>OpenGL 可以設定紋理在放大或縮小時要使用的過濾方式<ul>
+<li><code>GL_TEXTURE_MIN_FILTER</code> 縮小</li>
+<li><code>GL_TEXTURE_MAG_FILTER</code> 放大</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 縮小使用 GL_NEAREST</span></span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);</span><br><span class="line"><span class="comment">// 放大使用 GL_LINEAR</span></span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br></pre></td></tr></table></figure>
+<h3 id="Mipmapping"><a href="#Mipmapping" class="headerlink" title="Mipmapping"></a>Mipmapping</h3><p>假如說場景在開闊的地方，有上千個物體，每個物體上都有紋理，近處的物體的紋理解析度很高，但遠處的物體可能只產生很小的片段(Fragment)，在高解析度的紋理中這種物體的顏色通常都不正確，並且也浪費記憶體。</p>
+<p><img src="https://i.imgur.com/voF4WPi.png" alt=""></p>
+<p>多級漸遠紋理(Mipmap)是一系列的紋理圖像，後一個的大小是前個的二分之一。當觀察者的距離超過一定的閾值(threshold)，自動切換至適合該距離的紋理。距離遠用解析度比較小的，也不容易被察覺。</p>
+<p>Mipmap 可以自己手動產生，不過 OpenGL 可以幫我們自動產生。</p>
+<ul>
+<li>紋理過濾等級 + Mipmap<ul>
+<li><code>_MIPMAP_NEAREST</code><ul>
+<li>使用最接近的 Mip Level</li>
+</ul>
+</li>
+<li><code>_MIPMAP_LINEAR</code><ul>
+<li>在兩個最接近的 Mip Level 插值</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br></pre></td></tr></table></figure>
+<p>放大過濾不可以使用 Mipmap ，因為 Mipmap 是給縮小紋理使用的</p>
+<h2 id="載入圖片"><a href="#載入圖片" class="headerlink" title="載入圖片"></a>載入圖片</h2><h3 id="stb-image-h"><a href="#stb-image-h" class="headerlink" title="stb_image.h"></a>stb_image.h</h3><p><a href="https://github.com/nothings/stb/blob/master/stb_image.h" target="_blank" rel="noopener">stb_image.h</a> 是一個 header-only 的圖片載入 library 是 <a href="https://github.com/nothings/stb" target="_blank" rel="noopener">stb</a> 系列的其中之一，支援 jpg, png, tga, bmp, psd, gif, hdr, pic 等格式。</p>
+<ul>
+<li><p>下載 <code>stb_image.h</code> 並加到你的專案中，並另新增一個 <code>.cpp</code> 輸入代碼</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> STB_IMAGE_IMPLEMENTATION</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"stb_image.h"</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>載入圖片</p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> width, height, nrChannels;</span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> *data = stbi_load(<span class="string">"example.jpg"</span>, &amp;width, &amp;height, &amp;nrChannels, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// free</span></span><br><span class="line">stbi_image_free(data);</span><br></pre></td></tr></table></figure>
+<h3 id="使用-SFML"><a href="#使用-SFML" class="headerlink" title="使用 SFML"></a>使用 SFML</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 載入圖片</span></span><br><span class="line">sf::Image wall;</span><br><span class="line">wall.loadFromFile(<span class="string">"../src/1.getting_started/4.1.texture/wall.jpg"</span>);</span><br><span class="line">wall.flipVertically();</span><br><span class="line"><span class="comment">// 設定材質及參數</span></span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br><span class="line">glTexImage2D(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGBA, wall.getSize().x, wall.getSize().y, <span class="number">0</span>, GL_RGBA, GL_UNSIGNED_BYTE, (<span class="keyword">const</span> <span class="keyword">void</span>*)wall.getPixelsPtr());</span><br><span class="line">glGenerateMipmap(GL_TEXTURE_2D);</span><br></pre></td></tr></table></figure>
+<h2 id="生成紋理"><a href="#生成紋理" class="headerlink" title="生成紋理"></a>生成紋理</h2><ul>
+<li>建立紋理 object</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">uint32_t</span> texture;</span><br><span class="line">glGenTexture(<span class="number">1</span>, &amp;texture);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>綁定</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glBindTexture(GL_TEXTURE_2D, texture);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>生成紋理<ul>
+<li><a href="http://docs.gl/gl4/glTexImage2D" target="_blank" rel="noopener">glTexImage2D(target, level, internalFormat, width, height, border,  format,  type, * data)</a><ul>
+<li>Target</li>
+<li>Mipmap Level<ul>
+<li>0 = base</li>
+</ul>
+</li>
+<li>internalFormat 儲存格式</li>
+<li>width 寬度, height 高度</li>
+<li>border 永遠 = 0 (歷史遺留)</li>
+<li>format 原圖格式</li>
+<li>type 資料類型</li>
+<li>data 真正的圖像資料</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">glTexImage2D(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGB, width, height, <span class="number">0</span>, GL_RGB, GL_UNSIGNED_BYTE, data);</span><br><span class="line">glGenerateMipmap(GL_TEXTURE_2D);</span><br></pre></td></tr></table></figure>
+<p>呼叫完 <code>glTexImage2D()</code> 便會把紋理圖像(Texture Image)綁定上紋理物件(Texture Object)，由於只有基本 Mipmap 等級(Base-Level)的紋理圖像被綁定，如果要用 Mipmap 的話，則要用 <code>glGenerateMipmap()</code> 讓 OpenGL 自動產生 Mipmap。</p>
+<ul>
+<li>完整產生紋理的流程:</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> texture;</span><br><span class="line">glGenTextures(<span class="number">1</span>, &amp;texture);</span><br><span class="line">glBindTexture(GL_TEXTURE_2D, texture);</span><br><span class="line"><span class="comment">//</span></span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);   </span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);</span><br><span class="line">glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> *data = load_image(<span class="string">"example.jpg"</span>); <span class="comment">// 自訂載入圖片方式</span></span><br><span class="line"><span class="keyword">uint32_t</span> width = <span class="comment">/* 圖片的寬 */</span>;</span><br><span class="line"><span class="keyword">uint32_t</span> height = <span class="comment">/* 圖片的高 */</span>;</span><br><span class="line"><span class="keyword">if</span> (data)</span><br><span class="line">&#123;</span><br><span class="line">    glTexImage2D(GL_TEXTURE_2D, <span class="number">0</span>, GL_RGB, width, height, <span class="number">0</span>, GL_RGB, GL_UNSIGNED_BYTE, data);</span><br><span class="line">    glGenerateMipmap(GL_TEXTURE_2D);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"Failed to load texture"</span> &lt;&lt; <span class="built_in">std</span>::<span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line">free_image(data); <span class="comment">// 釋放圖片</span></span><br></pre></td></tr></table></figure>
+<h2 id="使用紋理"><a href="#使用紋理" class="headerlink" title="使用紋理"></a>使用紋理</h2><p>延續 <a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/2.2.hello_triangle_indexed" target="_blank" rel="noopener">2.2.hello_triangle_indexed</a> 的範例，為頂點加入 Texture Coordinate 的屬性，讓 OpenGL 知道要如何採樣(Sample)紋理。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> vertices[] = &#123;</span><br><span class="line"><span class="comment">//     ---- 位置 ----       ---- 顏色 ----     - 紋理座標 -</span></span><br><span class="line">     <span class="number">0.5f</span>,  <span class="number">0.5f</span>, <span class="number">0.0f</span>,   <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>,   <span class="number">1.0f</span>, <span class="number">1.0f</span>,   <span class="comment">// 右上</span></span><br><span class="line">     <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,   <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>,   <span class="number">1.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 右下</span></span><br><span class="line">    <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,   <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>,   <span class="number">0.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 左下</span></span><br><span class="line">    <span class="number">-0.5f</span>,  <span class="number">0.5f</span>, <span class="number">0.0f</span>,   <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>,   <span class="number">0.0f</span>, <span class="number">1.0f</span>    <span class="comment">// 左上</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/9kS8ABB.png" alt=""></p>
+<ul>
+<li>設定頂點屬性</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">uint32_t</span> aPos = glGetAttribLocation(program, <span class="string">"aPos"</span>);</span><br><span class="line">glVertexAttribPointer(aPos, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">8</span> * <span class="keyword">sizeof</span>(<span class="keyword">float</span>), (<span class="keyword">void</span> *)<span class="number">0</span>);</span><br><span class="line">glEnableVertexAttribArray(aPos);</span><br><span class="line"><span class="keyword">uint32_t</span> aVertColor = glGetAttribLocation(program, <span class="string">"aVertColor"</span>);</span><br><span class="line">glVertexAttribPointer(aVertColor, <span class="number">3</span>, GL_FLOAT, GL_FALSE, <span class="number">8</span> * <span class="keyword">sizeof</span>(<span class="keyword">float</span>), (<span class="keyword">void</span> *)(<span class="number">3</span> * <span class="keyword">sizeof</span>(<span class="keyword">float</span>)));</span><br><span class="line">glEnableVertexAttribArray(aVertColor);</span><br><span class="line"><span class="keyword">uint32_t</span> aTexCoord = glGetAttribLocation(program, <span class="string">"aTexCoord"</span>);</span><br><span class="line">glVertexAttribPointer(aTexCoord, <span class="number">2</span>, GL_FLOAT, GL_FALSE, <span class="number">8</span> * <span class="keyword">sizeof</span>(<span class="keyword">float</span>), (<span class="keyword">void</span>*)(<span class="number">6</span>*<span class="keyword">sizeof</span>(<span class="keyword">float</span>)));</span><br><span class="line">glEnableVertexAttribArray(aTexCoord);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Vertex Shader<ul>
+<li>把 <code>aTexCoord</code> 傳到 fragment shader</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 450 core</span></span><br><span class="line"><span class="keyword">layout</span> (<span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec3</span> aPos;</span><br><span class="line"><span class="keyword">layout</span> (<span class="keyword">location</span> = <span class="number">1</span>) <span class="keyword">in</span> <span class="type">vec3</span> aVertColor;</span><br><span class="line"><span class="keyword">layout</span> (<span class="keyword">location</span> = <span class="number">2</span>) <span class="keyword">in</span> <span class="type">vec2</span> aTexCoord;</span><br><span class="line"></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec3</span> VertColor;</span><br><span class="line"><span class="keyword">out</span> <span class="type">vec2</span> TexCoord;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">gl_Position</span> = <span class="type">vec4</span>(aPos.x, aPos.y, aPos.z, <span class="number">1.0</span>);</span><br><span class="line">    TexCoord = aTexCoord;</span><br><span class="line">    VertColor = aVertColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Fragment Shader<ul>
+<li>GLSL 中有個類型叫 <code>Sampler</code><ul>
+<li><code>Sampler1D</code>, <code>Sampler2D</code>, <code>Sampler3D</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 450 core</span></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec4</span> FragColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec2</span> TexCoord;</span><br><span class="line"><span class="keyword">in</span> <span class="type">vec3</span> VertColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">sampler2D</span> texture1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">vec4</span> fColor;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    FragColor = <span class="built_in">texture</span>(texture1, TexCoord) * fColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>GLSL 內建 <code>texture()</code> 函數來採樣，第一個參數是採樣的紋理，第二個參數是紋理座標，輸出去紋理座標(插值後)並且經過 Filter 後的顏色。</p>
+<ul>
+<li>使用</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">glBindTexture(GL_TEXTURE_2D, texture);</span><br><span class="line">glBindVertexArray(vao);</span><br><span class="line">glDrawElements(GL_TRIANGLES, <span class="number">6</span>, GL_UNSIGNED_INT, <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/OJxIHJm.png" alt=""></p>
+<ul>
+<li><p>可以把紋理的顏色跟頂點顏色混和，只要在 Fragment Shader 中將顏色相乘</p>
+  <figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FragColor = <span class="built_in">texture</span>(texture1, TexCoord) * <span class="type">vec4</span>(VertColor, <span class="number">1.0</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/aEjJEY1.png" alt=""></p>
+<ul>
+<li>Example 4.1</li>
+</ul>
+<p><img src="https://imgur.com/eO3E0dt.gif" alt=""></p>
+<h2 id="紋理單元-Texture-Unit"><a href="#紋理單元-Texture-Unit" class="headerlink" title="紋理單元 Texture Unit"></a>紋理單元 Texture Unit</h2><p>在 Fragment Shader 中如果想要使用多個紋理，則要給紋理一個位置值，稱作紋理單元(Texture Unit)。</p>
+<blockquote>
+<p>但是在上個範例中並沒有用 <code>glUniform</code> 給值(因為預設是 0)</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">glActiveTexture(GL_TEXTURE0); <span class="comment">// 啟用第 0 號 texture</span></span><br><span class="line">glBindTexture(GL_TEXTURE_2D, texture); <span class="comment">// 將紋理綁定上 GL_TEXTURE0</span></span><br></pre></td></tr></table></figure>
+<p>OpenGL 保證有 16 個紋理單元可以使用，且紋理單元的編號是連續的，意味著可以用 <code>GL_TEXTURE0 + n</code> 來存取(也可以直接用 <code>GL_TEXTUREn</code>)</p>
+<ul>
+<li><p>例子:混和兩張紋理</p>
+<ul>
+<li><p>Fragment Shader</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 450 core</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">sampler2D</span> tex1;</span><br><span class="line"><span class="keyword">uniform</span> <span class="type">sampler2D</span> tex2;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    FragColor = <span class="built_in">mix</span>(<span class="built_in">texture</span>(tex1, TexCoord), <span class="built_in">texture</span>(tex2, TexCoord), <span class="number">0.2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>mix(a, b, alpha)</code> 混和(線性插值)</p>
+<ul>
+<li>$\text{color} = a \alpha + b (1-\alpha)$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>在開始渲染之前要設定 texture 的編號</p>
+<ul>
+<li>如此一來在 fragment shader 裡頭的 <code>tex1</code>, <code>tex2</code> 才會參考到綁定在紋理單元的 Texture</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">glUseProgram(program);</span><br><span class="line">glUniform1i(glGetUniformLocation(program, <span class="string">"tex1"</span>), <span class="number">0</span>);</span><br><span class="line">glUniform1i(glGetUniformLocation(program, <span class="string">"tex2"</span>), <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+<p>渲染流程會變成:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Create, Load Texture */</span></span><br><span class="line"><span class="comment">/* ... */</span></span><br><span class="line">glUseProgram(program);</span><br><span class="line"><span class="comment">// Set Texture units</span></span><br><span class="line">glUniform1i(glGetUniformLocation(program, <span class="string">"tex1"</span>), <span class="number">0</span>);</span><br><span class="line">glUniform1i(glGetUniformLocation(program, <span class="string">"tex2"</span>), <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(...)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/* ... */</span></span><br><span class="line"></span><br><span class="line">    glActiveTexture(GL_TEXTURE0);</span><br><span class="line">    glBindTexture(GL_TEXTURE_2D, texture1);</span><br><span class="line">    glActiveTexture(GL_TEXTURE1);</span><br><span class="line">    glBindTexture(GL_TEXTURE_2D, texture2);</span><br><span class="line"></span><br><span class="line">    glBindVertexArray(VAO);</span><br><span class="line">    glDrawElements(GL_TRIANGLES, <span class="number">6</span>, GL_UNSIGNED_INT, <span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/4.2.texture_combined" target="_blank" rel="noopener">4.2.texture_combined</a></li>
+</ul>
+<p><img src="https://imgur.com/OcWfEVb.gif" alt=""></p>
+<ul>
+<li>Labs<ul>
+<li>修改 Fragment Sahder <strong>只</strong>讓第二個圖案翻轉  <details><br>      <summary>Ans</summary><br>  <figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 450 core</span></span><br><span class="line"><span class="keyword">out</span> <span class="type">vec4</span> FragColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">in</span> <span class="type">vec2</span> TexCoord;</span><br><span class="line"><span class="keyword">in</span> <span class="type">vec3</span> VertColor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">sampler2D</span> tex1;</span><br><span class="line"><span class="keyword">uniform</span> <span class="type">sampler2D</span> tex2;</span><br><span class="line"></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">vec4</span> fColor;</span><br><span class="line"><span class="keyword">uniform</span> <span class="type">float</span> fMix;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">vec4</span> resultColor = <span class="built_in">mix</span>(<span class="built_in">texture</span>(tex1, TexCoord), <span class="built_in">texture</span>(tex2, <span class="type">vec2</span>(-TexCoord.x, TexCoord.y)), fMix) * fColor;</span><br><span class="line">    FragColor = resultColor;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>  <img src="https://i.imgur.com/iqejGwI.png" alt=""><br>  </details></li>
+<li>嘗試用不同的紋理環繞方式  <details><br>      <summary>Ans</summary><br>  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">float</span> vertices[] = &#123;</span><br><span class="line"><span class="comment">//     ---- 位置 ----       ---- 颜色 ----     - 纹理坐标 -</span></span><br><span class="line">     <span class="number">0.5f</span>,  <span class="number">0.5f</span>, <span class="number">0.0f</span>,   <span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>,   <span class="number">2.0f</span>, <span class="number">2.0f</span>,   <span class="comment">// 右上</span></span><br><span class="line">     <span class="number">0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,   <span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>,   <span class="number">2.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 右下</span></span><br><span class="line">    <span class="number">-0.5f</span>, <span class="number">-0.5f</span>, <span class="number">0.0f</span>,   <span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">1.0f</span>,   <span class="number">0.0f</span>, <span class="number">0.0f</span>,   <span class="comment">// 左下</span></span><br><span class="line">    <span class="number">-0.5f</span>,  <span class="number">0.5f</span>, <span class="number">0.0f</span>,   <span class="number">1.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>,   <span class="number">0.0f</span>, <span class="number">2.0f</span>    <span class="comment">// 左上</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>  <em> <code>GL_MIRRORED_REPEAT</code><br>  <img src="https://i.imgur.com/C2C5nFc.png" alt="">
+  </em> <code>GL_CLAMP_TO_EDGE</code><br>  <img src="https://i.imgur.com/bJVn825.png" alt=""><br>  * <code>GL_CLAMP_TO_BORDER</code><br>  <img src="https://i.imgur.com/j0Z61gj.png" alt=""><br>  </details></li>
+<li>嘗試在矩形上只顯示紋理圖像的中間一部分，修改紋理坐標，達到能看見單個的像素的效果。嘗試使用GL_NEAREST的紋理過濾方式讓像素顯示得更清晰  <details><br>      <summary>Ans</summary><br>  <em> <code>GL_NEAREST</code><br>  <img src="https://i.imgur.com/ekXUvki.png" alt="">
+  </em> <code>GL_LINEAR</code><br>  <img src="https://i.imgur.com/ZePNhxk.png" alt=""><br>  </details></li>
+<li>使用一個uniform變量作為mix函數的第三個參數來改變兩個紋理可見度，使用上和下鍵來改變箱子或笑臉的可見度<ul>
+<li>see example 4.2</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>How do opengl texture coordinates work?<br><a href="https://stackoverflow.com/questions/5532595/how-do-opengl-texture-coordinates-work" target="_blank" rel="noopener">https://stackoverflow.com/questions/5532595/how-do-opengl-texture-coordinates-work</a></p>
+<p><a href="https://zh.wikipedia.org/wiki/%E7%BA%B9%E7%90%86%E6%BB%A4%E6%B3%A2" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/%E7%BA%B9%E7%90%86%E6%BB%A4%E6%B3%A2</a></p>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/07/09/opengl/opengl-note-4/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/07/09/opengl/opengl-note-4/" data-id="clkidhn13005ovwu99dzh8o7d" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/07/09/opengl/opengl-note-4/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Texture/" rel="tag">Texture</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9C%96%E5%AD%B8/" rel="tag">圖學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AD%86%E8%A8%98/" rel="tag">筆記</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/10/opengl/opengl-note-5/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          OpenGL 筆記 - Transform
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/09/NCPU_2020/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">NCPU 2020 心得</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#材質環繞方式"><span class="toc-number">1.</span> <span class="toc-text">材質環繞方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#紋理濾波-Texture-Filter"><span class="toc-number">2.</span> <span class="toc-text">紋理濾波 (Texture Filter)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mipmapping"><span class="toc-number">2.1.</span> <span class="toc-text">Mipmapping</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#載入圖片"><span class="toc-number">3.</span> <span class="toc-text">載入圖片</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#stb-image-h"><span class="toc-number">3.1.</span> <span class="toc-text">stb_image.h</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-SFML"><span class="toc-number">3.2.</span> <span class="toc-text">使用 SFML</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#生成紋理"><span class="toc-number">4.</span> <span class="toc-text">生成紋理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用紋理"><span class="toc-number">5.</span> <span class="toc-text">使用紋理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#紋理單元-Texture-Unit"><span class="toc-number">6.</span> <span class="toc-text">紋理單元 Texture Unit</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reference"><span class="toc-number">7.</span> <span class="toc-text">Reference</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/07/09/opengl/opengl-note-4/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

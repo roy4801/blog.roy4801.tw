@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>x86 筆記 ep2 | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="程式如何執行 這裡有點偏OS的部分  假設有個人在terminal中輸入了a.exe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="x86 筆記 ep2">
+<meta property="og:url" content="http://blog.roy4801.tw/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep2/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="程式如何執行 這裡有點偏OS的部分  假設有個人在terminal中輸入了a.exe">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2018-10-12T06:45:46.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.445Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="x86">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-x86-筆記-ep2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep2/" class="article-date">
+  <time datetime="2018-10-12T06:45:46.000Z" itemprop="datePublished">2018-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/%E7%B5%84%E5%90%88%E8%AA%9E%E8%A8%80/">組合語言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      x86 筆記 ep2
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <h2 id="程式如何執行"><a href="#程式如何執行" class="headerlink" title="程式如何執行"></a>程式如何執行</h2><blockquote>
+<p>這裡有點偏OS的部分</p>
+</blockquote>
+<p>假設有個人在terminal中輸入了<code>a.exe</code></p>
+<ol>
+<li><p>OS會先在<code>current directory</code>找有沒有<code>a.exe</code>，如果有就執行；再去<code>PATH</code>中的路徑找<code>a.exe</code>，如果還是沒有就輸出錯誤。</p>
+</li>
+<li><p>OS會從index中拿到<code>a.exe</code>的基本資訊：大小、實體位置。</p>
+</li>
+<li><p>把<code>a.exe</code> load到memory中（segmented)，OS會維護一張表（區段的位置跟大小）</p>
+</li>
+<li><p>從<code>.code</code>開始執行，此時<code>process</code>會被用數字做辨識：<code>process id</code>(pid)</p>
+</li>
+<li><p>OS持續追蹤<code>process</code>的狀態，並回應<code>process</code>的要求：</p>
+<ul>
+<li>讀寫memory、讀寫disk、I/O</li>
+</ul>
+</li>
+<li><p><code>process</code>結束就把memory free掉。</p>
+</li>
+</ol>
+<h2 id="多工"><a href="#多工" class="headerlink" title="多工"></a>多工</h2><p>作業系統能同時執行多任務(task)。</p>
+<h3 id="task-任務"><a href="#task-任務" class="headerlink" title="task 任務"></a>task 任務</h3><ul>
+<li><code>process</code> – 行程<ul>
+<li>擁有專屬的記憶體區域</li>
+<li><code>thread</code> – 執行緒<ul>
+<li>與其他 <code>thread</code> share memory</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="scheduler-排程"><a href="#scheduler-排程" class="headerlink" title="scheduler 排程"></a>scheduler 排程</h3><ul>
+<li>因為CPU一次執行一個指令，為了要讓多個行程能『看起來』同時執行，必須把時間切成一段一段，並把每段分配給不同的程式。</li>
+</ul>
+<h4 id="Time-Slice-時間切片"><a href="#Time-Slice-時間切片" class="headerlink" title="Time Slice (時間切片)"></a>Time Slice (時間切片)</h4><ul>
+<li><p>將CPU時間切成一段一段。</p>
+</li>
+<li><p>Round-Robin scheduling 輪詢排程</p>
+</li>
+</ul>
+<h4 id="task-switch-任務切換"><a href="#task-switch-任務切換" class="headerlink" title="task switch 任務切換"></a>task switch 任務切換</h4><p>為了要達到分配time slice，必須要切換執行tasks。<br>在切換到新task之前，必須儲存當前task的狀態：</p>
+<ol>
+<li>Registers</li>
+<li>IP (Instruction Pointer)</li>
+<li>EFLAGS</li>
+<li>Segment registers</li>
+</ol>
+<p>切換task稱作：<code>context switch</code>，必須花時間。</p>
+<h4 id="preemptive-先-搶佔式"><a href="#preemptive-先-搶佔式" class="headerlink" title="preemptive 先/搶佔式"></a>preemptive 先/搶佔式</h4><p>允許tasks具有較高優先權，可以中斷優先權較低的task。</p>
+<p>例如：Windows、Linux、macOS</p>
+<p>優點：穩定性</p>
+<blockquote>
+<p>ex: 鍵盤處理器有較高的優先度，所以當程式當掉時可以叫taskmgr終止程式。</p>
+</blockquote>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep2/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep2/" data-id="clkidhmzu0013vwu99ejig2op" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep2/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/x86/" rel="tag">x86</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2018/11/22/ACM-ICPC_Taipei/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          ACM-ICPC Taipei 2018 區域賽心得
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">x86 筆記 ep1.</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#程式如何執行"><span class="toc-number">1.</span> <span class="toc-text">程式如何執行</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多工"><span class="toc-number">2.</span> <span class="toc-text">多工</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#task-任務"><span class="toc-number">2.1.</span> <span class="toc-text">task 任務</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#scheduler-排程"><span class="toc-number">2.2.</span> <span class="toc-text">scheduler 排程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Time-Slice-時間切片"><span class="toc-number">2.2.1.</span> <span class="toc-text">Time Slice (時間切片)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#task-switch-任務切換"><span class="toc-number">2.2.2.</span> <span class="toc-text">task switch 任務切換</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#preemptive-先-搶佔式"><span class="toc-number">2.2.3.</span> <span class="toc-text">preemptive 先&#x2F;搶佔式</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2018/10/12/x86-%E7%AD%86%E8%A8%98-ep2/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

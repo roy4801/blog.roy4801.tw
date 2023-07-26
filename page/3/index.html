@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="存放一些有關程式、生活、心得隨筆的網誌">
+<meta property="og:type" content="website">
+<meta property="og:title" content="r0yblog">
+<meta property="og:url" content="http://blog.roy4801.tw/page/3/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="存放一些有關程式、生活、心得隨筆的網誌">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="programming">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="心得">
+<meta property="article:tag" content="日誌">
+<meta property="article:tag" content="網誌">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-spdlog-tutorial" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/17/spdlog-tutorial/" class="article-date">
+  <time datetime="2020-05-17T11:55:35.000Z" itemprop="datePublished">2020-05-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/05/17/spdlog-tutorial/">spdlog 介紹與使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Fast C++ logging library.<br>一個輕量且快速的 log library</p>
+<p><a href="https://github.com/gabime/spdlog" target="_blank" rel="noopener">https://github.com/gabime/spdlog</a></p>
+<ul>
+<li>特性<ul>
+<li><a href="https://github.com/gabime/spdlog#benchmarks" target="_blank" rel="noopener">快速</a></li>
+<li>header-only</li>
+<li>豐富、自訂的格式化，使用 <a href="https://github.com/fmtlib/fmt" target="_blank" rel="noopener">fmt</a></li>
+<li>單、多線程 logger</li>
+</ul>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2020/05/17/spdlog-tutorial/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/" data-id="clkidhmzn000ivwu9hvdih6zk" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Library/" rel="tag">C++ Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/" rel="tag">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-imgui-intro-pt5" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/16/imgui-intro-pt5/" class="article-date">
+  <time datetime="2020-04-15T17:01:48.000Z" itemprop="datePublished">2020-04-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/16/imgui-intro-pt5/">dear imgui 使用 - 拉桿 Slider</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.imgur.com/0VGhoZw.png" alt></p>
+<p><a href="https://github.com/ocornut/imgui/blob/master/imgui.h#L479" target="_blank" rel="noopener">https://github.com/ocornut/imgui/blob/master/imgui.h#L479</a></p>
+<h3 id="SliderFloat-SliderInt"><a href="#SliderFloat-SliderInt" class="headerlink" title="SliderFloat / SliderInt"></a>SliderFloat / SliderInt</h3>
+        
+          <p class="article-more-link">
+            <a href="/2020/04/16/imgui-intro-pt5/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/04/16/imgui-intro-pt5/" data-id="clkidhmzl000bvwu94wjh63ih" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/04/16/imgui-intro-pt5/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Library/" rel="tag">C++ Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/" rel="tag">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-imgui-intro-pt4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/29/imgui-intro-pt4/" class="article-date">
+  <time datetime="2020-03-29T05:30:28.000Z" itemprop="datePublished">2020-03-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/29/imgui-intro-pt4/">dear imgui 使用 - 單選、複選按鈕</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="複選框-Checkbox"><a href="#複選框-Checkbox" class="headerlink" title="複選框 Checkbox"></a>複選框 Checkbox</h2><p><img src="https://i.imgur.com/f9JWE2i.gif" alt></p>
+<ul>
+<li><p>Prototype</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">Checkbox</span><span class="params">(<span class="keyword">const</span> <span class="keyword">char</span>* label, <span class="keyword">bool</span>* v)</span></span>;</span><br><span class="line"><span class="comment">// label: 名稱</span></span><br><span class="line"><span class="comment">// v    : 是否已經勾選</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>回傳 bool</p>
+<ul>
+<li>當 checkbox 正被選取/取消勾選時為 <code>true</code></li>
+<li>其餘回傳 <code>false</code></li>
+</ul>
+</li>
+<li><p>e.g.</p>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2020/03/29/imgui-intro-pt4/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/03/29/imgui-intro-pt4/" data-id="clkidhmzk000avwu9hr9mff9a" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/03/29/imgui-intro-pt4/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Library/" rel="tag">C++ Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/" rel="tag">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-imgui-intro-pt3" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/28/imgui-intro-pt3/" class="article-date">
+  <time datetime="2020-03-28T09:32:36.000Z" itemprop="datePublished">2020-03-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/28/imgui-intro-pt3/">dear imgui 使用 - 視窗、文字及按鈕</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="建立視窗-Window"><a href="#建立視窗-Window" class="headerlink" title="建立視窗 Window"></a>建立視窗 Window</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ImGui::Begin(<span class="string">"Window Title"</span>);</span><br><span class="line"><span class="comment">// .. window content code here</span></span><br><span class="line">ImGui::End();</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/6zd5twX.gif" alt></p>
+        
+          <p class="article-more-link">
+            <a href="/2020/03/28/imgui-intro-pt3/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/03/28/imgui-intro-pt3/" data-id="clkidhmzp000mvwu90cy17zey" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/03/28/imgui-intro-pt3/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Library/" rel="tag">C++ Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/" rel="tag">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-imgui-intro-pt2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/25/imgui-intro-pt2/" class="article-date">
+  <time datetime="2020-03-24T18:40:42.000Z" itemprop="datePublished">2020-03-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/25/imgui-intro-pt2/">dear imgui 安裝 - 使用 imgui-SFML</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v167/v167-misc.png" width="50%"></p>
+<p>Dear imgui 並沒有侷限底層使用的繪圖 API，其本身及提供很多支援，甚至可以很方便地移植到其他繪圖 API 上。</p>
+<ul>
+<li>官方維護的 bindings:<ul>
+<li>DirectX 9~12</li>
+<li>OpenGL 2/3/ES/ES2</li>
+<li>Vulkan</li>
+<li>Metal</li>
+</ul>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2020/03/25/imgui-intro-pt2/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/03/25/imgui-intro-pt2/" data-id="clkidhmzn000fvwu942o08wzw" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/03/25/imgui-intro-pt2/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Library/" rel="tag">C++ Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/" rel="tag">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-imgui-intro-pt1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/24/imgui-intro-pt1/" class="article-date">
+  <time datetime="2020-03-23T20:18:45.000Z" itemprop="datePublished">2020-03-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/24/imgui-intro-pt1/">dear imgui 介紹 - 輕量級的 GUI Library</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://i.imgur.com/irlVLsy.png" alt></p>
+<p><a href="https://github.com/ocornut/imgui" target="_blank" rel="noopener">Dear Imgui</a> 是個輕量、快速的 imtermediate GUI 讓開發者可以非常快速的建立 GUI，被遊戲開發(gamedev)、編輯器(editor)、除錯器(debugger)開發者等使用。</p>
+<p>使用 imgui 的 code 非常簡單且易於修改，imgui 本身是無狀態的，與一般的 retained mode GUI 相反，imgui 不用儲存 GUI 物件或是註冊回調(Callback)</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/03/24/imgui-intro-pt1/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/03/24/imgui-intro-pt1/" data-id="clkidhmzh0005vwu9c1fb4v7h" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/03/24/imgui-intro-pt1/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Library/" rel="tag">C++ Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/" rel="tag">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-在-macOS-Mojave-上正常使用-gdb" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/27/%E5%9C%A8-macOS-Mojave-%E4%B8%8A%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8-gdb/" class="article-date">
+  <time datetime="2020-01-26T21:42:06.000Z" itemprop="datePublished">2020-01-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/macOS/">macOS</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/27/%E5%9C%A8-macOS-Mojave-%E4%B8%8A%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8-gdb/">在 macOS Mojave 上正常使用 gdb</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>在 macOS 上使用 gdb 時，如果沒有做以下修改，通常會是這樣：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gdb$ r</span><br><span class="line">Starting program: &#x2F;private&#x2F;tmp&#x2F;a.out</span><br><span class="line">Unable to find Mach task port for process-id 20201: (os&#x2F;kern) failure (0x5).</span><br><span class="line"> (please check gdb is codesigned - see taskgated(8))</span><br></pre></td></tr></table></figure>
+<p>這是因為 Darwin 內核預設禁止沒有特殊權限的程序偵錯(Debugging)其他程序，在預設這個選項是關閉的，如果要開啟則要用系統信任的憑證進行簽章(codesign)。</p>
+        
+          <p class="article-more-link">
+            <a href="/2020/01/27/%E5%9C%A8-macOS-Mojave-%E4%B8%8A%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8-gdb/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/01/27/%E5%9C%A8-macOS-Mojave-%E4%B8%8A%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8-gdb/" data-id="clkidhmzr000qvwu90ivj2m5e" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/01/27/%E5%9C%A8-macOS-Mojave-%E4%B8%8A%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8-gdb/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gdb/" rel="tag">gdb</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-uva/uva1587" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/11/uva/uva1587/" class="article-date">
+  <time datetime="2019-09-11T15:56:25.000Z" itemprop="datePublished">2019-09-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/">解題區</a>►<a class="article-category-link" href="/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/">Uva</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/uva/uva1587/">Uva 1587 - Box</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=4462" target="_blank" rel="noopener">題目</a></p>
+<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>給你6個寬$w_i$高$h_i$的紙板，問可不可以組成一個長方體</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/09/11/uva/uva1587/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2019/09/11/uva/uva1587/" data-id="clkidhn1f007fvwu9dsph60i7" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2019/09/11/uva/uva1587/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Uva/" rel="tag">Uva</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/" rel="tag">解題紀錄</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-uva/uva202" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/10/uva/uva202/" class="article-date">
+  <time datetime="2019-09-10T14:22:48.000Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/">解題區</a>►<a class="article-category-link" href="/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/">Uva</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/uva/uva202/">Uva 202 - Repeating Decimals</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href>題目</a></p>
+<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>略</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/09/10/uva/uva202/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2019/09/10/uva/uva202/" data-id="clkidhn1h007vvwu90yhu5axi" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2019/09/10/uva/uva202/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Uva/" rel="tag">Uva</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/" rel="tag">解題紀錄</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+    <article id="post-uva/uva275" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/09/10/uva/uva275/" class="article-date">
+  <time datetime="2019-09-10T14:16:22.000Z" itemprop="datePublished">2019-09-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/">解題區</a>►<a class="article-category-link" href="/categories/%E8%A7%A3%E9%A1%8C%E5%8D%80/Uva/">Uva</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/uva/uva275/">Uva 275 - Expanding Fractions</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;problem=211" target="_blank" rel="noopener">題目</a></p>
+<h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p>輸入兩個數字a, b，要算a/b的小數，如果有循環小數部分出現，則只輸出一次<br>每筆輸出最後要輸出循環小數的長度（如果沒有則輸出<code>This expansion terminates.</code>)</p>
+        
+          <p class="article-more-link">
+            <a href="/2019/09/10/uva/uva275/#more">繼續閱讀全文 »</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2019/09/10/uva/uva275/" data-id="clkidhn1g007jvwu9etn1ab5w" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2019/09/10/uva/uva275/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Uva/" rel="tag">Uva</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%A7%A3%E9%A1%8C%E7%B4%80%E9%8C%84/" rel="tag">解題紀錄</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+ 
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; 上一頁</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">下一頁&amp;raquo;</a>
+  </nav>
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title recent-posts">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/07/12/collecting-the-dlls-for-mingw-w64-programs/">Collecting the dlls for mingw-w64 compiled programs</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/02/linux/%E4%BD%BF%E7%94%A8-ssh-redirect-port/">使用 ssh redirect port</a>
+          </li>
+        
+          <li>
+            <a href="/2021/05/24/tutorial/vscode-remote-ssh-failed/">Visual Studio Code Remote SSH 無法連線問題</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/30/SFML/sfml_event/">SFML 使用 - Event 視窗事件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/07/29/SFML/sfml_window/">SFML 使用 - 視窗(Window)建立與 OpenGL</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>SFML 簡介及環境設置 | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Simple and Fase Media Library (SFML) 是一個由 C++ 寫成的跨平台(cross-platfrom)的用於遊戲、多媒體應用開發的 Library，有多個語言的綁定 (Binding) ，分成幾大模塊：系統、視窗、圖形、音訊跟網路。 https:&#x2F;&#x2F;github.com&#x2F;SFML&#x2F;SFML  SFML 分成幾大模塊 System 一些基礎建設，例如：向量(vect">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SFML 簡介及環境設置">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/07/14/SFML/sfml_intro/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="Simple and Fase Media Library (SFML) 是一個由 C++ 寫成的跨平台(cross-platfrom)的用於遊戲、多媒體應用開發的 Library，有多個語言的綁定 (Binding) ，分成幾大模塊：系統、視窗、圖形、音訊跟網路。 https:&#x2F;&#x2F;github.com&#x2F;SFML&#x2F;SFML  SFML 分成幾大模塊 System 一些基礎建設，例如：向量(vect">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/b/bf/SFML2.svg">
+<meta property="og:image" content="https://i.imgur.com/XUjbJ5O.png">
+<meta property="article:published_time" content="2020-07-13T18:57:00.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.423Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="SFML">
+<meta property="article:tag" content="筆記">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/b/bf/SFML2.svg">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-SFML/sfml_intro" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/SFML/sfml_intro/" class="article-date">
+  <time datetime="2020-07-13T18:57:00.000Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/SFML/">SFML</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      SFML 簡介及環境設置
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p><strong>S</strong>imple and <strong>F</strong>ase <strong>M</strong>edia <strong>L</strong>ibrary (SFML) 是一個由 C++ 寫成的跨平台(cross-platfrom)的用於遊戲、多媒體應用開發的 Library，有多個語言的綁定 (Binding) ，分成幾大模塊：系統、視窗、圖形、音訊跟網路。</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/b/bf/SFML2.svg" alt=""><br><a href="https://github.com/SFML/SFML" target="_blank" rel="noopener">https://github.com/SFML/SFML</a></p>
+<ul>
+<li>SFML 分成幾大模塊<ul>
+<li><code>System</code> 一些基礎建設，例如：向量(vector)、字串、thread、timer</li>
+<li><code>Window</code> 管理視窗以及輸入（鍵盤、滑鼠、搖桿等）及 OpenGL</li>
+<li><code>Graphics</code> 硬體加速的 2D 圖形：sprite, text, shapes</li>
+<li><code>Audio</code> 音訊、錄音、<a href="https://zh.wikipedia.org/wiki/3D%E9%9F%B3%E6%95%88" target="_blank" rel="noopener">3D音效</a></li>
+<li><code>Network</code> TDP 與 UDP socket 與 HTTP 跟 FTP</li>
+</ul>
+</li>
+</ul>
+<h2 id="Installation-環境設置"><a href="#Installation-環境設置" class="headerlink" title="Installation 環境設置"></a>Installation 環境設置</h2><ul>
+<li><p>本人使用 msys2</p>
+<ul>
+<li>其他環境請參考：<a href="https://www.sfml-dev.org/tutorials/2.5/#getting-started" target="_blank" rel="noopener">https://www.sfml-dev.org/tutorials/2.5/#getting-started</a></li>
+</ul>
+</li>
+<li><p>先安裝 msys2</p>
+<ul>
+<li><a href="https://hackmd.io/N8ILFLYTRKqMP9x5PxXiRw?view" target="_blank" rel="noopener">https://hackmd.io/N8ILFLYTRKqMP9x5PxXiRw?view</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/XUjbJ5O.png" alt=""></p>
+<ul>
+<li><p>更新完 msys2 之後</p>
+<ul>
+<li>開啟 <code>MSYS2 MinGW 32-bit</code>  (如上圖)</li>
+<li>安裝 sfml<ul>
+<li><code>pacman -S mingw32/mingw-w64-i686-sfml</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>使用範例編譯</p>
+<ul>
+<li><a href="https://drive.google.com/file/d/1C20ODFLfFbJh7J5SUAQKbyxb9CNTkNec/view?usp=sharing" target="_blank" rel="noopener">example.zip</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="Example-範例"><a href="#Example-範例" class="headerlink" title="Example 範例"></a>Example 範例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SFML/Audio.hpp&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;SFML/Graphics.hpp&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// Create the main window</span></span><br><span class="line">    <span class="function">sf::RenderWindow <span class="title">window</span><span class="params">(sf::VideoMode(<span class="number">800</span>, <span class="number">600</span>), <span class="string">"SFML window"</span>)</span></span>;</span><br><span class="line">    <span class="comment">// Load a sprite to display</span></span><br><span class="line">    sf::Texture texture;</span><br><span class="line">    <span class="keyword">if</span> (!texture.loadFromFile(<span class="string">"cute_image.jpg"</span>))</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    <span class="function">sf::Sprite <span class="title">sprite</span><span class="params">(texture)</span></span>;</span><br><span class="line">    <span class="comment">// Create a graphical text to display</span></span><br><span class="line">    sf::Font font;</span><br><span class="line">    <span class="keyword">if</span> (!font.loadFromFile(<span class="string">"arial.ttf"</span>))</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    <span class="function">sf::Text <span class="title">text</span><span class="params">(<span class="string">"Hello SFML"</span>, font, <span class="number">50</span>)</span></span>;</span><br><span class="line">    <span class="comment">// Load a music to play</span></span><br><span class="line">    sf::Music music;</span><br><span class="line">    <span class="keyword">if</span> (!music.openFromFile(<span class="string">"nice_music.ogg"</span>))</span><br><span class="line">        <span class="keyword">return</span> EXIT_FAILURE;</span><br><span class="line">    <span class="comment">// Play the music</span></span><br><span class="line">    music.play();</span><br><span class="line">    <span class="comment">// Start the game loop</span></span><br><span class="line">    <span class="keyword">while</span> (window.isOpen())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// Process events</span></span><br><span class="line">        sf::Event event;</span><br><span class="line">        <span class="keyword">while</span> (window.pollEvent(event))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// Close window: exit</span></span><br><span class="line">            <span class="keyword">if</span> (event.type == sf::Event::Closed)</span><br><span class="line">                window.close();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// Clear screen</span></span><br><span class="line">        window.clear();</span><br><span class="line">        <span class="comment">// Draw the sprite</span></span><br><span class="line">        window.draw(sprite);</span><br><span class="line">        <span class="comment">// Draw the string</span></span><br><span class="line">        window.draw(text);</span><br><span class="line">        <span class="comment">// Update the window</span></span><br><span class="line">        window.display();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Useful-Links-實用連結"><a href="#Useful-Links-實用連結" class="headerlink" title="Useful Links 實用連結"></a>Useful Links 實用連結</h2><ul>
+<li><p>SFML Tutorials 教學文<br><a href="https://www.sfml-dev.org/tutorials/2.5/" target="_blank" rel="noopener">https://www.sfml-dev.org/tutorials/2.5/</a></p>
+</li>
+<li><p>SFML 官方論壇<br><a href="https://en.sfml-dev.org/forums/index.php" target="_blank" rel="noopener">https://en.sfml-dev.org/forums/index.php</a></p>
+</li>
+<li><p>善用 google hacking: <code>xxx site:https://en.sfml-dev.org/forums/index.php</code></p>
+</li>
+<li><p>SFML Docs 文檔<br><a href="https://www.sfml-dev.org/documentation/2.5.1/" target="_blank" rel="noopener">https://www.sfml-dev.org/documentation/2.5.1/</a></p>
+</li>
+<li><p>Q: 不能搜尋？</p>
+<ul>
+<li>A: 善用 google hacking: <code>xxx site:https://www.sfml-dev.org/documentation/2.5.1</code></li>
+</ul>
+</li>
+</ul>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/07/14/SFML/sfml_intro/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/07/14/SFML/sfml_intro/" data-id="clkidhn0s004cvwu9djnsed3f" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/07/14/SFML/sfml_intro/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SFML/" rel="tag">SFML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AD%86%E8%A8%98/" rel="tag">筆記</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/17/opengl/opengl-note-7/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          OpenGL 筆記 - Camera
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/13/opengl/opengl-note-6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">OpenGL 筆記 - Coordinate System</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Installation-環境設置"><span class="toc-number">1.</span> <span class="toc-text">Installation 環境設置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-範例"><span class="toc-number">2.</span> <span class="toc-text">Example 範例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Useful-Links-實用連結"><span class="toc-number">3.</span> <span class="toc-text">Useful Links 實用連結</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/07/14/SFML/sfml_intro/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

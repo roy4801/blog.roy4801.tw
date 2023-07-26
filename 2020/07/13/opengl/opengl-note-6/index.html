@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OpenGL 筆記 - Coordinate System | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="OpenGL 座標的值在 經過 Vertex Shader 之後變成 $[-1.0, 1.0]$ 的座標，稱作 標準化設備座標 Normalized Device Coordinates (NDC)，只有在此座標內的頂點最終才會顯示在螢幕上。 座標在被轉換成螢幕座標(Screen-Space)時還會經過多次轉換  座標系統 局部空間 Local Space 或是 物體空間(Object Space">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL 筆記 - Coordinate System">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/07/13/opengl/opengl-note-6/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="OpenGL 座標的值在 經過 Vertex Shader 之後變成 $[-1.0, 1.0]$ 的座標，稱作 標準化設備座標 Normalized Device Coordinates (NDC)，只有在此座標內的頂點最終才會顯示在螢幕上。 座標在被轉換成螢幕座標(Screen-Space)時還會經過多次轉換  座標系統 局部空間 Local Space 或是 物體空間(Object Space">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/JDYXqSI.png">
+<meta property="og:image" content="https://i.imgur.com/rTn70Lq.png">
+<meta property="og:image" content="https://i.imgur.com/jxqR4tP.png">
+<meta property="og:image" content="https://i.imgur.com/QzARlUo.png">
+<meta property="og:image" content="https://i.imgur.com/liQTbaD.png">
+<meta property="og:image" content="https://i.imgur.com/kvDeMeT.png">
+<meta property="og:image" content="https://i.imgur.com/gwf7D4X.png">
+<meta property="og:image" content="https://i.imgur.com/B9NOE3n.png">
+<meta property="og:image" content="https://i.imgur.com/PKEC0y9.png">
+<meta property="og:image" content="https://i.imgur.com/jDb8Vkg.gif">
+<meta property="og:image" content="https://i.imgur.com/gkxRYPr.png">
+<meta property="og:image" content="https://i.imgur.com/qmNcDZz.png">
+<meta property="og:image" content="https://i.imgur.com/p5zlsrx.gif">
+<meta property="og:image" content="https://imgur.com/ctvQ53t.gif">
+<meta property="og:image" content="https://imgur.com/Th4I7FW.gif">
+<meta property="og:image" content="https://imgur.com/zdnL17H.gif">
+<meta property="og:image" content="https://imgur.com/NDmehQs.gif">
+<meta property="article:published_time" content="2020-07-13T04:44:00.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.435Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="筆記">
+<meta property="article:tag" content="OpenGL">
+<meta property="article:tag" content="圖學">
+<meta property="article:tag" content="Coordinate">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/JDYXqSI.png">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-opengl/opengl-note-6" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/13/opengl/opengl-note-6/" class="article-date">
+  <time datetime="2020-07-13T04:44:00.000Z" itemprop="datePublished">2020-07-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/">OpenGL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OpenGL 筆記 - Coordinate System
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>OpenGL 座標的值在 經過 Vertex Shader 之後變成 $[-1.0, 1.0]$ 的座標，稱作 <em>標準化設備座標 Normalized Device Coordinates (NDC)</em>，只有在此座標內的頂點最終才會顯示在螢幕上。</p>
+<p>座標在被轉換成螢幕座標(Screen-Space)時還會經過多次轉換</p>
+<ul>
+<li>座標系統<ul>
+<li>局部空間 Local Space 或是 物體空間(Object Space)</li>
+<li>世界空間 World Space</li>
+<li>觀察空間 View Space 或 Eye Space</li>
+<li>裁剪空間 Clip Space</li>
+<li>螢幕空間 Screen Space</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/JDYXqSI.png" alt=""></p>
+<p>為了轉換坐標系，需要用到幾個變換矩陣(Transforma Matrix)，分別是 Model(模型)、View(觀察)、Projection(投影)三個矩陣。</p>
+<ul>
+<li>Local Space<ul>
+<li>物體相對於局部原點的座標</li>
+</ul>
+</li>
+<li>World Space<ul>
+<li>相對於世界的原點，會和其他物體相對於原點擺放</li>
+</ul>
+</li>
+<li>View Space<ul>
+<li>從 Camera (觀察者) 的角度進行觀察的頂點座標</li>
+</ul>
+</li>
+<li>Clip Space<ul>
+<li>View Space 經過投影後，裁剪座標會被處理到 NDC 空間 $[-1.0, 1.0]$</li>
+</ul>
+</li>
+<li>Screen Space<ul>
+<li>經過 Viewport Transform，將 $[-1.0, 1.0]$ 內的座標變換到 <code>glViewport</code> 所定義的座標範圍內</li>
+<li>出來的座標會送到 Rasterizer 變成 Fragment (Pixel)</li>
+</ul>
+</li>
+</ul>
+<p>之所以把頂點在不同坐標系中轉換，是因為有些操作在特定的坐標系中才有意義且方便。例如，需要對物體修改時，在 Local Space 比較方便；如果需要相對其他物體時，在 World Space 比較方便。</p>
+<h2 id="Local-Space-局部空間"><a href="#Local-Space-局部空間" class="headerlink" title="Local Space 局部空間"></a>Local Space 局部空間</h2><p>物體所在的座標空間，一個物體的原點在 $(0, 0, 0)$ 但最後可能出現在世界的不同地方(座標)，它的所有頂點都是相對於 Local Space 的原點，這些座標都是局部(Local)的。</p>
+<h2 id="World-Space-世界空間"><a href="#World-Space-世界空間" class="headerlink" title="World Space 世界空間"></a>World Space 世界空間</h2><p>頂點相對於遊戲世界原點的座標。從 Local Space 變換到 World Space 是由 <strong>Model Matrix</strong> 來完成的<br>把物體從 Local Space 經過位移、縮放、旋轉來把物體擺在世界的位置</p>
+<h2 id="View-Space-觀察空間"><a href="#View-Space-觀察空間" class="headerlink" title="View Space 觀察空間"></a>View Space 觀察空間</h2><p>觀察空間是將世界座標轉成使用者視野(攝影機 Camera)前方的座標。經由位移和旋轉<strong>場景</strong>，使得特定的物體變換到攝影機(Camera)的前方，此種變換的矩陣稱作 <strong>View Matrix</strong></p>
+<h2 id="Clip-Space-裁剪空間"><a href="#Clip-Space-裁剪空間" class="headerlink" title="Clip Space 裁剪空間"></a>Clip Space 裁剪空間</h2><p>在經過 Vertex Shader 後 OpenGL 希望所有的座標都在 $[-1.0, 1.0]$ 內，超出的會被裁剪(Clip) 掉(忽略掉)，在此座標內的頂點最後會被光柵化成 Fragment</p>
+<p>為了將頂點座標變換到 NDC 空間，要經由 <strong>Projection Matrix 投影矩陣</strong>，它指定了一個範圍的座標 e.g. [-1000, 1000]，投影矩陣會將在範圍內的座標轉成 NDC。超出範圍的座標，轉出的座標會超出 -1.0 或 1.0，最後會被剪裁掉。</p>
+<p>因此會有個範圍內的頂點都會被轉換，這個範圍叫做 <strong>觀察箱Viewing Box</strong>又稱作 <a href="https://en.wikipedia.org/wiki/Frustum" target="_blank" rel="noopener">Frustum</a></p>
+<p><img src="https://i.imgur.com/rTn70Lq.png" alt=""></p>
+<p>這個轉換的過程稱作 <em>投影 Projection</em></p>
+<p>有兩種不同的投影方式:正射投影、透視投影</p>
+<p><img src="https://i.imgur.com/jxqR4tP.png" width=400></p>
+<h3 id="正射投影-Orthographic-Projection"><a href="#正射投影-Orthographic-Projection" class="headerlink" title="正射投影 Orthographic Projection"></a>正射投影 Orthographic Projection</h3><p><img src="https://i.imgur.com/QzARlUo.png" alt=""></p>
+<p>正射投影定義了一個像長方體的觀察箱，超出這個觀察箱外的頂點會被剪裁掉，在此觀察箱內的頂點會被轉成 NDC 座標。<br>由寬、高及近(Near)平面和遠(Far)平面定義</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// glm::ortho(left, right, bottom, top, zNear, zFar)</span></span><br><span class="line">glm::ortho(<span class="number">0.0f</span>, <span class="number">800.0f</span>, <span class="number">0.0f</span>, <span class="number">600.0f</span>, <span class="number">0.1f</span>, <span class="number">100.0f</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/liQTbaD.png" alt=""></p>
+<details><br><summary>matrix 長相</summary><br><br>出來的矩陣是:<br>$\begin{pmatrix}<br>\frac{2}{\text{right}-\text{left}} &amp; 0 &amp; 0 &amp; t_x \\<br>0 &amp; \frac{2}{\text{top} - \text{bottom}} &amp; 0 &amp; t_y \\<br>0 &amp; 0 &amp; \frac{2}{\text{zFar} - \text{zNear}} &amp; t_z \\<br>0 &amp; 0 &amp; 0 &amp; 1<br>\end{pmatrix}$<br>$t_x = - \frac{\text{right}+\text{left}}{\text{right}-\text{left}} \\<br>t_y = - \frac{\text{top} + \text{bottom}}{\text{top} - \text{bottom}} \\<br>t_z = - \frac{\text{zFar} + \text{zNear}}{\text{zFar} - \text{zNear}}$<br><br></details>
+
+<h3 id="透視投影-Perspective-Projection"><a href="#透視投影-Perspective-Projection" class="headerlink" title="透視投影 Perspective Projection"></a>透視投影 Perspective Projection</h3><p><img src="https://i.imgur.com/kvDeMeT.png" alt=""></p>
+<p>遠處的東西看起來很小，近處的物品看起來很大，稱為透視(Perspective)。上圖是一個無限長的鐵軌，由於透視的關係，兩條線在很遠的地方看起來會相交。</p>
+<p>透視投影除了將觀察箱內的座標映射到 Clip Space ，還修改了座標的 $w$ 分量，讓離觀察者遠的頂點之 $w$ 分量越大，經由透視除法，離觀察者越遠的頂點則會越小。</p>
+<ul>
+<li>Perspective Division 透視除法<ul>
+<li>在轉換到 Clip Space 的頂點，每個座標的 $(x, y, z)$ 會都除上 $w$ 分量</li>
+<li>也就是 $(\frac{x}{w}, \frac{y}{w}, \frac{z}{w})$</li>
+<li>將 4D 的 Clip Space 座標轉換成 3D NDC 座標</li>
+<li>在 Vertex Shader 的最後會被 自動執行</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/gwf7D4X.png" alt=""></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">glm::mat4 proj = glm::perspective(</span><br><span class="line">    glm::radians(<span class="number">45.0f</span>),       <span class="comment">// Field Of View</span></span><br><span class="line">    (<span class="keyword">float</span>)width/(<span class="keyword">float</span>)height <span class="comment">// 寬高比</span></span><br><span class="line">    , <span class="number">0.1f</span>, <span class="number">100.0f</span>);           <span class="comment">// 近平面, 遠平面</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://glm.g-truc.net/0.9.9/api/a00665.html#ga747c8cf99458663dd7ad1bb3a2f07787" target="_blank" rel="noopener"><code>glm::perspective(fovy, aspect, near, far)</code></a><ul>
+<li><code>fovy</code> Field of View 視野大小</li>
+<li><code>aspect</code> 寬高比 $\frac{\text{width}}{\text{height}}$</li>
+<li><code>near</code> 近平面 (距離)</li>
+<li><code>far</code> 遠平面 (距離)</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/B9NOE3n.png" alt=""></p>
+<h3 id="比較"><a href="#比較" class="headerlink" title="比較"></a>比較</h3><p><img src="https://i.imgur.com/PKEC0y9.png" alt=""></p>
+<p>正射投影(Orthographic)不會產生透視(w分量是1.0)所以看起來遠處的物體跟近處是一樣的大小，主要用在渲染 2D 或是建築、工程、或建模的應用。</p>
+<p>透視投影(Perspective)遠處的的物體就看起來較小。</p>
+<h2 id="組合在一起"><a href="#組合在一起" class="headerlink" title="組合在一起"></a>組合在一起</h2><p>一個頂點座標會經過下列算式轉成 Clip Space。注意矩陣運算式從右往左。</p>
+<p>$V_{clip} = M_{projection} \cdot M_{view} \cdot M_{model} \cdot V_{local}$</p>
+<h2 id="進入-3D-世界"><a href="#進入-3D-世界" class="headerlink" title="進入 3D 世界"></a>進入 3D 世界</h2><p>因為之前範例的圖片都是貼在 $x-y$ 平面上，要看起來有 3D 的效果的話，則要旋轉物體 e.g. 讓它看起來躺在地板上。(在這個例子中，我們箱子也擺在世界座標的 $(0, 0, 0)$ 因此沒有 translate)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">glm::mat4 <span class="title">model</span><span class="params">(<span class="number">1.f</span>)</span></span>;</span><br><span class="line">model = glm::rotate(model, glm::radians(<span class="number">-55.0f</span>), glm::vec(<span class="number">1.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>));</span><br><span class="line"><span class="comment">// 繞 x 軸旋轉 -55 度</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>右手坐標系<ul>
+<li>OpenGL 的座標系<br><img src="https://i.imgur.com/jDb8Vkg.gif" alt=""><br><img src="https://i.imgur.com/gkxRYPr.png" alt=""></li>
+</ul>
+</li>
+</ul>
+<p>在 OpenGL 中，看出去的視野(Camera)永遠是<strong>朝向 $-z$ 方向</strong>，且<strong>位在 $(0, 0, 0)$</strong>，且<strong>不能移動</strong></p>
+<blockquote>
+<p>想像頭是 Camera，坐標系是你用中二的手勢(上圖)，中指指著自己，食指指著天，拇指指著右邊，因此視野射出去是 $-z$ 方向</p>
+</blockquote>
+<ul>
+<li>那我們想要把 Camera 擺在 $(0, 0, 3)$ 然後往 $-z$ 方向看要怎麼辦?<ul>
+<li>我們不能移動 Camera</li>
+<li>那就移動物體，往相反於 Camera 移動的方向，移動整個場景</li>
+<li>View Matrix</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">glm::mat4 <span class="title">view</span><span class="params">(<span class="number">1.f</span>)</span></span>;</span><br><span class="line">view = glm::translate(view, glm::vec3(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">-3.0f</span>));</span><br></pre></td></tr></table></figure>
+<p>最後，根據想要的效果選擇 Projection Matrix</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">glm::mat4 <span class="title">projection</span><span class="params">(<span class="number">1.0f</span>)</span></span>;</span><br><span class="line">projection = glm::perspective(glm::radians(<span class="number">45.0f</span>), width / height, <span class="number">0.1f</span>, <span class="number">100.f</span>);</span><br></pre></td></tr></table></figure>
+<p>建好 Matrix 後，應該要把它們傳到 Vertex Shader 中:</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#version 330 core</span></span><br><span class="line"><span class="keyword">layout</span> (<span class="keyword">location</span> = <span class="number">0</span>) <span class="keyword">in</span> <span class="type">vec3</span> aPos;</span><br><span class="line"><span class="comment">// ...</span></span><br><span class="line"><span class="keyword">uniform</span> <span class="type">mat4</span> model;</span><br><span class="line"><span class="keyword">uniform</span> <span class="type">mat4</span> view;</span><br><span class="line"><span class="keyword">uniform</span> <span class="type">mat4</span> projection;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> main()</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 注意矩陣乘法</span></span><br><span class="line">    <span class="built_in">gl_Position</span> = projection * view * model * <span class="type">vec4</span>(aPos, <span class="number">1.0</span>);</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最後的效果:</p>
+<p><img src="https://i.imgur.com/qmNcDZz.png" alt=""></p>
+<h2 id="Examples"><a href="#Examples" class="headerlink" title="Examples"></a>Examples</h2><ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/6.1.coordinate_systems" target="_blank" rel="noopener">6.1.coordinate_systems</a></li>
+</ul>
+<p><img src="https://i.imgur.com/p5zlsrx.gif" alt=""></p>
+<hr>
+<ul>
+<li>3D 的立方體<ul>
+<li>要畫一個立方體需要 <a href="https://learnopengl.com/code_viewer.php?code=getting-started/cube_vertices" target="_blank" rel="noopener">36 個頂點</a></li>
+<li>改用 <code>glDrawArrays()</code> 因為沒有 EBO</li>
+<li><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/6.2.cube" target="_blank" rel="noopener">6.2.cube</a></li>
+</ul>
+</li>
+</ul>
+<p><img src="https://imgur.com/ctvQ53t.gif" alt=""></p>
+<p>可以發現奇怪的地方，該畫在後面的面卻畫在了前面，形成了很奇怪的結果。解決的方法是使用 OpenGL 的 Z-Buffer (Z 緩衝)，它讓 OpenGL 知道一個像素的深度 (Depth)(可以想像成圖層那樣)，進行深度測試(Depth Test)。</p>
+<ul>
+<li><p>啟用 Depth Test</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glEnable(GL_DEPTH_TEST);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>每一 frame 都要清掉 Z-Buffer 的內容</p>
+  <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><img src="https://imgur.com/Th4I7FW.gif" alt=""></p>
+<ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/6.3.cube_depth" target="_blank" rel="noopener">6.3.cube_depth</a></li>
+</ul>
+<hr>
+<ul>
+<li>顯示更多的立方體<ul>
+<li>每次畫一個立方體時，就算出一個 Model Matrix</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">glBindVertexArray(VAO);</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">unsigned</span> <span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">  <span class="function">glm::mat4 <span class="title">model</span><span class="params">(<span class="number">1.f</span>)</span></span>;</span><br><span class="line">  model = glm::translate(model, cubePositions[i]);</span><br><span class="line">  <span class="keyword">float</span> angle = <span class="number">20.0f</span> * i; </span><br><span class="line">  model = glm::rotate(model, glm::radians(angle), glm::vec3(<span class="number">1.0f</span>, <span class="number">0.3f</span>, <span class="number">0.5f</span>));</span><br><span class="line">  UploadMat4(<span class="string">"vModel"</span>, model);</span><br><span class="line"></span><br><span class="line">  glDrawArrays(GL_TRIANGLES, <span class="number">0</span>, <span class="number">36</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Labs"><a href="#Labs" class="headerlink" title="Labs"></a>Labs</h2><ul>
+<li>將觀察矩陣在各個方向上進行位移，來看看場景是如何改變的。</li>
+</ul>
+<p><img src="https://imgur.com/zdnL17H.gif" alt=""></p>
+<ul>
+<li>對 GLM 的<code>projection</code>函數中的 FoV 和 aspect-ratio 參數進行實驗。看能否搞懂它們是如何影響透視 frustum 的。</li>
+</ul>
+<p><img src="https://imgur.com/NDmehQs.gif" alt=""></p>
+<h4 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h4><p><a href="http://docs.gl/gl3/glOrtho" target="_blank" rel="noopener">http://docs.gl/gl3/glOrtho</a><br><a href="http://www.songho.ca/opengl/gl_projectionmatrix.html" target="_blank" rel="noopener">http://www.songho.ca/opengl/gl_projectionmatrix.html</a><br><a href="https://www.itread01.com/content/1547164287.html" target="_blank" rel="noopener">https://www.itread01.com/content/1547164287.html</a></p>
+<p><a href="https://blog.csdn.net/chy19911123/article/details/45476821" target="_blank" rel="noopener">https://blog.csdn.net/chy19911123/article/details/45476821</a></p>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/07/13/opengl/opengl-note-6/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/07/13/opengl/opengl-note-6/" data-id="clkidhn160067vwu90kl84izc" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/07/13/opengl/opengl-note-6/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Coordinate/" rel="tag">Coordinate</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9C%96%E5%AD%B8/" rel="tag">圖學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AD%86%E8%A8%98/" rel="tag">筆記</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/14/SFML/sfml_intro/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          SFML 簡介及環境設置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/10/opengl/opengl-note-5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">OpenGL 筆記 - Transform</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Local-Space-局部空間"><span class="toc-number">1.</span> <span class="toc-text">Local Space 局部空間</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#World-Space-世界空間"><span class="toc-number">2.</span> <span class="toc-text">World Space 世界空間</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Space-觀察空間"><span class="toc-number">3.</span> <span class="toc-text">View Space 觀察空間</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Clip-Space-裁剪空間"><span class="toc-number">4.</span> <span class="toc-text">Clip Space 裁剪空間</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#正射投影-Orthographic-Projection"><span class="toc-number">4.1.</span> <span class="toc-text">正射投影 Orthographic Projection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#透視投影-Perspective-Projection"><span class="toc-number">4.2.</span> <span class="toc-text">透視投影 Perspective Projection</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比較"><span class="toc-number">4.3.</span> <span class="toc-text">比較</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#組合在一起"><span class="toc-number">5.</span> <span class="toc-text">組合在一起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#進入-3D-世界"><span class="toc-number">6.</span> <span class="toc-text">進入 3D 世界</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Examples"><span class="toc-number">7.</span> <span class="toc-text">Examples</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Labs"><span class="toc-number">8.</span> <span class="toc-text">Labs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#參考"><span class="toc-number">8.0.1.</span> <span class="toc-text">參考</span></a></li></ol></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/07/13/opengl/opengl-note-6/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

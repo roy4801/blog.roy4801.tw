@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2021/07/12/collecting-the-dlls-for-mingw-w64-programs/</loc>
+    
+    <lastmod>2021-10-16T12:50:04.238Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/about/index.html</loc>
+    
+    <lastmod>2021-10-16T12:20:00.518Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2021/05/24/tutorial/vscode-remote-ssh-failed/</loc>
+    
+    <lastmod>2021-10-16T12:15:53.025Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2021/07/02/linux/%25E4%25BD%25BF%25E7%2594%25A8-ssh-redirect-port/</loc>
+    
+    <lastmod>2021-10-16T12:15:53.024Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/09/27/%25E6%2585%258B%25E5%25BA%25A6/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.448Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/03/31/%25E5%259C%25A8-macOS-%25E4%25B8%258A%25E6%258E%259B%25E8%25BC%2589%25E5%258F%25AF%25E5%25AF%25AB%25E7%259A%2584NTFS/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.447Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/08/04/%25E5%259C%25A8macos%2520%25E5%25A6%2582%25E4%25BD%2595build%2520zbarimg/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.447Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/01/27/%25E5%259C%25A8-macOS-Mojave-%25E4%25B8%258A%25E6%25AD%25A3%25E5%25B8%25B8%25E4%25BD%25BF%25E7%2594%25A8-gdb/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.446Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/01/25/%25E4%25BA%2592%25E5%258B%2595%25E5%25AA%2592%25E9%25AB%2594%25E5%25B0%2588%25E9%25A1%258C/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.446Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/10/12/x86-%25E7%25AD%2586%25E8%25A8%2598-ep1/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/10/12/x86-%25E7%25AD%2586%25E8%25A8%2598-ep2/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/06/26/uva/uva793/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.445Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/02/02/uva/uva402/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.444Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/06/14/uva/uva526/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.444Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/09/11/uva/uva1587/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.443Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/09/10/uva/uva275/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.443Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/09/10/uva/uva202/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.443Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/02/08/uva/uva12100/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.442Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/02/24/uva/uva136/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.442Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/05/18/uva/uva11078/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.441Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/02/07/uva/uva11995/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.441Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/06/22/uva/uva1203/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.441Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/02/03/uva/uva10935/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.440Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/05/18/uva/uva11059/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.440Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/06/24/uva/uva10033/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.439Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/06/26/uva/uva10226/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.439Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/05/17/uva/uva10685/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.439Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/06/23/uva/uva10004/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.438Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/05/17/tutorial/hexo-blank/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.438Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/05/18/tutorial/clion-gdb-debugging/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.437Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.436Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/17/opengl/opengl-note-7/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.436Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/10/opengl/opengl-note-5/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.435Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/13/opengl/opengl-note-6/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.435Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/09/opengl/opengl-note-4/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/08/opengl/opengl-note-3/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.434Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/06/30/opengl/opengl-note-2/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.433Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/06/29/opengl/opengl-note-1/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.433Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/08/25/linux/tmux%2520%25E5%259F%25BA%25E6%259C%25AC%25E4%25BD%25BF%25E7%2594%25A8/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.432Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/08/25/linux/ssh%25E5%2588%25B0linux(ubuntu)%25E4%25B8%258A%25E7%2584%25A1%25E6%25B3%2595%25E8%25BC%25B8%25E5%2585%25A5%25E4%25B8%25AD%25E6%2596%2587%25E5%2595%258F%25E9%25A1%258C/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.432Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/01/26/linux/linux_x86_libs/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.431Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/03/29/imgui-intro-pt4/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/04/16/imgui-intro-pt5/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/03/28/imgui-intro-pt3/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.430Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/03/24/imgui-intro-pt1/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.429Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/03/25/imgui-intro-pt2/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.429Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/06/20/hello-world/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.428Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/19/ds/quadtree/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.428Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/06/04/c++/smart_pointer/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.427Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/08/23/c++/C++%2520next_permutation_perv_permutation%25E7%2594%25A8%25E6%25B3%2595/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.426Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/20/c++/chrono/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.426Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/08/06/ais3/ais_2019/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.425Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/06/12/ais3/ais3_2020_pre_exam/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.425Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2019/05/31/ais3/ais3_2019_pre_exam/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.424Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/14/SFML/sfml_intro/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.423Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/29/SFML/sfml_window/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.423Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/30/SFML/sfml_event/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.422Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2020/07/09/NCPU_2020/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.421Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.roy4801.tw/2018/11/22/ACM-ICPC_Taipei/</loc>
+    
+    <lastmod>2021-05-12T13:20:03.421Z</lastmod>
+    
+  </url>
+  
+</urlset>

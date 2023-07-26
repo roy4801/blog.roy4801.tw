@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>OpenGL 筆記 - Camera | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="OpenGL 中模擬相機的方法是，把場景(整個世界)照相機想移動的相反方向移動，來模擬出相機的感覺。 View(Camera) Space">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenGL 筆記 - Camera">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/07/17/opengl/opengl-note-7/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="OpenGL 中模擬相機的方法是，把場景(整個世界)照相機想移動的相反方向移動，來模擬出相機的感覺。 View(Camera) Space">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/tUknQue.png">
+<meta property="og:image" content="https://i.imgur.com/SmEhgiZ.gif">
+<meta property="og:image" content="https://imgur.com/qaapYwr.gif">
+<meta property="og:image" content="https://i.imgur.com/UsGZvz5.png">
+<meta property="og:image" content="https://i.imgur.com/CzPYyQC.jpg">
+<meta property="og:image" content="https://imgur.com/X0WdzL2.gif">
+<meta property="og:image" content="https://imgur.com/yCDJixe.gif">
+<meta property="og:image" content="https://imgur.com/0uOFyaC.gif">
+<meta property="article:published_time" content="2020-07-17T08:50:00.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.436Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="筆記">
+<meta property="article:tag" content="OpenGL">
+<meta property="article:tag" content="圖學">
+<meta property="article:tag" content="Camera">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/tUknQue.png">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-opengl/opengl-note-7" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/17/opengl/opengl-note-7/" class="article-date">
+  <time datetime="2020-07-17T08:50:00.000Z" itemprop="datePublished">2020-07-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/OpenGL/">OpenGL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OpenGL 筆記 - Camera
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>OpenGL 中模擬相機的方法是，把場景(整個世界)照相機想移動的相反方向移動，來模擬出相機的感覺。</p>
+<h2 id="View-Camera-Space"><a href="#View-Camera-Space" class="headerlink" title="View(Camera) Space"></a>View(Camera) Space</h2><p><img src="https://i.imgur.com/tUknQue.png" alt=""></p>
+<p>View Space 是指把相機當作原點的座標，一個相機可以用以下三個東西定義出來:</p>
+<ul>
+<li>相機(Camera)<ul>
+<li>位置</li>
+<li>觀察的方向</li>
+<li>相機頭頂的方向向量</li>
+</ul>
+</li>
+</ul>
+<p>第三個軸可以用外積求出，於是我們定義出了一個以相機為原點的座標系，接下來就是要構造 View Matrix 來把世界座標轉換過去。</p>
+<ul>
+<li>位置</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 cameraPos = glm::vec3(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">3.0f</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>觀察的方向</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 cameraTarget = glm::vec3(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>);</span><br><span class="line">glm::vec3 cameraDirection = glm::normalize(cameraPos - cameraTarget);</span><br><span class="line"><span class="comment">// 這裡其實是反向(往相機插的向量) i.e. 圖 2 的藍色向量</span></span><br><span class="line"><span class="comment">// 也就是 View Space 的 z 向量</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>右向量(對於相機)<ul>
+<li>這裡會用世界的 $y$ 軸向量(向上)跟 觀察方向做外積</li>
+<li>拿到的向量會朝向 View Space 的 $+x$ ，也就是相機的右邊</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 up = glm::vec3(<span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>);</span><br><span class="line">glm::vec3 cameraRight = glm::normalize(glm::cross(up, cameraDirection));</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上向量(對於相機)<ul>
+<li>我們已經有 View Space 的 $x$ 軸和 $z$ 軸的向量</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 cameraUp = glm::cross(cameraDirection, cameraRight);</span><br></pre></td></tr></table></figure>
+<p>這三個向量構成了 View Space。</p>
+<ul>
+<li>為什麼要世界的上向量<ul>
+<li>先用外積求出 View Space 的右向量(Right Vector)</li>
+<li>再算出 View Space 之上向量</li>
+<li><a href="https://stackoverflow.com/questions/5717654/glulookat-explanation" target="_blank" rel="noopener">https://stackoverflow.com/questions/5717654/glulookat-explanation</a></li>
+<li><a href="https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/lookat-function" target="_blank" rel="noopener">https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/lookat-function</a></li>
+</ul>
+</li>
+</ul>
+<p>上面的數學知識是: <a href="https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process" target="_blank" rel="noopener">Gram-Schmidt process</a></p>
+<h3 id="Look-At-矩陣"><a href="#Look-At-矩陣" class="headerlink" title="Look At 矩陣"></a>Look At 矩陣</h3><p>$$<br>LookAt = \begin{bmatrix} \color{red}{R_x} &amp; \color{red}{R_y} &amp; \color{red}{R_z} &amp; 0 \\ \color{green}{U_x} &amp; \color{green}{U_y} &amp; \color{green}{U_z} &amp; 0 \\ \color{blue}{D_x} &amp; \color{blue}{D_y} &amp; \color{blue}{D_z} &amp; 0 \\ 0 &amp; 0 &amp; 0  &amp; 1 \end{bmatrix} * \begin{bmatrix} 1 &amp; 0 &amp; 0 &amp; -\color{purple}{P_x} \\ 0 &amp; 1 &amp; 0 &amp; -\color{purple}{P_y} \\ 0 &amp; 0 &amp; 1 &amp; -\color{purple}{P_z} \\ 0 &amp; 0 &amp; 0  &amp; 1 \end{bmatrix}<br>$$</p>
+<p>$\color{Red}{R}$ 是右向量、$\color{Green}{U}$是上向量、$\color{Blue}{D}$是方向向量，$\color{purple}{P}$ 是相機位置，注意位移是相反方向，是因為前面提到我們希望將世界往相機的相反方向移動(因為 OpenGL 的相機在 $(0, 0, 0)$)</p>
+<ul>
+<li>GLM 提供了直接產生 Look At Matrix 的實用功能，只要提供相機位置、觀察目標、跟世界空間的上向量<ul>
+<li><a href="https://glm.g-truc.net/0.9.9/api/a00668.html#gaa64aa951a0e99136bba9008d2b59c78e" target="_blank" rel="noopener">glm::lookAt(eye, center, up)</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">glm::mat4 view;</span><br><span class="line">view = glm::lookAt(</span><br><span class="line">    glm::vec3(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">3.0f</span>),  <span class="comment">// 相機位置</span></span><br><span class="line">    glm::vec3(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">0.0f</span>),  <span class="comment">// 觀察目標</span></span><br><span class="line">    glm::vec3(<span class="number">0.0f</span>, <span class="number">1.0f</span>, <span class="number">0.0f</span>)   <span class="comment">// 上向量</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/blob/master/LearnOpenGL/src/1.getting_started/7.1.camera_circle/main.cpp" target="_blank" rel="noopener">7.1.camera_circle</a><ul>
+<li>這個範例示範了，把 Camera 繞 $x-z$ 平面旋轉</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://i.imgur.com/SmEhgiZ.gif" alt=""></p>
+<h2 id="自由移動"><a href="#自由移動" class="headerlink" title="自由移動"></a>自由移動</h2><p>上面只示範了旋轉，如果能自由移動的話會更有趣，但是我們要改一下 Camera 的實作</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 cameraPos   = glm::vec3(<span class="number">0.0f</span>, <span class="number">0.0f</span>,  <span class="number">3.0f</span>);</span><br><span class="line">glm::vec3 cameraFront = glm::vec3(<span class="number">0.0f</span>, <span class="number">0.0f</span>, <span class="number">-1.0f</span>);</span><br><span class="line">glm::vec3 cameraUp    = glm::vec3(<span class="number">0.0f</span>, <span class="number">1.0f</span>,  <span class="number">0.0f</span>);</span><br><span class="line">glm::vec3 cameraRight = glm::normalize(glm::cross(cameraFront, cameraUp));</span><br></pre></td></tr></table></figure>
+<p><code>lookAt</code> 變成了:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">view = glm::lookAt(cameraPos, cameraPos+cameraFront, cameraUp);</span><br></pre></td></tr></table></figure>
+<p>接下來新增移動功能</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(sf::Keyboard::isKeyPressed(sf::Keyboard::W))</span><br><span class="line">    cameraPos += cameraSpeed * cameraFront;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(sf::Keyboard::isKeyPressed(sf::Keyboard::S))</span><br><span class="line">    cameraPos -= cameraSpeed * cameraFront;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">if</span>(sf::Keyboard::isKeyPressed(sf::Keyboard::A))</span><br><span class="line">    cameraPos -= cameraSpeed * cameraRight;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(sf::Keyboard::isKeyPressed(sf::Keyboard::D))</span><br><span class="line">    cameraPos += cameraSpeed * cameraRight;</span><br><span class="line"><span class="comment">//</span></span><br><span class="line"><span class="keyword">if</span> (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))</span><br><span class="line">    cameraPos += cameraSpeed * cameraUp;</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))</span><br><span class="line">    cameraPos -= cameraSpeed * cameraUp;</span><br></pre></td></tr></table></figure>
+<p>當我們按下 WASD 時，Camera 就會在遊戲世界中移動，按 Shift 時 Camera 會加速</p>
+<ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/blob/master/LearnOpenGL/src/1.getting_started/7.2.camera_move/main.cpp" target="_blank" rel="noopener">7.2.camera_move</a></li>
+</ul>
+<p><img src="https://imgur.com/qaapYwr.gif" alt=""></p>
+<p>除了按鍵移動之外，我們還改了移動速度的 code，根據處理器不同，每個 loop 的時間會不同，通常都會用 delta time 去乘上某個東西的時間變化量(e.g. 速度)，來更新當前的狀態。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(sf::Keyboard::isKeyPressed(sf::Keyboard::LShift))</span><br><span class="line">    cameraSpeed = dt * <span class="number">5</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    cameraSpeed = dt * <span class="number">3</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="視角移動"><a href="#視角移動" class="headerlink" title="視角移動"></a>視角移動</h2><h3 id="歐拉角"><a href="#歐拉角" class="headerlink" title="歐拉角"></a>歐拉角</h3><p>歐拉角(Euler Angle)可以表示空間中三軸的旋轉。俯仰角(Pitch)、偏擺角(Yaw)和翻滾角(Roll)</p>
+<p><img src="https://i.imgur.com/UsGZvz5.png" alt=""></p>
+<p>在傳統 FPS 中不會有 Roll 所以這裡不討論，有了歐拉角後就可以算出旋轉後的新的方向向量</p>
+<p><img src="https://i.imgur.com/CzPYyQC.jpg" alt=""></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 dir;</span><br><span class="line">dir.x = <span class="built_in">cos</span>(glm::radians(pitch)) * <span class="built_in">cos</span>(glm::radians(yaw));</span><br><span class="line">dir.y = <span class="built_in">sin</span>(glm::radians(pitch));</span><br><span class="line">dir.z = <span class="built_in">cos</span>(glm::radians(pitch)) * <span class="built_in">sin</span>(glm::radians(yaw));</span><br></pre></td></tr></table></figure>
+<p>有了方向向量，我們就可以把 <code>cameraFront</code> 設定成方向向量，來把相機轉過去了。</p>
+<h3 id="滑鼠輸入"><a href="#滑鼠輸入" class="headerlink" title="滑鼠輸入"></a>滑鼠輸入</h3><p>通常根據滑鼠輸入變動視角的處理方法是:</p>
+<ul>
+<li>計算滑鼠位置的偏移量(相對上個 frame)</li>
+<li>把偏移量加到 <code>pitch</code> 跟 <code>yaw</code> 中</li>
+<li>限制最大跟最小值</li>
+<li>計算方向向量</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 滑鼠目前為位置</span></span><br><span class="line"><span class="keyword">auto</span> [x, y] = sf::Mouse::getPosition(window);</span><br><span class="line"><span class="function">glm::vec2 <span class="title">nowCursorPos</span><span class="params">(x, window.getSize().y - y)</span></span>;</span><br><span class="line"><span class="comment">// 螢幕中心</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> glm::vec2 <span class="title">screenCenter</span><span class="params">(window.getSize().x / <span class="number">2</span>, window.getSize().y / <span class="number">2</span>)</span></span>;</span><br><span class="line">sf::Mouse::setPosition(&#123;window.getSize().x / <span class="number">2</span>, window.getSize().y / <span class="number">2</span>&#125; , window);</span><br><span class="line"><span class="comment">// 偏移量</span></span><br><span class="line">glm::vec2 off = nowCursorPos - screenCenter;</span><br></pre></td></tr></table></figure>
+<p>把偏移量乘上滑鼠敏感度</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">off *= sensitivity;</span><br></pre></td></tr></table></figure>
+<p>把角度加上偏移量，並限制最大、最小 (不限制水平旋轉是因為古早 FPS 都是視角轉 = 人轉)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">float</span> pitch  = <span class="number">0.f</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">float</span> yaw = <span class="number">-90.f</span>;  <span class="comment">// 面向 -z</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">float</span> sensitivity = <span class="number">0.05f</span>;</span><br><span class="line"></span><br><span class="line">pitch += off.y;</span><br><span class="line">yaw += off.x;</span><br><span class="line"><span class="comment">// 避免 yaw 因為 float 精度問題</span></span><br><span class="line"><span class="keyword">if</span>(yaw &gt; <span class="number">360.f</span> || yaw &lt; <span class="number">-360.f</span>) yaw = glm::mod(yaw, <span class="number">360.f</span>);</span><br><span class="line"><span class="comment">// 限制 pitch</span></span><br><span class="line"><span class="keyword">if</span>(pitch &gt; <span class="number">89.f</span>) pitch = <span class="number">89.f</span>;</span><br><span class="line"><span class="keyword">if</span>(pitch &lt; <span class="number">-89.f</span>) pitch = <span class="number">-89.f</span>;</span><br></pre></td></tr></table></figure>
+<p>最後計算 Camera 新的方向向量</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">glm::vec3 newCameraFront;</span><br><span class="line">newCameraFront.x = <span class="built_in">cos</span>(glm::radians(yaw)) * <span class="built_in">cos</span>(glm::radians(pitch));</span><br><span class="line">newCameraFront.y = <span class="built_in">sin</span>(glm::radians(pitch));</span><br><span class="line">newCameraFront.z = <span class="built_in">sin</span>(glm::radians(yaw)) * <span class="built_in">cos</span>(glm::radians(pitch));</span><br><span class="line">cameraFront = newCameraFront;</span><br></pre></td></tr></table></figure>
+<p><img src="https://imgur.com/X0WdzL2.gif" alt=""></p>
+<ul>
+<li>隱藏滑鼠游標<ul>
+<li><a href="https://github.com/ocornut/imgui/issues/2375" target="_blank" rel="noopener">ref</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">window.setMouseCursorVisible(<span class="literal">false</span>); <span class="comment">// 因為 imgui 的緣故，滑鼠還是會被畫出來</span></span><br><span class="line">window.setMouseCursorGrabbed(<span class="literal">true</span>);  <span class="comment">// 讓滑鼠不能超出視窗範圍</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span>(running)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 必須叫 imgui 不要畫滑鼠</span></span><br><span class="line">    ImGui::SetMouseCursor(ImGuiMouseCursor_None);</span><br><span class="line">    </span><br><span class="line">    windiw.draw();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="視角縮放"><a href="#視角縮放" class="headerlink" title="視角縮放"></a>視角縮放</h2><p>把 FOV 變小時，會產生一種放大的感覺，我們使用滑鼠滾輪來進行縮放。SFML 裏頭偵測滑鼠滾輪只能用事件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Event update</span></span><br><span class="line"><span class="keyword">if</span>(event.type == sf::Event::MouseWheelScrolled)</span><br><span class="line">&#123;</span><br><span class="line">    mouseWheelDelta = event.mouseWheelScroll.delta;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// In Update</span></span><br><span class="line"><span class="keyword">if</span>(mouseWheelDelta != <span class="number">0.f</span>)</span><br><span class="line">&#123;</span><br><span class="line">    fov += mouseWheelDelta;</span><br><span class="line">    <span class="keyword">if</span>(fov &lt; <span class="number">1.f</span>) fov = <span class="number">1.f</span>;</span><br><span class="line">    <span class="keyword">if</span>(fov &gt; <span class="number">45.f</span>) fov = <span class="number">45.f</span>;</span><br><span class="line">    mouseWheelDelta = <span class="number">0.f</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://imgur.com/yCDJixe.gif" alt=""></p>
+<ul>
+<li><p><a href="https://github.com/rishteam/OpenGL_learning/blob/master/LearnOpenGL/src/1.getting_started/7.3.camera_rotate/main.cpp" target="_blank" rel="noopener">Example 7.3 Camera</a></p>
+</li>
+<li><p>使用歐拉角的 Camera 會有<a href="https://www.youtube.com/watch?v=zc8b2Jo7mno" target="_blank" rel="noopener">萬向鎖(Gimbal Lock)</a>的問題</p>
+<ul>
+<li>更好的是使用四元數(Quaternions)<ul>
+<li><a href="https://github.com/cybercser/OpenGL_3_3_Tutorial_Translation/blob/master/Tutorial%2017%20Rotations.md" target="_blank" rel="noopener">https://github.com/cybercser/OpenGL_3_3_Tutorial_Translation/blob/master/Tutorial%2017%20Rotations.md</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Lab"><a href="#Lab" class="headerlink" title="Lab"></a>Lab</h2><h3 id="將-Camera-封裝成-class"><a href="#將-Camera-封裝成-class" class="headerlink" title="將 Camera 封裝成 class"></a>將 Camera 封裝成 class</h3><ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/tree/master/LearnOpenGL/src/1.getting_started/7.5.lab_camera_class" target="_blank" rel="noopener">Example 7.5 Camera class</a></li>
+</ul>
+<h3 id="試著自己實作看看-lookAt"><a href="#試著自己實作看看-lookAt" class="headerlink" title="試著自己實作看看 lookAt()"></a>試著自己實作看看 <code>lookAt()</code></h3><ul>
+<li>OpenGL 矩陣是 <strong>Column-major</strong>，所以 LookAt 公式要改寫成</li>
+</ul>
+<p>$$<br>LookAt = \begin{bmatrix}<br>\color{red}{R_x} &amp; \color{green}{U_x} &amp; \color{blue}{D_x} &amp; 0 \\<br>\color{red}{R_y} &amp; \color{green}{U_y} &amp; \color{blue}{D_y} &amp; 0 \\<br>\color{red}{R_z} &amp; \color{green}{U_z} &amp; \color{blue}{D_z} &amp; 0 \\<br>0 &amp; 0 &amp; 0  &amp; 1<br>\end{bmatrix} *<br>\begin{bmatrix}<br>1 &amp; 0 &amp; 0 &amp; 0 \\<br>0 &amp; 1 &amp; 0 &amp; 0 \\<br>0 &amp; 0 &amp; 1 &amp; 0 \\<br>-\color{purple}{P_x} &amp; -\color{purple}{P_y} &amp; -\color{purple}{P_z}  &amp; 1<br>\end{bmatrix}<br>$$</p>
+<p>我卡了一整天幹zz</p>
+<ul>
+<li><a href="https://github.com/rishteam/OpenGL_learning/blob/master/LearnOpenGL/src/1.getting_started/7.4.lab_1/main.cpp" target="_blank" rel="noopener">Example 7.4 Make your own LookAt Matrix</a></li>
+</ul>
+<p><img src="https://imgur.com/0uOFyaC.gif" alt=""></p>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/07/17/opengl/opengl-note-7/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/07/17/opengl/opengl-note-7/" data-id="clkidhn15005wvwu919lu9ge3" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/07/17/opengl/opengl-note-7/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Camera/" rel="tag">Camera</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenGL/" rel="tag">OpenGL</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%9C%96%E5%AD%B8/" rel="tag">圖學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AD%86%E8%A8%98/" rel="tag">筆記</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/07/19/ds/quadtree/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          QuadTree - 使用四叉樹優化碰撞檢測
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/14/SFML/sfml_intro/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">SFML 簡介及環境設置</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#View-Camera-Space"><span class="toc-number">1.</span> <span class="toc-text">View(Camera) Space</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Look-At-矩陣"><span class="toc-number">1.1.</span> <span class="toc-text">Look At 矩陣</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自由移動"><span class="toc-number">2.</span> <span class="toc-text">自由移動</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#視角移動"><span class="toc-number">3.</span> <span class="toc-text">視角移動</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#歐拉角"><span class="toc-number">3.1.</span> <span class="toc-text">歐拉角</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#滑鼠輸入"><span class="toc-number">3.2.</span> <span class="toc-text">滑鼠輸入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#視角縮放"><span class="toc-number">4.</span> <span class="toc-text">視角縮放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Lab"><span class="toc-number">5.</span> <span class="toc-text">Lab</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#將-Camera-封裝成-class"><span class="toc-number">5.1.</span> <span class="toc-text">將 Camera 封裝成 class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#試著自己實作看看-lookAt"><span class="toc-number">5.2.</span> <span class="toc-text">試著自己實作看看 lookAt()</span></a></li></ol></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/07/17/opengl/opengl-note-7/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>spdlog 介紹與使用 | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Fast C++ logging library.一個輕量且快速的 log library https:&#x2F;&#x2F;github.com&#x2F;gabime&#x2F;spdlog  特性 快速 header-only 豐富、自訂的格式化，使用 fmt 單、多線程 logger">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spdlog 介紹與使用">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="Fast C++ logging library.一個輕量且快速的 log library https:&#x2F;&#x2F;github.com&#x2F;gabime&#x2F;spdlog  特性 快速 header-only 豐富、自訂的格式化，使用 fmt 單、多線程 logger">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/xsid3xG.png">
+<meta property="og:image" content="https://i.imgur.com/huFJAah.png">
+<meta property="article:published_time" content="2020-05-17T11:55:35.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.436Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="教學">
+<meta property="article:tag" content="C++ Library">
+<meta property="article:tag" content="imgui">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/xsid3xG.png">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-spdlog-tutorial" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/17/spdlog-tutorial/" class="article-date">
+  <time datetime="2020-05-17T11:55:35.000Z" itemprop="datePublished">2020-05-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      spdlog 介紹與使用
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p>Fast C++ logging library.<br>一個輕量且快速的 log library</p>
+<p><a href="https://github.com/gabime/spdlog" target="_blank" rel="noopener">https://github.com/gabime/spdlog</a></p>
+<ul>
+<li>特性<ul>
+<li><a href="https://github.com/gabime/spdlog#benchmarks" target="_blank" rel="noopener">快速</a></li>
+<li>header-only</li>
+<li>豐富、自訂的格式化，使用 <a href="https://github.com/fmtlib/fmt" target="_blank" rel="noopener">fmt</a></li>
+<li>單、多線程 logger</li>
+</ul>
+</li>
+</ul>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><ul>
+<li>header file<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;spdlog/spdlog.h&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="新建-Logger"><a href="#新建-Logger" class="headerlink" title="新建 Logger"></a>新建 Logger</h3><ul>
+<li>新建一個 console logger</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;spdlog/sinks/stdout_color_sinks.h&gt;</span></span></span><br><span class="line"><span class="keyword">auto</span> logger = spdlog::stdout_color_mt(<span class="string">"name"</span>);</span><br><span class="line"><span class="comment">// type = std::shared_ptr&lt;spdlog::logger&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// stderr logger</span></span><br><span class="line"><span class="keyword">auto</span> err_logger = spdlog::stderr_color_mt(<span class="string">"stderr"</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Rotating Logger <ul>
+<li>當 log 超過一定大小，會清空當前 log</li>
+<li><code>spdlog::rotating_logger_mt</code></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;spdlog/sinks/rotating_file_sink.h&gt;</span></span></span><br><span class="line"><span class="keyword">auto</span> file_logger = spdlog::rotating_logger_mt(<span class="string">"file_logger"</span>, <span class="string">"logs/mylogfile"</span>, <span class="number">1048576</span> * <span class="number">5</span>, <span class="number">3</span>);</span><br><span class="line"><span class="comment">// logger_name, log file path, max_file_size, max_files</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>Asynchronous loggers</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"spdlog/async.h"</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">async_example</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">// default thread pool settings can be modified *before* creating the async logger:</span></span><br><span class="line">    <span class="comment">// spdlog::init_thread_pool(8192, 1); // queue with 8k items and 1 backing thread.</span></span><br><span class="line">    <span class="keyword">auto</span> async_file = spdlog::basic_logger_mt&lt;spdlog::async_factory&gt;(<span class="string">"async_file_logger"</span>, <span class="string">"logs/async_log.txt"</span>);</span><br><span class="line">    <span class="comment">// alternatively:</span></span><br><span class="line">    <span class="comment">// auto async_file = spdlog::create_async&lt;spdlog::sinks::basic_file_sink_mt&gt;("async_file_logger", "logs/async_log.txt");</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="手動建立-logger"><a href="#手動建立-logger" class="headerlink" title="手動建立 logger"></a>手動建立 logger</h3><ul>
+<li>手動建立的 logger 並不會自動註冊到 global 中，要自己手動 <code>spdlog::register_logger()</code></li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> sink = <span class="built_in">std</span>::make_shared&lt;spdlog::sinks::stdout_sink_mt&gt;();</span><br><span class="line"><span class="keyword">auto</span> my_logger= <span class="built_in">std</span>::make_shared&lt;spdlog::logger&gt;(<span class="string">"mylogger"</span>, sink);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>建立多個輸出的 logger<ul>
+<li>將多個 sink 綁定到 <code>spdlog::logger</code> 上</li>
+<li>e.g. 同時輸出 stdout 跟檔案</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 建立 sinks</span></span><br><span class="line"><span class="built_in">std</span>::<span class="built_in">vector</span>&lt;spdlog::sink_ptr&gt; sinks;</span><br><span class="line">sinks.push_back(<span class="built_in">std</span>::make_shared&lt;spdlog::sinks::stdout_sink_mt&gt;());</span><br><span class="line">sinks.push_back(<span class="built_in">std</span>::make_shared&lt;spdlog::sinks::basic_file_sink_mt&gt;(<span class="string">"name.log"</span>, <span class="literal">true</span>));</span><br><span class="line"><span class="comment">// 建立 logger 並使用 sinks</span></span><br><span class="line"><span class="keyword">auto</span> logger = <span class="built_in">std</span>::make_shared&lt;spdlog::logger&gt;(<span class="string">"logger_name"</span>, begin(sinks), end(sinks));</span><br><span class="line"><span class="comment">// 註冊 logger</span></span><br><span class="line">spdlog::register_logger(logger);</span><br><span class="line"><span class="comment">// 如果已有同名的 logger 則會拋出 `spdlog::spdlog_ex`</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>不同的 logger 輸出至同個檔案<ul>
+<li>使用同個 sink</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> sharedSink = <span class="built_in">std</span>::make_shared&lt;spdlog::basic_file_sink_mt&gt;(<span class="string">"log_name.log"</span>);</span><br><span class="line"><span class="keyword">auto</span> firstLogger = <span class="built_in">std</span>::make_shared&lt;spdlog::logger&gt;(<span class="string">"first"</span>, sharedSink);</span><br><span class="line"><span class="keyword">auto</span> secondLogger = <span class="built_in">std</span>::make_shared&lt;spdlog::logger&gt;(<span class="string">"second"</span>, sharedSink);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>sink</code> 是實際負責寫入 log 的 class，每種 <code>sink</code> 只負責一種 log 方式。每個 <code>logger</code> 存有一個或多個 <code>sink</code> (<code>std::vector&lt;std::shared_ptr&lt;sink&gt;&gt;</code>)<ul>
+<li>甚至<a href="https://github.com/gabime/spdlog/wiki/4.-Sinks#implementing-your-own-sink" target="_blank" rel="noopener">自己實作 <code>sink</code></a></li>
+<li><a href="https://github.com/gabime/spdlog/wiki/4.-Sinks" target="_blank" rel="noopener">教學</a></li>
+<li><a href="https://github.com/gabime/spdlog/tree/v1.x/include/spdlog/sinks" target="_blank" rel="noopener">sinks 列表</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="輸出-log"><a href="#輸出-log" class="headerlink" title="輸出 log"></a>輸出 log</h3><ul>
+<li>輸出 log</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">logger-&gt;trace(<span class="string">"trace"</span>);</span><br><span class="line">logger-&gt;info(<span class="string">"info"</span>);</span><br><span class="line">logger-&gt;warn(<span class="string">"warning"</span>);</span><br><span class="line">logger-&gt;error(<span class="string">"error"</span>);</span><br><span class="line">logger-&gt;critical(<span class="string">"critical"</span>);</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/xsid3xG.png" alt=""></p>
+<ul>
+<li>設定 pattern<ul>
+<li><a href="https://github.com/gabime/spdlog/wiki/3.-Custom-formatting" target="_blank" rel="noopener">pattern 格式</a><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logger-&gt;set_pattern(<span class="string">"[%T] [%n] %^[%l]%$: %v"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>檔案 log</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">auto</span> fileLogger = spdlog::basic_logger_mt(<span class="string">"basic_file_logger"</span>, <span class="string">"test.log"</span>);</span><br><span class="line">    fileLogger-&gt;trace(<span class="string">"trace"</span>);</span><br><span class="line">    fileLogger-&gt;info(<span class="string">"info"</span>);</span><br><span class="line">    fileLogger-&gt;warn(<span class="string">"warning"</span>);</span><br><span class="line">    fileLogger-&gt;error(<span class="string">"error"</span>);</span><br><span class="line">    fileLogger-&gt;critical(<span class="string">"critical"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">catch</span>(<span class="keyword">const</span> spdlog::spdlog_ex &amp;e)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">cout</span> &lt;&lt; <span class="string">"File logger init failed: "</span> &lt;&lt; e.what() &lt;&lt; <span class="string">'\n'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/huFJAah.png" alt=""></p>
+<ul>
+<li><p>可以使用 <code>spdlog::get(&quot;name&quot;)</code> 已經註冊過的 Logger</p>
+<ul>
+<li>用此方法可能會比較慢，因為會 lock 住 mutex<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 新建 stdout logger</span></span><br><span class="line">    <span class="keyword">auto</span> testLogger = spdlog::stdout_color_mt(<span class="string">"test"</span>);</span><br><span class="line">&#125;</span><br><span class="line">spdlog::get(<span class="string">"test"</span>)-&gt;info(<span class="string">"hello"</span>);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>刪除已註冊的 <code>logger</code></p>
+</li>
+</ul>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 刪除叫 `logger_name` 的 logger</span></span><br><span class="line">spdlog::drop(<span class="string">"logger_name"</span>);</span><br><span class="line"><span class="comment">// 刪除全部</span></span><br><span class="line">spdlog::drop_all();</span><br></pre></td></tr></table></figure>
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p>gabime/spdlog<br><a href="https://github.com/gabime/spdlog" target="_blank" rel="noopener">https://github.com/gabime/spdlog</a></p>
+<p>spdLog的使用<br><a href="https://blog.csdn.net/yanxiaobugyunsan/article/details/79088533" target="_blank" rel="noopener">https://blog.csdn.net/yanxiaobugyunsan/article/details/79088533</a></p>
+<p>spdlog源码阅读 (1): sinks<br><a href="https://www.cnblogs.com/eskylin/p/6483199.html" target="_blank" rel="noopener">https://www.cnblogs.com/eskylin/p/6483199.html</a></p>
+<p>log库spdlog简介及使用<br><a href="https://blog.csdn.net/fengbingchun/article/details/78347105" target="_blank" rel="noopener">https://blog.csdn.net/fengbingchun/article/details/78347105</a></p>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/" data-id="clkidhmzn000ivwu9hvdih6zk" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-Library/" rel="tag">C++ Library</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/imgui/" rel="tag">imgui</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/17/tutorial/hexo-blank/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          hexo 產生空白的 HTML
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/16/imgui-intro-pt5/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">dear imgui 使用 - 拉桿 Slider</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-number">1.</span> <span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#新建-Logger"><span class="toc-number">1.1.</span> <span class="toc-text">新建 Logger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手動建立-logger"><span class="toc-number">1.2.</span> <span class="toc-text">手動建立 logger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#輸出-log"><span class="toc-number">1.3.</span> <span class="toc-text">輸出 log</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考"><span class="toc-number">2.</span> <span class="toc-text">參考</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/05/17/spdlog-tutorial/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>

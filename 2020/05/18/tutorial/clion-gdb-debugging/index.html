@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>使用 CLion + gdb Debug 程式 | r0yblog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CLion是一款專為開發C及C++所設計的跨平台IDE。它是以IntelliJ為基礎設計的，包含了許多智慧功能來提高開發人員的生產力。支援代碼分析、快速修復和重構，集合的除錯器可以用 GDB 或 LLDB 作為後端，輕鬆調查和解決問題，能夠為程序員提供一個整合式的C&#x2F;C ++開發環境 https:&#x2F;&#x2F;www.jetbrains.com&#x2F;clion&#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 CLion + gdb Debug 程式">
+<meta property="og:url" content="http://blog.roy4801.tw/2020/05/18/tutorial/clion-gdb-debugging/index.html">
+<meta property="og:site_name" content="r0yblog">
+<meta property="og:description" content="CLion是一款專為開發C及C++所設計的跨平台IDE。它是以IntelliJ為基礎設計的，包含了許多智慧功能來提高開發人員的生產力。支援代碼分析、快速修復和重構，集合的除錯器可以用 GDB 或 LLDB 作為後端，輕鬆調查和解決問題，能夠為程序員提供一個整合式的C&#x2F;C ++開發環境 https:&#x2F;&#x2F;www.jetbrains.com&#x2F;clion&#x2F;">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://i.imgur.com/r1NLY9U.png">
+<meta property="og:image" content="https://i.imgur.com/S2aoCKa.png">
+<meta property="og:image" content="https://i.imgur.com/yN0DjLa.png">
+<meta property="og:image" content="https://i.imgur.com/UrtqHgr.png">
+<meta property="og:image" content="https://i.imgur.com/MBjoebN.png">
+<meta property="og:image" content="https://i.imgur.com/SPxYRAf.png">
+<meta property="article:published_time" content="2020-05-18T13:41:58.000Z">
+<meta property="article:modified_time" content="2021-05-12T13:20:03.437Z">
+<meta property="article:author" content="roy4801">
+<meta property="article:tag" content="C++">
+<meta property="article:tag" content="程式">
+<meta property="article:tag" content="教學">
+<meta property="article:tag" content="IDE">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.imgur.com/r1NLY9U.png">
+  
+    <link rel="alternate" href="/atom.xml" title="r0yblog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-133698344-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+
+<!-- Google Analytics v4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-8EQ2FVFZS7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-8EQ2FVFZS7');
+</script>
+<!-- End Google Analytics -->
+
+  
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7536224982408693" crossorigin="anonymous"></script>
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    
+    <div id="header-inner" class="inner">
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜尋"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://blog.roy4801.tw"></form>
+      </div>
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首頁</a>
+        
+          <a class="main-nav-link" href="/archives">歸檔</a>
+        
+          <a class="main-nav-link" href="https://oj.roy4801.tw/" target="_blank" rel="noopener">解題紀錄</a>
+        
+          <a class="main-nav-link" href="/about">關於</a>
+        
+      </nav>
+      
+    </div>
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">r0yblog</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">存放一些有關程式、生活、心得隨筆的網誌</a>
+        </h2>
+      
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-tutorial/clion-gdb-debugging" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/18/tutorial/clion-gdb-debugging/" class="article-date">
+  <time datetime="2020-05-18T13:41:58.000Z" itemprop="datePublished">2020-05-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/">學習紀錄</a>►<a class="article-category-link" href="/categories/%E5%AD%B8%E7%BF%92%E7%B4%80%E9%8C%84/C-C/">C/C++</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      使用 CLion + gdb Debug 程式
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!-- Table of Contents -->
+        
+        <p><img src="https://i.imgur.com/r1NLY9U.png" alt=""></p>
+<p>CLion是一款專為開發C及C++所設計的跨平台IDE。它是以IntelliJ為基礎設計的，包含了許多智慧功能來提高開發人員的生產力。支援代碼分析、快速修復和重構，集合的除錯器可以用 GDB 或 LLDB 作為後端，輕鬆調查和解決問題，能夠為程序員提供一個整合式的C/C ++開發環境</p>
+<p><a href="https://www.jetbrains.com/clion/" target="_blank" rel="noopener">https://www.jetbrains.com/clion/</a></p>
+<ul>
+<li>本人目前的開發環境<ul>
+<li>Compiler<ul>
+<li>msys2 mingw-w64-i686</li>
+</ul>
+</li>
+<li>開發<ul>
+<li>vscode + C/C++ plugin</li>
+</ul>
+</li>
+<li>除錯<ul>
+<li>CLion + gdb</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>目前我是使用 vscode 進行開發，但是遇到需要用上 gdb 的場合時，vscode 就顯得吃力了，在 Windows 上時不時會壞掉。</p>
+<p>故使用 CLion 的 debug 功能來除錯。 CLion 的一大特點是支援 <code>CMake</code>，所以只要你的 Project 有 <code>CMakeLists.txt</code> 就可以直接匯入。並且有很強大的 Rafactor 、Quick Fix 、Code Generation 功能，可以讓開發人員省下一些時間。</p>
+<p>CLion 個人使用一年大約<a href="https://www.jetbrains.com/clion/buy/#personal?billing=yearly" target="_blank" rel="noopener">兩千多新台幣</a>，而如果你是學生的話則是<a href="https://www.jetbrains.com/community/education/#students" target="_blank" rel="noopener">免費的</a></p>
+<h2 id="使用-CLion"><a href="#使用-CLion" class="headerlink" title="使用 CLion"></a>使用 CLion</h2><p><img src="https://i.imgur.com/S2aoCKa.png" alt=""></p>
+<p>安裝完成後，打開 CLion 便是這個畫面，可以選擇 <code>New Project</code> 建立新的專案；或是 Import 其他專案 (可以用 File Expolrer 拖移到上頭開啟)</p>
+<p><img src="https://i.imgur.com/yN0DjLa.png" alt=""></p>
+<p>開啟專案後，首先要設定 Toolchain (<code>Settings</code>&gt;<code>Build..</code>&gt;<code>Toolchain</code>)，點選加號新增一個 toolchain</p>
+<p><img src="https://i.imgur.com/UrtqHgr.png" alt=""></p>
+<p><code>Environment</code> 選擇 mingw-w64 的目錄，如果是 32-bit 就選擇 <code>mingw32</code>，如果是 64-bit 就選擇 <code>mingw64</code><br>如果發現 gdb 版本不符合時，CLion 會提示說 <code>Incompatible</code>，則需要降級版本</p>
+<p><img src="https://i.imgur.com/MBjoebN.png" alt=""></p>
+<h2 id="降級-gdb-版本"><a href="#降級-gdb-版本" class="headerlink" title="降級 gdb 版本"></a>降級 gdb 版本</h2><ul>
+<li>目標:降級到 <code>8.3.x</code> 版本的 gdb</li>
+</ul>
+<p><img src="https://i.imgur.com/SPxYRAf.png" alt=""></p>
+<ul>
+<li><p>去 <a href="http://repo.msys2.org/mingw/i686/" target="_blank" rel="noopener">repo.msys2.org</a> 找到你要的版本的 package</p>
+<ul>
+<li>下載該 package</li>
+</ul>
+</li>
+<li><p>降級</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacman -U mingw-w64-i686-gdb-8.3.1-3-any.pkg.tar.xz</span><br></pre></td></tr></table></figure>
+<h2 id="Debugging"><a href="#Debugging" class="headerlink" title="Debugging"></a>Debugging</h2><p>Debugging 時就如同其他 IDE 一樣，選擇 break point 後，點右上角的蟲子(Debug)<br>右下角可以輸入 gdb 指令，中下方可以觀察變數，左下方則是 Stack Frame 並且可以切換 Thread</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xDB7dxXvcQ8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h2><p>CLion Debigging<br><a href="https://www.jetbrains.com/help/clion/debugging-code.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/clion/debugging-code.html</a></p>
+<p>How to obtain older versions of packages using MSYS2?<br><a href="https://stackoverflow.com/questions/33969803/how-to-obtain-older-versions-of-packages-using-msys2" target="_blank" rel="noopener">https://stackoverflow.com/questions/33969803/how-to-obtain-older-versions-of-packages-using-msys2</a></p>
+
+        
+        <div>
+          <hr>
+          <p style="margin-bottom: 0;">如果你覺得這篇文章很棒，請你不吝點讚 (ﾟ∀ﾟ)</p>
+          <iframe width="100%" height="230px" scrolling="no" frameborder="0" id="player" src="https://button.like.co/in/embed/a82611141/button/?referrer=http://blog.roy4801.tw/2020/05/18/tutorial/clion-gdb-debugging/" allowfullscreen="true"></iframe>
+        </div>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://blog.roy4801.tw/2020/05/18/tutorial/clion-gdb-debugging/" data-id="clkidhn1j0087vwu9g36g8tli" class="article-share-link">分享</a>
+      
+      
+        <a href="http://blog.roy4801.tw/2020/05/18/tutorial/clion-gdb-debugging/#disqus_thread" class="article-comment-link">留言</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C/" rel="tag">C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IDE/" rel="tag">IDE</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%99%E5%AD%B8/" rel="tag">教學</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A8%8B%E5%BC%8F/" rel="tag">程式</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+  <div id="random_posts">
+    <h2>推薦文章</h2>
+    <div class="random_posts_ul">
+      <script>
+          var random_count =4
+          var site = {BASE_URI:'/'};
+          function load_random_posts(obj) {
+              var arr=site.posts;
+              if (!obj) return;
+              // var count = $(obj).attr('data-count') || 6;
+              for (var i, tmp, n = arr.length; n; i = Math.floor(Math.random() * n), tmp = arr[--n], arr[n] = arr[i], arr[i] = tmp);
+              arr = arr.slice(0, random_count);
+              var html = '<ul>';
+            
+              for(var j=0;j<arr.length;j++){
+                var item=arr[j];
+                html += '<li><strong>' + 
+                item.date + ':&nbsp;&nbsp;<a href="' + (site.BASE_URI+item.uri) + '">' + 
+                (item.title || item.uri) + '</a></strong>';
+                if(item.excerpt){
+                  html +='<div class="post-excerpt">'+item.excerpt+'</div>';
+                }
+                html +='</li>';
+                
+              }
+              $(obj).html(html + '</ul>');
+          }
+          $('.random_posts_ul').each(function () {
+              var c = this;
+              if (!site.posts || !site.posts.length){
+                  $.getJSON(site.BASE_URI + 'js/posts.js',function(json){site.posts = json;load_random_posts(c)});
+              } 
+               else{
+                load_random_posts(c);
+              }
+          });
+      </script>
+    </div>
+  </div>
+
+    
+<nav id="article-nav">
+  
+    <a href="/2020/06/04/c++/smart_pointer/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Smart Pointer 介紹/用法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/05/17/tutorial/hexo-blank/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">hexo 產生空白的 HTML</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+ 
+     
+  <div class="comments" id="comments">
+    
+     
+    <section id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+      </section>
+      
+       
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+       
+      
+      
+  </div>
+ 
+  
+
+</section>
+           
+    <aside id="sidebar">
+  
+    
+
+  
+    
+    <div class="widget-wrap">
+    
+      <div class="widget" id="toc-widget-fixed">
+      
+        <strong class="toc-title">文章目錄</strong>
+        <div class="toc-widget-list">
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-CLion"><span class="toc-number">1.</span> <span class="toc-text">使用 CLion</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#降級-gdb-版本"><span class="toc-number">2.</span> <span class="toc-text">降級 gdb 版本</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debugging"><span class="toc-number">3.</span> <span class="toc-text">Debugging</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#參考"><span class="toc-number">4.</span> <span class="toc-text">參考</span></a></li></ol>
+          </div>
+      </div>
+    </div>
+
+  
+    
+
+  
+    
+  
+    
+
+  
+    
+  
+    
+  
+    
+
+  
+    
+  
+</aside>
+
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-left">
+      &copy; 2018 - 2023 roy4801&nbsp;|&nbsp;
+      Theme by <a href="https://github.com/giscafer/hexo-theme-cafe/" target="_blank">Cafe</a>
+    </div>
+     <div id="footer-right">
+      聯繫方式&nbsp;|&nbsp;me@roy4801.tw
+    </div>
+  </div>
+</footer>
+ 
+<script src="/jquery/jquery.min.js"></script>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首頁</a>
+  
+    <a href="/archives" class="mobile-nav-link">歸檔</a>
+  
+    <a href="https://oj.roy4801.tw/" target="_blank" rel="noopener" class="mobile-nav-link">解題紀錄</a>
+  
+    <a href="/about" class="mobile-nav-link">關於</a>
+  
+</nav>
+    <img class="back-to-top-btn" src="/images/fly-to-top.png"/>
+<script>
+// Elevator script included on the page, already.
+window.onload = function() {
+  var elevator = new Elevator({
+    selector:'.back-to-top-btn',
+    element: document.querySelector('.back-to-top-btn'),
+    duration: 1000 // milliseconds
+  });
+}
+</script>
+      
+
+<script>
+  var disqus_shortname = 'roy-blog';
+  
+  var disqus_url = 'http://blog.roy4801.tw/2020/05/18/tutorial/clion-gdb-debugging/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+
+
+
+
+
+<!-- author:forvoid begin -->
+<!-- author:forvoid begin -->
+
+<!-- author:forvoid end -->
+
+<!-- author:forvoid end -->
+
+
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      })
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      })
+    </script>
+    <script type="text/javascript" src="https://cdn.rawgit.com/mathjax/MathJax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+ 
+<script src="/js/is.js"></script>
+
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+<script src="/js/elevator.js"></script>
+
+  </div>
+</body>
+</html>
