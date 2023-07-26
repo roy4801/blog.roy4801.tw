@@ -106,11 +106,10 @@ feed:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/roy4801/roy4801.github.io.git
-  branch: master
-  message: Updated
+  repo: https://github.com/roy4801/blog.roy4801.tw.git
+  branch: gh-pages
   name: roy4801
   email: a82611141@gmail.com
-  extend_dirs:
-  ignore_hidden: true # default is true
-  ignore_pattern:  # whatever file that matches the regexp will be ignored when deploying
+  # extend_dirs:
+  # ignore_hidden: true # default is true
+  # ignore_pattern:  # whatever file that matches the regexp will be ignored when deploying
